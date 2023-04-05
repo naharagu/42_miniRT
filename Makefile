@@ -2,9 +2,11 @@ NAME		:=	miniRT
 
 CC			:=	gcc
 CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
+
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
-				$(SRCS_DIR)vector/vector.c
+				$(SRCS_DIR)vector/vector.c \
+				$(SRCS_DIR)vector/vector_calculation.c
 INCLUDES	:=	-I./include -I$(MLX_DIR) -I$(LIB_DIR)
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
@@ -51,6 +53,9 @@ norm:
 
 normaall:
 	norminette $(SRCS_DIR) $(LIB_DIR)
+
+nof: CFLAGS :=	-MMD -MP
+nof: all
 
 -include $(DEPS)
 

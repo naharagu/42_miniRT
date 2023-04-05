@@ -30,4 +30,15 @@ typedef struct s_camera
 	double	fov;
 }			t_camera;
 
+typedef struct s_light
+{
+	t_vec3	origin;
+	double	ratio;
+	t_vec3	color;
+}			t_light;
+
+//環境光の環境反射(Ambient)
+// 直接光の拡散反射(Diffuse)
+// 直接光の鏡面反射(Specular)
+
 #endif

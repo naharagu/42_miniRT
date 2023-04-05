@@ -1,4 +1,5 @@
 #include "miniRT.h"
+#include <math.h>
 
 void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 {
@@ -39,21 +40,22 @@ void	draw_square(t_world *world, int x_start, int y_start, int color)
 	return ;
 }
 
-void	draw_sphere(t_world *world, int x_start, int y_start, int color)
+void	draw_sphere(t_world *world, int x_start, int y_start)
 {
 	int		x;
 	int		y;
 	double sphere_r;
 
 	t_vec3	camera;
-	camera = (t_vec3){0, 0, -100};
-	// t_vec3	sphere;
-	// sphere = (t_vec3){0, 0, 5};
+	camera = (t_vec3){0, 0, -5};
 
 	t_vec3	light;
-	light = (t_vec3){-5, 5, 5};
+	light = (t_vec3){-5, 5, -5};
 
-	sphere_r = 0.5;
+	t_vec3	sphere;
+	sphere = (t_vec3){0, 0, 5};
+	sphere_r = 0.7;
+
 	x = x_start;
 	while (x < x_start + world->screen_width)
 	{
@@ -71,10 +73,48 @@ void	draw_sphere(t_world *world, int x_start, int y_start, int color)
 			double c = vec3_magnitude(camera) * vec3_magnitude(camera) - sphere_r * sphere_r;
 
 			double discriminant = b * b - 4.0 * a * c;
-			if (discriminant >= 0.0)
-				put_pixel_to_addr(world, x, y, color);
-			else
+			if (discriminant < 0.0)
 				put_pixel_to_addr(world, x, y, get_color_in_int((t_color){100, 149, 237}));
+			else
+			{
+				double t = (-b + sqrt(discriminant)) / (2.0 * a);
+				if (discriminant > 0.0)
+				{
+					double t2 = (-b - sqrt(discriminant)) / (2.0 * a);
+					if (t2 < t)
+						t = t2;
+				}
+
+				t_vec3 hit_point = vec3_addition(camera, vec3_multiply_scalar(ray, t));
+
+				t_vec3 l;
+				l = vec3_normalize(vec3_subtraction(light, hit_point));
+				t_vec3 n;
+				n = vec3_normalize(vec3_subtraction(hit_point, sphere));
+
+				double ray_deg = vec3_dot_product(n, l);
+				if (ray_deg < 0)
+					ray_deg = 0;
+
+				double I_i = 1.0;
+				double k_d = 0.69;
+				double R_d = k_d * I_i * ray_deg;
+
+				double I_a = 0.1;
+				double k_a = 0.01;
+				double R_a = k_a * I_a;
+
+				double k_s = 0.3;
+				double alpha = 8;
+				t_vec3 v = vec3_multiply_scalar(ray, -1);
+				t_vec3 r = vec3_subtraction(vec3_multiply_scalar(vec3_multiply_scalar(n, vec3_dot_product(n, l)), 2), l);
+				double R_s = k_s * I_i * pow(vec3_dot_product(v, r), alpha);
+				if (vec3_dot_product(v, r) < 0)
+					R_s = 0;
+
+				double R_r = R_a + R_d + R_s;
+				put_pixel_to_addr(world, x, world->screen_height - y - 1, get_color_in_int((t_color){0, R_r * 255,0}));
+			}
 			y++;
 		}
 		x++;
@@ -102,7 +142,7 @@ int	main(void)
 
 	init_world(&world);
 	// draw_square(&world, 0, 0, 0x00FF0000);
-	draw_sphere(&world, 0, 0, 0x00FF0000);
+	draw_sphere(&world, 0, 0);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
 	mlx_loop(world.mlx);
 	return (0);

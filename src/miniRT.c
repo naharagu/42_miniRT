@@ -1,9 +1,10 @@
 #include "miniRT.h"
-#include "raytrace.h"
 #include <math.h>
 
-t_color raytrace( double x, double y)
+t_color miniRT(t_world *world,double x, double y)
 {
+	(void) world;
+	
 	t_vec3	camera;
 	camera = (t_vec3){0, 0, -5};
 

@@ -25,7 +25,7 @@ void	draw_world(t_world *world)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			color = raytrace(x, y);
+			color = miniRT(world, x, y);
 			put_pixel_to_addr(world, x, HEIGHT - y - 1, get_color_in_int(color));
 			y++;
 		}

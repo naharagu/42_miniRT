@@ -17,8 +17,8 @@ else
 endif
 
 $(NAME): $(OBJS)
-	make -C $(MLX_DIR)
-	make -C $(LIB_DIR)
+#	make -C $(MLX_DIR)
+#	make -C $(LIB_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIB)
 
 $(OBJS_DIR)%.o: %.c
@@ -28,14 +28,14 @@ $(OBJS_DIR)%.o: %.c
 all: $(NAME)
 
 clean:
-	make -C $(MLX_DIR) clean
-	make -C $(LIB_DIR) clean
+#	make -C $(MLX_DIR) clean
+#	make -C $(LIB_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(MLX_DIR)/libmlx.a
-	rm -f $(LIB_DIR)/libft.a
+#	rm -f $(MLX_DIR)/libmlx.a
+#	rm -f $(LIB_DIR)/libft.a
 
 re: fclean all
 
@@ -48,5 +48,4 @@ norm:
 normaall:
 	norminette $(SRCS) include $(LIB_DIR)
 
-
-.PHONY: all clean fclean re sanitize norm
+.PHONY: all clean fclean re sanitize norm no

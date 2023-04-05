@@ -3,6 +3,7 @@
 
 # include <../libft/libft.h>
 # include <../minilibx/mlx.h>
+# include "../src/vector/vector.h"
 # include <stdio.h>
 
 typedef struct s_world
@@ -15,13 +16,5 @@ typedef struct s_world
 	int		line_length;
 	int		endian;
 }			t_world;
-
-typedef struct s_vec3 t_color;
-struct		s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-};
 
 #endif

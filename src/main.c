@@ -1,25 +1,5 @@
 #include "miniRT.h"
 
-void	set_color(double r, double g, double b, t_color *color)
-{
-	color->x = r;
-	color->y = g;
-	color->z = b;
-	return ;
-}
-
-int	get_color_in_int(t_color color)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (int)(color.x);
-	g = (int)(color.y);
-	b = (int)(color.z);
-	return ((r << 16) + (g << 8) + b);
-}
-
 void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 {
 	char	*dst;
@@ -29,6 +9,7 @@ void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 	*(unsigned int *)dst = color;
 	return ;
 }
+
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 

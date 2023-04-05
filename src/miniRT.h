@@ -4,6 +4,7 @@
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include "vector/vector.h"
+# include "raytrace/raytrace.h"
 # include <stdio.h>
 
 #define HEIGHT 400
@@ -40,5 +41,7 @@ typedef struct s_light
 //環境光の環境反射(Ambient)
 // 直接光の拡散反射(Diffuse)
 // 直接光の鏡面反射(Specular)
+
+void	put_pixel_to_addr(t_world *world, int x, int y, int color);
 
 #endif

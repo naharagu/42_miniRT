@@ -11,6 +11,7 @@ LIB_DIR		:= 	./libft
 LIB			:=	./libft/libft.a
 OBJS_DIR	:=	./obj/
 OBJS		:=	$(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
+DEPS		:=	$(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.d)
 
 ifeq ($(shell uname), Darwin)
 	MLX_FLAGS = minilibx/libmlx.a -L/usr/X11R6/lib -lX11 -lXext
@@ -46,9 +47,11 @@ sanitize: CFLAGS += -fsanitize=address
 sanitize: re
 
 norm:
-	norminette $(SRCS_DIR) include
+	norminette $(SRCS_DIR)
 
 normaall:
-	norminette $(SRCS_DIR) include $(LIB_DIR)
+	norminette $(SRCS_DIR) $(LIB_DIR)
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re sanitize norm no

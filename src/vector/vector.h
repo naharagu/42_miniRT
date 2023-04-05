@@ -9,7 +9,7 @@ struct		s_vec3
 	double	z;
 };
 
-void	set_color(double r, double g, double b, t_color *color);
-int	get_color_in_int(t_color color);
+void		set_color(double r, double g, double b, t_color *color);
+int			get_color_in_int(t_color color);
 
 #endif

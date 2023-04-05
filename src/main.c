@@ -39,15 +39,25 @@ void	draw_square(t_world *world, int x_start, int y_start, int color)
 	return ;
 }
 
+void init_world(t_world *world)
+{
+	world->screen_height = 400;
+	world->screen_width = 600;
+	world->mlx = mlx_init();
+	world->mlx_win = mlx_new_window(world->mlx,
+			world->screen_width, world->screen_height, "miniRT");
+	world->img = mlx_new_image(world->mlx,
+			world->screen_width, world->screen_height);
+	world->addr = mlx_get_data_addr(world->img, &world->bits_per_pixel,
+			&world->line_length, &world->endian);
+	return ;
+}
+
 int	main(void)
 {
 	t_world	world;
 
-	world.mlx = mlx_init();
-	world.mlx_win = mlx_new_window(world.mlx, 600, 400, "miniRT");
-	world.img = mlx_new_image(world.mlx, 600, 400);
-	world.addr = mlx_get_data_addr(world.img, &world.bits_per_pixel,
-			&world.line_length, &world.endian);
+	init_world(&world);
 	draw_square(&world, 0, 0, 0x00FF0000);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
 	mlx_loop(world.mlx);

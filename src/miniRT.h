@@ -6,12 +6,12 @@
 # include "vector/vector.h"
 # include <stdio.h>
 
+#define HEIGHT 400
+#define	WIDTH 400
 typedef struct s_world
 {
 	void	*mlx;
 	void	*mlx_win;
-	int screen_width;
-	int screen_height;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;

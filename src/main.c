@@ -57,14 +57,14 @@ void	draw_sphere(t_world *world, int x_start, int y_start)
 	sphere_r = 0.7;
 
 	x = x_start;
-	while (x < x_start + world->screen_width)
+	while (x < x_start + WIDTH)
 	{
 		y = y_start;
-		while (y < y_start + world->screen_height)
+		while (y < y_start + HEIGHT)
 		{
 			t_vec3 screen;
-			screen = (t_vec3){(double) 2 * x / (double)world->screen_width - 1.0,
-				(double)2 * y / (double)world->screen_height - 1.0, 0};
+			screen = (t_vec3){(double) 2 * x / (double)WIDTH - 1.0,
+				(double)2 * y / (double)HEIGHT - 1.0, 0};
 			t_vec3 ray;
 			ray = vec3_normalize(vec3_subtraction(screen, camera));
 
@@ -113,7 +113,7 @@ void	draw_sphere(t_world *world, int x_start, int y_start)
 					R_s = 0;
 
 				double R_r = R_a + R_d + R_s;
-				put_pixel_to_addr(world, x, world->screen_height - y - 1, get_color_in_int((t_color){0, R_r * 255,0}));
+				put_pixel_to_addr(world, x, HEIGHT - y - 1, get_color_in_int((t_color){0, R_r * 255,0}));
 			}
 			y++;
 		}
@@ -124,13 +124,9 @@ void	draw_sphere(t_world *world, int x_start, int y_start)
 
 void init_world(t_world *world)
 {
-	world->screen_height = 400;
-	world->screen_width = 400;
 	world->mlx = mlx_init();
-	world->mlx_win = mlx_new_window(world->mlx,
-			world->screen_width, world->screen_height, "miniRT");
-	world->img = mlx_new_image(world->mlx,
-			world->screen_width, world->screen_height);
+	world->mlx_win = mlx_new_window(world->mlx, WIDTH, HEIGHT, "miniRT");
+	world->img = mlx_new_image(world->mlx, WIDTH, HEIGHT);
 	world->addr = mlx_get_data_addr(world->img, &world->bits_per_pixel,
 			&world->line_length, &world->endian);
 	return ;

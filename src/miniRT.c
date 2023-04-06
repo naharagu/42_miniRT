@@ -1,25 +1,22 @@
 #include "miniRT.h"
 #include <math.h>
 
-t_color miniRT(t_world *world,double x, double y)
+t_vec3 get_ray(t_world *world, double x, double y)
 {
-	(void) world;
-	
-	t_vec3	camera;
-	camera = (t_vec3){0, 0, -5};
-
-	t_vec3	light;
-	light = (t_vec3){-5, 5, -5};
-
-	t_vec3	sphere;
-	sphere = (t_vec3){0, 0, 5};
-	double sphere_r = 0.7;
-
+	t_vec3 camera = world->camera;
 	t_vec3 screen;
+
 	screen = (t_vec3){(double) 2 * x / (double)WIDTH - 1.0,
 		(double)2 * y / (double)HEIGHT - 1.0, 0};
-	t_vec3 ray;
-	ray = vec3_normalize(vec3_subtraction(screen, camera));
+	return (vec3_normalize(vec3_subtraction(screen, camera)));
+}
+
+t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray)
+{
+	t_vec3	camera = world->camera;
+	t_vec3	light = world->light;
+	t_vec3	sphere = world->object;
+	double	sphere_r = 0.7;
 
 	double a = vec3_magnitude(ray) * vec3_magnitude(ray);
 	double b = 2.0 * vec3_dot_product(camera, ray);
@@ -60,4 +57,26 @@ t_color miniRT(t_world *world,double x, double y)
 
 	double R_r = R_a + R_d + R_s;
 	return (t_color){255 * R_r, 255 * R_r, 255 * R_r};
+}
+
+void	miniRT(t_world *world)
+{
+	int		x;
+	int		y;
+	t_vec3	ray;
+	t_color color;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			ray = get_ray(world, x, y);
+			color = calculate_diffuse_reflection(world, ray);
+			put_pixel_to_addr(world, x, HEIGHT - y - 1, get_color_in_int(color));
+			y++;
+		}
+		x++;
+	}
 }

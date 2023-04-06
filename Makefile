@@ -5,7 +5,7 @@ CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
 
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
-				$(SRCS_DIR)miniRTw.c \
+				$(SRCS_DIR)miniRT.c \
 				$(SRCS_DIR)vector/vector.c \
 				$(SRCS_DIR)vector/vector_calculation.c \
 				$(SRCS_DIR)test/draw_square.c

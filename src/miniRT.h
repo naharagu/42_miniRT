@@ -18,9 +18,9 @@ typedef struct s_world
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	t_list	*camera;
-	t_list	*lights;
-	t_list	*objects;
+	t_vec3	camera;
+	t_vec3	light;
+	t_vec3	object;
 	t_vec3	ambient_light;
 }			t_world;
 
@@ -42,7 +42,7 @@ typedef struct s_light
 // 直接光の拡散反射(Diffuse)
 // 直接光の鏡面反射(Specular)
 
-t_color miniRT(t_world *world, double x, double y);
+void	miniRT(t_world *world);
 void	put_pixel_to_addr(t_world *world, int x, int y, int color);
 
 #endif

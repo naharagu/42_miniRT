@@ -13,26 +13,6 @@ void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
-void	draw_world(t_world *world)
-{
-	int		x;
-	int		y;
-	t_color	color;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			color = miniRT(world, x, y);
-			put_pixel_to_addr(world, x, HEIGHT - y - 1, get_color_in_int(color));
-			y++;
-		}
-		x++;
-	}
-}
-
 void init_world(t_world *world)
 {
 	world->mlx = mlx_init();
@@ -40,6 +20,9 @@ void init_world(t_world *world)
 	world->img = mlx_new_image(world->mlx, WIDTH, HEIGHT);
 	world->addr = mlx_get_data_addr(world->img, &world->bits_per_pixel,
 			&world->line_length, &world->endian);
+	world->camera = (t_vec3){0, 0, -5};
+	world->light = (t_vec3){-5, 5, -5};
+	world->object = (t_vec3){0, 0, 5};
 }
 
 int	main(void)
@@ -48,7 +31,7 @@ int	main(void)
 
 	init_world(&world);
 	// draw_square(&world, 0, 0, 0x00FF0000);
-	draw_world(&world);
+	miniRT(&world);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
 	mlx_loop(world.mlx);
 	return (0);

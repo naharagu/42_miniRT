@@ -1,4 +1,5 @@
 #include "miniRT.h"
+#include "mlx.h"
 #include <math.h>
 
 void	put_pixel_to_addr(t_world *world, int x, int y, int color)

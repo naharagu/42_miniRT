@@ -6,7 +6,6 @@
 // 3.物体上の点における法線ベクトル
 
 typedef struct s_vec3 t_vec3;
-typedef struct s_vec3 t_color;
 struct		s_vec3
 {
 	double	x;
@@ -14,8 +13,6 @@ struct		s_vec3
 	double	z;
 };
 
-void		set_color(double r, double g, double b, t_color *color);
-int			get_color_in_int(t_color color);
 
 //caluculation
 t_vec3	vec3_create(double x, double y, double z);

@@ -6,12 +6,13 @@ CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)miniRT.c \
-				$(SRCS_DIR)vector/vector.c \
+				$(SRCS_DIR)vector/color.c \
 				$(SRCS_DIR)vector/vector_calculation.c \
+				$(SRCS_DIR)raytrace/diffuse_reflection.c \
 				$(SRCS_DIR)test/draw_square.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
-INCLUDES	:=	-I./src/ -I$(MLX_DIR) -I$(LIB_DIR)
+INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)
 LIB			:=	./libft/libft.a
 OBJS_DIR	:=	./obj/
 OBJS		:=	$(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
@@ -25,8 +26,8 @@ endif
 
 
 $(NAME): $(OBJS)
-#	make -C $(MLX_DIR)
-#	make -C $(LIB_DIR)
+	make -C $(MLX_DIR)
+	make -C $(LIB_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIB)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
@@ -53,12 +54,15 @@ sanitize: re
 norm:
 	norminette $(SRCS_DIR)
 
-normaall:
+normall:
 	norminette $(SRCS_DIR) $(LIB_DIR)
 
 nof: CFLAGS :=	-MMD -MP
 nof: all
 
+run r: all
+	./$(NAME)
+
 -include $(DEPS)
 
-.PHONY: all clean fclean re sanitize norm no
+.PHONY: all clean fclean re sanitize norm no run r

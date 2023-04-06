@@ -1,5 +1,6 @@
 #include "miniRT.h"
 #include "test.h"
+#include "color.h"
 
 void	draw_square(t_world *world, int x_start, int y_start, int color)
 {

@@ -1,11 +1,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
-# include "vector/vector.h"
-
 #include <stdio.h>//
+#include "vector.h"
 
 #define HEIGHT 400
 #define	WIDTH 400

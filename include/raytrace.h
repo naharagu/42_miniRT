@@ -4,6 +4,7 @@
 #include "miniRT.h"
 #include "color.h"
 
-t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray);
+double	calculate_ambient_light(void);
+double calculate_diffuse_reflection(t_world *world, t_vec3 ray);
 
 #endif

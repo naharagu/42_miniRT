@@ -1,7 +1,7 @@
 #include "raytrace.h"
 #include <math.h>
 
-t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray)
+double calculate_diffuse_reflection(t_world *world, t_vec3 ray)
 {
 	t_vec3	camera = world->camera;
 	t_vec3	light = world->light;
@@ -14,7 +14,7 @@ t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray)
 
 	double discriminant = b * b - 4.0 * a * c;
 	if (discriminant < 0.0)
-		return ((t_color){100, 149, 237});
+		return (0.1);
 	double t = (-b + sqrt(discriminant)) / (2.0 * a);
 	if (discriminant > 0.0)
 	{
@@ -33,10 +33,6 @@ t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray)
 	double k_d = 0.69;
 	double R_d = k_d * I_i * diffuse;
 
-	double I_a = 0.1;
-	double k_a = 0.01;
-	double R_a = k_a * I_a;
-
 	double k_s = 0.3;
 	double alpha = 8;
 	t_vec3 v = vec3_multiply_scalar(ray, -1);
@@ -45,6 +41,6 @@ t_color calculate_diffuse_reflection(t_world *world, t_vec3 ray)
 	if (vec3_dot_product(v, r) < 0)
 		R_s = 0;
 
-	double R_r = R_a + R_d + R_s;
-	return (t_color){255 * R_r, 255 * R_r, 255 * R_r};
+	double R_r = R_d + R_s;
+	return  R_r;
 }

@@ -14,11 +14,12 @@ t_vec3 get_ray(t_world *world, double x, double y)
 
 t_color	shading(t_world *world, t_vec3 ray)
 {
-	t_color color;
+	double R_r;
 
-	color = calculate_diffuse_reflection(world, ray);
+	R_r = calculate_ambient_light();
+	R_r += calculate_diffuse_reflection(world, ray);
 
-	return (color);
+	return (t_color){255 * R_r, 255 * R_r, 255 * R_r};
 }
 
 void	miniRT(t_world *world)

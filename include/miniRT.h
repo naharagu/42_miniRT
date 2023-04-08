@@ -45,7 +45,6 @@ typedef struct s_light
 }			t_light;
 
 
-
 void	mini_rt(t_world *world);
 void	put_pixel_to_addr(t_world *world, int x, int y, int color);
 

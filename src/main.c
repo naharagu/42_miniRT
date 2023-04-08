@@ -6,28 +6,13 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:19:15 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/08 10:37:01 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
 #include <math.h>
-
-void	put_pixel_to_addr(t_world *world, int x, int y, int color)
-{
-	char	*dst;
-	int		len;
-	int		bpp;
-
-	len = world->line_length;
-	bpp = world->bits_per_pixel;
-	dst = world->addr + (y * len + x * (bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-// dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
-// このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
 void	init_world(t_world *world)
 {

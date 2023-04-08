@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:16:59 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/08 10:55:44 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,23 @@ static int	calculate_hit_point(t_world *world, t_vec3 *ray)
 				world->hit.point));
 	return (0);
 }
+
+void	put_pixel_to_addr(t_world *world, int x, int y, int color)
+{
+	char 	*addr;
+	char	*dst;
+	int		len;
+	int		bpp;
+
+	addr = world->addr;
+	len = world->line_length;
+	bpp = world->bits_per_pixel;
+	dst = addr + (y * len + x * (bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+// dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
+// このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
 void	mini_rt(t_world *world)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
+/*   Updated: 2023/04/08 10:19:15 by naharagu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 #include "mlx.h"
 #include <math.h>
@@ -5,16 +17,19 @@
 void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 {
 	char	*dst;
+	int		len;
+	int		bpp;
 
-	dst = world->addr
-		+ (y * world->line_length + x * (world->bits_per_pixel/ 8));
+	len = world->line_length;
+	bpp = world->bits_per_pixel;
+	dst = world->addr + (y * len + x * (bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
-void init_world(t_world *world)
+void	init_world(t_world *world)
 {
 	world->mlx = mlx_init();
 	world->mlx_win = mlx_new_window(world->mlx, WIDTH, HEIGHT, "miniRT");
@@ -31,13 +46,13 @@ int	main(void)
 	t_world	world;
 
 	init_world(&world);
-	// draw_square(&world, 0, 0, 0x00FF0000);
-	miniRT(&world);
+	mini_rt(&world);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
 	mlx_loop(world.mlx);
 	return (0);
 }
 
+	// draw_square(&world, 0, 0, 0x00FF0000);
 // imgパラメータには、使用する画像を指定。
 // mlx_get_data_addr() は、画像が保存されているメモリの開始点のアドレスを char * 型ポインタで返す。
 // mlx_get_data_addr() が正常に呼び出された場合、次の3つのパラメータに値が指定。

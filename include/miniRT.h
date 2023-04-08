@@ -6,6 +6,13 @@
 
 #define HEIGHT 400
 #define	WIDTH 400
+
+typedef struct s_hit
+{
+	t_vec3	point;
+	t_vec3	normal;
+	t_vec3	color;
+}			t_hit;
 typedef struct s_world
 {
 	void	*mlx;
@@ -17,8 +24,10 @@ typedef struct s_world
 	int		endian;
 	t_vec3	camera;
 	t_vec3	light;
+	t_vec3	light_dir;
 	t_vec3	object;
 	t_vec3	ambient_light;
+	t_hit	hit;
 }			t_world;
 
 typedef struct s_camera
@@ -35,9 +44,7 @@ typedef struct s_light
 	t_vec3	color;
 }			t_light;
 
-//環境光の環境反射(Ambient)
-// 直接光の拡散反射(Diffuse)
-// 直接光の鏡面反射(Specular)
+
 
 void	miniRT(t_world *world);
 void	put_pixel_to_addr(t_world *world, int x, int y, int color);

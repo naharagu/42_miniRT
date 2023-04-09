@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:13:43 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 18:41:57 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:56:01 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCENE_H
 
 # include "vector.h"
+# include "color.h"
 
 typedef struct s_camera
 {
@@ -38,7 +39,7 @@ typedef struct s_hit
 
 typedef struct s_scene
 {
-	t_vec3	ambient_light;
+	t_color	ambient_lightning;
 	t_vec3	camera;
 	t_vec3	light;
 	t_vec3	light_dir;

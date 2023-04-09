@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 19:24:29 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:25:01 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "mlx.h"
 #include "color.h"
 #include <math.h>
+#include "libft.h"
+
+#define ESC 65307
 
 void	init_world(t_world *world)
 {
@@ -24,12 +27,28 @@ void	init_world(t_world *world)
 			&world->line_length, &world->endian);
 }
 
+// imgパラメータには、使用する画像を指定。
+// mlx_get_data_addr() は、画像が保存されているメモリの開始点のアドレスを char * 型ポインタで返す。
+// mlx_get_data_addr() が正常に呼び出された場合、次の3つのパラメータに値が指定。
+//1. bits_per_pixel パラメータには、ピクセルの色を表現するために必要なビット数が入力。
+//2. size_line パラメータには、画像1行を保存するために必要なバイト数が入力。
+//3. endianパラメータは、ピクセルの色の保存方法が
+//    little endian（0指定）かbig endian（1指定）かを示す（mlx_new_image manを参照）。
+
 void	init_scene(t_scene *scene)
 {
 	scene->ambient_lightning = vec3_multiply_scalar((t_vec3){255, 255, 255}, 0.001);
 	scene->camera = (t_vec3){0, 0, -5};
 	scene->light = (t_vec3){-5, 5, -5};
 	scene->object = (t_vec3){0, 0, 5};
+}
+
+int	key_handler(int key, t_world *world)
+{
+	dprintf(STDERR_FILENO, "key: %d\n", key);//
+	if (key == ESC)
+		mlx_loop_end(world->mlx);
+	return (0);
 }
 
 int	main(void)
@@ -41,15 +60,7 @@ int	main(void)
 	init_scene(&scene);
 	mini_rt(&world, &scene);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
+	mlx_key_hook(world.mlx_win, key_handler, &world);
 	mlx_loop(world.mlx);
 	return (0);
 }
-
-	// draw_square(&world, 0, 0, 0x00FF0000);
-// imgパラメータには、使用する画像を指定。
-// mlx_get_data_addr() は、画像が保存されているメモリの開始点のアドレスを char * 型ポインタで返す。
-// mlx_get_data_addr() が正常に呼び出された場合、次の3つのパラメータに値が指定。
-//- bits_per_pixel パラメータには、ピクセルの色を表現するために必要なビット数が入力。
-//- size_line パラメータには、画像1行を保存するために必要なバイト数が入力。
-//- endianパラメータは、ピクセルの色の保存方法が
-//    little endian（0指定）かbig endian（1指定）かを示す（mlx_new_image manを参照）。

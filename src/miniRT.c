@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:55:44 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:36:57 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "raytrace.h"
 #include <math.h>
 
-static t_vec3	get_ray(t_world *world, double x, double y)
+static t_vec3	get_ray(t_scene *scene, double x, double y)
 {
 	t_vec3	camera;
 	t_vec3	screen;
 
-	camera = world->camera;
+	camera = scene->camera;
 	screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
 					(double)2 * y / (double)HEIGHT - 1.0, 0};
 	return (vec3_normalize(vec3_subtraction(screen, camera)));
 }
 
-static int	calculate_hit_point(t_world *world, t_vec3 *ray)
+static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 {
 	t_vec3	camera;
 	t_vec3	light;
@@ -38,9 +38,9 @@ static int	calculate_hit_point(t_world *world, t_vec3 *ray)
 	double	t;
 	double	t2;
 
-	camera = world->camera;
-	light = world->light;
-	sphere = world->object;
+	camera = scene->camera;
+	light = scene->light;
+	sphere = scene->object;
 	sphere_r = 0.7;
 	a = vec3_magnitude(*ray) * vec3_magnitude(*ray);
 	b = 2.0 * vec3_dot_product(camera, *ray);
@@ -55,11 +55,11 @@ static int	calculate_hit_point(t_world *world, t_vec3 *ray)
 		if (t2 < t)
 			t = t2;
 	}
-	world->hit.point = vec3_addition(camera, vec3_multiply_scalar(*ray, t));
-	world->hit.normal = vec3_normalize(vec3_subtraction(world->hit.point,
+	scene->hit.point = vec3_addition(camera, vec3_multiply_scalar(*ray, t));
+	scene->hit.normal = vec3_normalize(vec3_subtraction(scene->hit.point,
 				sphere));
-	world->light_dir = vec3_normalize(vec3_subtraction(light,
-				world->hit.point));
+	scene->light_dir = vec3_normalize(vec3_subtraction(light,
+				scene->hit.point));
 	return (0);
 }
 
@@ -80,7 +80,7 @@ void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
-void	mini_rt(t_world *world)
+void	mini_rt(t_world *world, t_scene *scene)
 {
 	int		x;
 	int		y;
@@ -93,12 +93,12 @@ void	mini_rt(t_world *world)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			ray = get_ray(world, x, y);
-			if (calculate_hit_point(world, &ray) == -1)
+			ray = get_ray(scene, x, y);
+			if (calculate_hit_point(scene, &ray) == -1)
 				color = ((t_color){100, 149, 237});
 			else
 			{
-				color = shading(world, ray);
+				color = shading(scene, ray);
 				// color += shadowing;
 			}
 			put_pixel_to_addr(world, x, HEIGHT - y - 1, \

@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:37:01 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:34:21 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,23 @@ void	init_world(t_world *world)
 	world->img = mlx_new_image(world->mlx, WIDTH, HEIGHT);
 	world->addr = mlx_get_data_addr(world->img, &world->bits_per_pixel,
 			&world->line_length, &world->endian);
-	world->camera = (t_vec3){0, 0, -5};
-	world->light = (t_vec3){-5, 5, -5};
-	world->object = (t_vec3){0, 0, 5};
+}
+
+void	init_scene(t_scene *scene)
+{
+	scene->camera = (t_vec3){0, 0, -5};
+	scene->light = (t_vec3){-5, 5, -5};
+	scene->object = (t_vec3){0, 0, 5};
 }
 
 int	main(void)
 {
 	t_world	world;
+	t_scene scene;
 
 	init_world(&world);
-	mini_rt(&world);
+	init_scene(&scene);
+	mini_rt(&world, &scene);
 	mlx_put_image_to_window(world.mlx, world.mlx_win, world.img, 0, 0);
 	mlx_loop(world.mlx);
 	return (0);

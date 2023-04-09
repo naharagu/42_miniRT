@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:13:43 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 18:15:58 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:41:57 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,15 @@ typedef struct s_hit
 	t_vec3	normal;
 	t_vec3	color;
 }			t_hit;
+
+typedef struct s_scene
+{
+	t_vec3	ambient_light;
+	t_vec3	camera;
+	t_vec3	light;
+	t_vec3	light_dir;
+	t_vec3	object;
+	t_hit	hit;
+}			t_scene;
 
 #endif

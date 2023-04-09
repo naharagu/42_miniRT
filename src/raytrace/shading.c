@@ -6,11 +6,12 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:47:29 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:29:50 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "scene.h"
 #include "vector.h"
 #include <math.h>
 
@@ -26,14 +27,14 @@ double	calculate_ambient_light(void)
 	return (r_ambient);
 }
 
-double	calculate_diffuse_reflection(t_world *world)
+double	calculate_diffuse_reflection(t_scene *scene)
 {
 	double	diffuse;
 	double	i_i;
 	double	k_d;
 	double	r_diffuse;
 
-	diffuse = vec3_dot_product(world->light_dir, world->hit.normal);
+	diffuse = vec3_dot_product(scene->light_dir, scene->hit.normal);
 	if (diffuse < 0.0)
 		diffuse = 0.0;
 	i_i = 1.0;
@@ -42,7 +43,7 @@ double	calculate_diffuse_reflection(t_world *world)
 	return (r_diffuse);
 }
 
-double	calculate_specular_reflection(t_world *world, t_vec3 ray)
+double	calculate_specular_reflection(t_scene *scene, t_vec3 ray)
 {
 	double	r_specular;
 	t_vec3	normal;
@@ -53,8 +54,8 @@ double	calculate_specular_reflection(t_world *world, t_vec3 ray)
 	t_vec3	v;
 	t_vec3	r;
 
-	normal = world->hit.normal;
-	light_dir = world->light_dir;
+	normal = scene->hit.normal;
+	light_dir = scene->light_dir;
 	i_i = 1.0;
 	k_s = 0.3;
 	alpha = 8;
@@ -67,7 +68,7 @@ double	calculate_specular_reflection(t_world *world, t_vec3 ray)
 	return (r_specular);
 }
 
-t_color	shading(t_world *world, t_vec3 ray)
+t_color	shading(t_scene *scene, t_vec3 ray)
 {
 	double	r_ambient;
 	double	r_diffuse;
@@ -75,8 +76,8 @@ t_color	shading(t_world *world, t_vec3 ray)
 	double	r_total;
 
 	r_ambient = calculate_ambient_light();
-	r_diffuse = calculate_diffuse_reflection(world);
-	r_specular = calculate_specular_reflection(world, ray);
+	r_diffuse = calculate_diffuse_reflection(scene);
+	r_specular = calculate_specular_reflection(scene, ray);
 	r_total = r_ambient + r_diffuse + r_specular;
 	return ((t_color){255 * r_total, 255 * r_total, 255 * r_total});
 }

@@ -9,8 +9,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)vector/color.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c \
-				$(SRCS_DIR)raytrace/shading.c \
-				$(SRCS_DIR)test/draw_square.c
+				$(SRCS_DIR)raytrace/shading.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

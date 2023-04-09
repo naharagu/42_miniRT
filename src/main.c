@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 21:34:36 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:46:40 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	init_world(t_world *world)
 //2. size_line パラメータには、画像1行を保存するために必要なバイト数が入力。
 //3. endianパラメータは、ピクセルの色の保存方法が
 //    little endian（0指定）かbig endian（1指定）かを示す（mlx_new_image manを参照）。
-
-#define ESC 65307
 
 int	key_handler(int key, t_world *world)
 {

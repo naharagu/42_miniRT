@@ -7,7 +7,8 @@
 
 #define HEIGHT 400
 #define	WIDTH 400
-
+#define ESC 65307
+	
 typedef struct s_world
 {
 	void	*mlx;

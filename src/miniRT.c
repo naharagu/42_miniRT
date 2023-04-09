@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 18:36:57 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:56:52 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ static t_vec3	get_ray(t_scene *scene, double x, double y)
 
 static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 {
-	t_vec3	camera;
-	t_vec3	light;
-	t_vec3	sphere;
-	double	sphere_r;
+	double	sphere_r = 0.7;
 	double	a;
 	double	b;
 	double	c;
@@ -38,13 +35,9 @@ static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 	double	t;
 	double	t2;
 
-	camera = scene->camera;
-	light = scene->light;
-	sphere = scene->object;
-	sphere_r = 0.7;
 	a = vec3_magnitude(*ray) * vec3_magnitude(*ray);
-	b = 2.0 * vec3_dot_product(camera, *ray);
-	c = vec3_magnitude(camera) * vec3_magnitude(camera) - sphere_r * sphere_r;
+	b = 2.0 * vec3_dot_product(scene->camera, *ray);
+	c = vec3_magnitude(scene->camera) * vec3_magnitude(scene->camera) - sphere_r * sphere_r;
 	discriminant = b * b - 4.0 * a * c;
 	if (discriminant < 0.0)
 		return (-1);
@@ -55,10 +48,10 @@ static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 		if (t2 < t)
 			t = t2;
 	}
-	scene->hit.point = vec3_addition(camera, vec3_multiply_scalar(*ray, t));
+	scene->hit.point = vec3_addition(scene->camera, vec3_multiply_scalar(*ray, t));
 	scene->hit.normal = vec3_normalize(vec3_subtraction(scene->hit.point,
-				sphere));
-	scene->light_dir = vec3_normalize(vec3_subtraction(light,
+				scene->object));
+	scene->light_dir = vec3_normalize(vec3_subtraction(scene->light,
 				scene->hit.point));
 	return (0);
 }
@@ -108,6 +101,7 @@ void	mini_rt(t_world *world, t_scene *scene)
 		x++;
 	}
 }
+
 //shading = 1) diffuse_reflection + 2) specular_reflection
 // .      + 3) ambient_reflection
 //shadowing = 1) shadow + 2) reflection + 3) refraction

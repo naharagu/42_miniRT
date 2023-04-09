@@ -10,6 +10,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c \
 				$(SRCS_DIR)raytrace/shading.c \
+				$(SRCS_DIR)scene/scene.c \
 				$(SRCS_DIR)test/test.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft

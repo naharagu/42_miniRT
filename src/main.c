@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 21:25:01 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:34:36 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "color.h"
 #include <math.h>
 #include "libft.h"
-
-#define ESC 65307
 
 void	init_world(t_world *world)
 {
@@ -35,13 +33,7 @@ void	init_world(t_world *world)
 //3. endianパラメータは、ピクセルの色の保存方法が
 //    little endian（0指定）かbig endian（1指定）かを示す（mlx_new_image manを参照）。
 
-void	init_scene(t_scene *scene)
-{
-	scene->ambient_lightning = vec3_multiply_scalar((t_vec3){255, 255, 255}, 0.001);
-	scene->camera = (t_vec3){0, 0, -5};
-	scene->light = (t_vec3){-5, 5, -5};
-	scene->object = (t_vec3){0, 0, 5};
-}
+#define ESC 65307
 
 int	key_handler(int key, t_world *world)
 {

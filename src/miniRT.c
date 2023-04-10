@@ -6,13 +6,14 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 09:39:04 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:23:57 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
+#include <stdbool.h>
 
 static t_vec3	get_ray(t_scene *scene, double x, double y)
 {
@@ -25,7 +26,7 @@ static t_vec3	get_ray(t_scene *scene, double x, double y)
 	return (vec3_normalize(vec3_subtraction(screen, camera)));
 }
 
-static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
+static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 {
 	double	sphere_r = 0.7;
 	double	a;
@@ -40,7 +41,7 @@ static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 	c = vec3_magnitude(scene->camera) * vec3_magnitude(scene->camera) - sphere_r * sphere_r;
 	discriminant = b * b - 4.0 * a * c;
 	if (discriminant < 0.0)
-		return (-1);
+		return (false);
 	t = (-b + sqrt(discriminant)) / (2.0 * a);
 	if (discriminant > 0.0)
 	{
@@ -50,10 +51,10 @@ static int	calculate_hit_point(t_scene *scene, t_vec3 *ray)
 	}
 	scene->hit.point = vec3_addition(scene->camera, vec3_multiply_scalar(*ray, t));
 	scene->hit.normal = vec3_normalize(vec3_subtraction(scene->hit.point,
-				scene->object));
+				scene->shapes->center));
 	scene->light_dir = vec3_normalize(vec3_subtraction(scene->light,
 				scene->hit.point));
-	return (0);
+	return (true);
 }
 
 void	put_pixel_to_addr(t_world *world, int x, int y, int color)
@@ -87,12 +88,11 @@ void	mini_rt(t_world *world, t_scene *scene)
 		while (y < HEIGHT)
 		{
 			ray = get_ray(scene, x, y);
-			if (calculate_hit_point(scene, &ray) == -1)
+			if (calculate_hit_point(scene, &ray) == false)
 				color = ((t_color){100, 149, 237});
 			else
 			{
 				color = shading(scene, ray);
-				// color += shadowing;
 			}
 			put_pixel_to_addr(world, x, HEIGHT - y - 1, \
 					get_color_in_int(color));

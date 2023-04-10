@@ -6,11 +6,11 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 21:56:52 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 09:39:04 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "main.h"
 #include "raytrace.h"
 #include <math.h>
 

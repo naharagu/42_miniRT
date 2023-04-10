@@ -6,11 +6,11 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 21:46:40 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 09:38:58 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "main.h"
 #include "mlx.h"
 #include "color.h"
 #include <math.h>

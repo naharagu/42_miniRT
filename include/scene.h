@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:13:43 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 18:56:01 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 10:11:10 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct s_hit
 
 typedef struct s_scene
 {
-	t_color	ambient_lightning;
+	t_color	ambient_color;
+	double	ambient_ratio;
 	t_vec3	camera;
 	t_vec3	light;
 	t_vec3	light_dir;

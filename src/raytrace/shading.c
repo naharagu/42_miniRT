@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/09 18:29:50 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 10:13:42 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,6 @@
 #include "scene.h"
 #include "vector.h"
 #include <math.h>
-
-double	calculate_ambient_light(void)
-{
-	double	k_a;
-	double	i_a;
-	double	r_ambient;
-
-	k_a = 0.01;
-	i_a = 0.1;
-	r_ambient = k_a * i_a;
-	return (r_ambient);
-}
 
 double	calculate_diffuse_reflection(t_scene *scene)
 {
@@ -75,11 +63,11 @@ t_color	shading(t_scene *scene, t_vec3 ray)
 	double	r_specular;
 	double	r_total;
 
-	r_ambient = calculate_ambient_light();
+	r_ambient = scene->ambient_ratio;
 	r_diffuse = calculate_diffuse_reflection(scene);
 	r_specular = calculate_specular_reflection(scene, ray);
 	r_total = r_ambient + r_diffuse + r_specular;
-	return ((t_color){255 * r_total, 255 * r_total, 255 * r_total});
+	return vec3_multiply_scalar(scene->ambient_color, r_total);
 }
 
 // 環境光の環境反射(Ambient)

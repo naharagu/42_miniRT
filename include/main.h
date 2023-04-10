@@ -1,5 +1,5 @@
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MAIN_H
+# define MAIN_H
 
 #include <stdio.h>//
 #include "vector.h"
@@ -8,7 +8,7 @@
 #define HEIGHT 400
 #define	WIDTH 400
 #define ESC 65307
-	
+
 typedef struct s_world
 {
 	void	*mlx;

@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 09:38:58 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:06:58 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	key_handler(int key, t_world *world)
 {
 	dprintf(STDERR_FILENO, "key: %d\n", key);//
 	if (key == ESC)
+	{
 		mlx_loop_end(world->mlx);
+		exit(0);
+	}
 	return (0);
 }
 
@@ -53,4 +56,10 @@ int	main(void)
 	mlx_key_hook(world.mlx_win, key_handler, &world);
 	mlx_loop(world.mlx);
 	return (0);
+}
+
+__attribute__((destructor))
+static void destructor(void)
+{
+    system("leaks -q miniRT");
 }

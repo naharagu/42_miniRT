@@ -12,6 +12,19 @@ typedef struct s_camera
 	double	fov;
 }			t_camera;
 
+typedef struct s_ray
+{
+	t_vec3	origin;
+	t_vec3	direction;
+}			t_ray;
+
+typedef struct s_light
+{
+	t_vec3	origin;
+	t_vec3	direction;
+	double	intensity;
+}			t_light;
+
 typedef struct s_hit
 {
 	t_vec3	point;

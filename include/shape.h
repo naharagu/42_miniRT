@@ -1,7 +1,7 @@
 #ifndef SHAPE_H
 # define SHAPE_H
 
-# include "vector.h"
+#include "vector.h"
 
 typedef struct s_shape t_shape;
 
@@ -21,5 +21,7 @@ struct s_shape
 	t_vec3	orientation;
 	double	radius;
 };
+
+void	init_shape(t_shape *shape);
 
 #endif

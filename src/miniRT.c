@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 19:23:57 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:39:47 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void	mini_rt(t_world *world, t_scene *scene)
 		{
 			ray = get_ray(scene, x, y);
 			if (calculate_hit_point(scene, &ray) == false)
+			{
 				color = ((t_color){100, 149, 237});
+				// color = ((t_color){0, 50, 100});
+			}
 			else
 			{
 				color = shading(scene, ray);
@@ -101,7 +104,3 @@ void	mini_rt(t_world *world, t_scene *scene)
 		x++;
 	}
 }
-
-//shading = 1) diffuse_reflection + 2) specular_reflection
-// .      + 3) ambient_reflection
-//shadowing = 1) shadow + 2) reflection + 3) refraction

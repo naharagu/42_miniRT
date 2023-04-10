@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 10:13:42 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:41:01 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,34 @@
 
 double	calculate_diffuse_reflection(t_scene *scene)
 {
-	double	diffuse;
-	double	i_i;
-	double	k_d;
+	double	cosine_theta;
 	double	r_diffuse;
 
-	diffuse = vec3_dot_product(scene->light_dir, scene->hit.normal);
-	if (diffuse < 0.0)
-		diffuse = 0.0;
-	i_i = 1.0;
-	k_d = 0.69;
-	r_diffuse = k_d * i_i * diffuse;
+	cosine_theta = vec3_dot_product(scene->hit.normal, scene->light_dir);
+	if (cosine_theta < 0.0)
+		return (0.0);
+	r_diffuse = K_DIFFUSE * LIGHT_INTENSITY * cosine_theta;
 	return (r_diffuse);
 }
 
 double	calculate_specular_reflection(t_scene *scene, t_vec3 ray)
 {
-	double	r_specular;
-	t_vec3	normal;
-	t_vec3	light_dir;
-	double	i_i;
-	double	k_s;
-	double	alpha;
+	double	cosine_theta;
 	t_vec3	v;
 	t_vec3	r;
+	double	vr;
+	double	r_specular;
 
-	normal = scene->hit.normal;
-	light_dir = scene->light_dir;
-	i_i = 1.0;
-	k_s = 0.3;
-	alpha = 8;
+	cosine_theta = vec3_dot_product(scene->hit.normal, scene->light_dir);
+	if (cosine_theta < 0.0)
+		return (0.0);
 	v = vec3_multiply_scalar(ray, -1);
-	r = vec3_subtraction(vec3_multiply_scalar(vec3_multiply_scalar(normal,
-					vec3_dot_product(normal, light_dir)), 2), normal);
-	r_specular = k_s * i_i * pow(vec3_dot_product(v, r), alpha);
-	if (vec3_dot_product(v, r) < 0)
-		r_specular = 0;
+	r = vec3_multiply_scalar(scene->hit.normal, 2 * cosine_theta);
+	r = vec3_subtraction(r, scene->light_dir);
+	vr = vec3_dot_product(v, r);
+	if (vr < 0)
+		return (0.0);
+	r_specular = K_SPECULAR * LIGHT_INTENSITY * pow(vr, ALPHA);
 	return (r_specular);
 }
 
@@ -67,7 +59,7 @@ t_color	shading(t_scene *scene, t_vec3 ray)
 	r_diffuse = calculate_diffuse_reflection(scene);
 	r_specular = calculate_specular_reflection(scene, ray);
 	r_total = r_ambient + r_diffuse + r_specular;
-	return vec3_multiply_scalar(scene->ambient_color, r_total);
+	return (vec3_multiply_scalar(scene->ambient_color, r_total));
 }
 
 // 環境光の環境反射(Ambient)

@@ -8,15 +8,9 @@
 typedef struct s_camera
 {
 	t_vec3	origin;
-	t_vec3	orientation;
+	t_vec3	direction;
 	double	fov;
 }			t_camera;
-
-typedef struct s_ray
-{
-	t_vec3	origin;
-	t_vec3	direction;
-}			t_ray;
 
 typedef struct s_light
 {
@@ -36,12 +30,12 @@ typedef struct s_scene
 {
 	t_color	ambient_color;
 	double	ambient_ratio;
-	t_vec3	camera;
-	t_vec3	light;
-	t_vec3	light_dir;
-	t_vec3	object;
+	t_camera	camera;
+	t_light	light;
 	t_shape *shapes;
 	t_hit	hit;
 }			t_scene;
+
+void	init_scene(t_scene *scene);
 
 #endif

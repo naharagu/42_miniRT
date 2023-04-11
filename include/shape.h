@@ -9,7 +9,6 @@ enum e_shape_type
 {
 	SPHERE,
 	PLANE,
-	SQUARE,
 	CYLINDER,
 };
 

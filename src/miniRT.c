@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 21:39:47 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:15:31 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 
 static t_vec3	get_ray(t_scene *scene, double x, double y)
 {
-	t_vec3	camera;
 	t_vec3	screen;
 
-	camera = scene->camera;
 	screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
 					(double)2 * y / (double)HEIGHT - 1.0, 0};
-	return (vec3_normalize(vec3_subtraction(screen, camera)));
+	return (vec3_normalize(vec3_subtraction(screen, scene->camera.origin)));
 }
 
 static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
@@ -37,8 +35,8 @@ static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 	double	t2;
 
 	a = vec3_magnitude(*ray) * vec3_magnitude(*ray);
-	b = 2.0 * vec3_dot_product(scene->camera, *ray);
-	c = vec3_magnitude(scene->camera) * vec3_magnitude(scene->camera) - sphere_r * sphere_r;
+	b = 2.0 * vec3_dot_product(scene->camera.origin, *ray);
+	c = vec3_magnitude(scene->camera.origin) * vec3_magnitude(scene->camera.origin) - sphere_r * sphere_r;
 	discriminant = b * b - 4.0 * a * c;
 	if (discriminant < 0.0)
 		return (false);
@@ -49,10 +47,10 @@ static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 		if (t2 < t)
 			t = t2;
 	}
-	scene->hit.point = vec3_addition(scene->camera, vec3_multiply_scalar(*ray, t));
+	scene->hit.point = vec3_addition(scene->camera.origin, vec3_multiply_scalar(*ray, t));
 	scene->hit.normal = vec3_normalize(vec3_subtraction(scene->hit.point,
 				scene->shapes->center));
-	scene->light_dir = vec3_normalize(vec3_subtraction(scene->light,
+	scene->light.direction = vec3_normalize(vec3_subtraction(scene->light.origin,
 				scene->hit.point));
 	return (true);
 }

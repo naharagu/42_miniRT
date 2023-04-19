@@ -28,12 +28,12 @@ typedef struct s_hit
 
 typedef struct s_scene
 {
-	t_color	ambient_color;
-	double	ambient_ratio;
+	t_color		ambient_color;
+	double		ambient_ratio;
 	t_camera	camera;
-	t_light	light;
-	t_shape *shapes;
-	t_hit	hit;
+	t_light		light;
+	t_shape 	*shapes;
+	t_hit		hit;
 }			t_scene;
 
 void	init_scene(t_scene *scene);

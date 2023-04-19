@@ -3,7 +3,6 @@
 
 #include <stdio.h>//
 #include "vector.h"
-#include "scene.h"
 #include "mlx.h"
 
 #define HEIGHT 400

@@ -3,7 +3,7 @@
 
 #include "main.h"
 #include "color.h"
-#include "scene.h"
+#include "parse.h"
 #include "vector.h"
 
 #define LIGHT_INTENSITY 1

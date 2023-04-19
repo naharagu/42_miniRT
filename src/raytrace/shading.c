@@ -6,12 +6,12 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 22:23:22 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:18:13 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
-#include "scene.h"
+#include "parse.h"
 #include "vector.h"
 #include <math.h>
 

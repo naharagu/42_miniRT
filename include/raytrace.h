@@ -1,6 +1,7 @@
 #ifndef RAYTRACE_H
 # define RAYTRACE_H
 
+#include "main.h"
 #include "color.h"
 #include "scene.h"
 #include "vector.h"
@@ -17,5 +18,6 @@ typedef struct s_ray
 }			t_ray;
 
 t_color	shading(t_scene *scene, t_vec3 ray);
+void	raytrace(t_world *world, t_scene *scene);
 
 #endif

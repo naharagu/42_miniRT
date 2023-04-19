@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/10 22:15:31 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/19 08:49:21 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
-void	mini_rt(t_world *world, t_scene *scene)
+void	raytrace(t_world *world, t_scene *scene)
 {
 	int		x;
 	int		y;

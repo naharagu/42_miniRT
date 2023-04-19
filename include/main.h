@@ -21,6 +21,5 @@ typedef struct s_world
 	int		endian;
 }			t_world;
 
-void	mini_rt(t_world *world, t_scene *scene);
 
 #endif

@@ -1,3 +1,8 @@
+#ifndef PARSE_H
+# define PARSE_H
+
 #include "main.h"
 
-void	init_world(t_world *world);
+void	parse_rt_file(int argc, char **argv, t_world *world, t_scene *scene);
+
+#endif

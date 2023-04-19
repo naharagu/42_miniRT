@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 08:52:17 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:44:42 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@ int	main(int argc, char **argv)
 	t_world	world;
 	t_scene scene;
 
-	if (argc != 2)
-		ft_putstr_fd("Usage: ./miniRT [.rt file]", STDERR_FILENO);
-	(void)argv;
-	init_world(&world);
-	init_scene(&scene);
+	parse_rt_file(argc, argv, &world, &scene);
 	raytrace(&world, &scene);
 	loop_window(&world);
 	return (0);

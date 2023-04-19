@@ -5,6 +5,7 @@ CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
 
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
+				$(SRCS_DIR)exit.c \
 				$(SRCS_DIR)parse/parse.c \
 				$(SRCS_DIR)color/color.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
@@ -65,7 +66,7 @@ nof: CFLAGS :=	-MMD -MP
 nof: all
 
 run r: all
-	./$(NAME)
+	./$(NAME) rtfile/02_simple_sphere.rt
 
 -include $(DEPS)
 

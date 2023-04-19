@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 # define MAIN_H
 
-#include <stdio.h>//
+#include <stdio.h> //delete later
 #include "vector.h"
 #include "mlx.h"
 

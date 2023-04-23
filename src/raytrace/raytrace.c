@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/22 13:10:27 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:09:46 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 	return (true);
 }
 
-void	put_pixel_to_addr(t_world *world, int x, int y, int color)
+void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 {
 	char 	*addr;
 	char	*dst;
 	int		len;
 	int		bpp;
 
-	addr = world->addr;
-	len = world->line_length;
-	bpp = world->bits_per_pixel;
+	addr = window->addr;
+	len = window->line_length;
+	bpp = window->bits_per_pixel;
 	dst = addr + (y * len + x * (bpp / 8));
 	*(unsigned int *)dst = color;
 }
@@ -72,7 +72,7 @@ void	put_pixel_to_addr(t_world *world, int x, int y, int color)
 // dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
 // このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
-void	raytrace(t_world *world, t_scene *scene)
+void	raytrace(t_window *window, t_scene *scene)
 {
 	int		x;
 	int		y;
@@ -95,7 +95,7 @@ void	raytrace(t_world *world, t_scene *scene)
 			{
 				color = shading(scene, ray);
 			}
-			put_pixel_to_addr(world, x, HEIGHT - y - 1, \
+			put_pixel_to_addr(window, x, HEIGHT - y - 1, \
 					get_color_in_int(color));
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 23:18:03 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:10:22 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 
 void	init_scene(t_scene *scene)
 {
+	scene->ambient_ratio = -1;
 	scene->ambient_color = (t_color){255, 255, 255};
-	scene->ambient_ratio = 0.001;
 	scene->camera.origin = (t_vec3){0, 0, -5};
+
 	scene->light.origin = (t_vec3){-5, 5, -5};
 	scene->shapes = ft_calloc(1, sizeof(t_shape));
 	if (!scene->shapes)
@@ -28,13 +29,13 @@ void	init_scene(t_scene *scene)
 	init_shape(scene->shapes);
 }
 
-void	init_world(t_world *world)
+void	init_window(t_window *window)
 {
-	world->mlx = mlx_init();
-	world->mlx_win = mlx_new_window(world->mlx, WIDTH, HEIGHT, "miniRT");
-	world->img = mlx_new_image(world->mlx, WIDTH, HEIGHT);
-	world->addr = mlx_get_data_addr(world->img, &world->bits_per_pixel,
-			&world->line_length, &world->endian);
+	window->mlx = mlx_init();
+	window->mlx_win = mlx_new_window(window->mlx, WIDTH, HEIGHT, "miniRT");
+	window->img = mlx_new_image(window->mlx, WIDTH, HEIGHT);
+	window->addr = mlx_get_data_addr(window->img, &window->bits_per_pixel,
+			&window->line_length, &window->endian);
 }
 
 // imgパラメータには、使用する画像を指定。

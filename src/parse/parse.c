@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/23 21:59:57 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:05:28 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,12 @@ void	validate_and_init_scene(char *argv, t_scene *scene)
 		put_error_and_exit("Failed to close file");
 }
 
-void	parse_rt_file(int argc, char **argv, t_world *world, t_scene *scene)
+void	parse_rt_file(int argc, char **argv, t_scene *scene)
 {
 	if (argc != 2)
 		put_error_and_exit("Usage: ./miniRT [.rt file]");
 	validate_file_name(argv[1]);
 	validate_and_init_scene(argv[1], scene);
-	init_world(world);
 	init_scene(scene);
 	print_t_scene(scene);
 }

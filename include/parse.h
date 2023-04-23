@@ -36,7 +36,7 @@ typedef struct s_scene
 }			t_scene;
 
 void	init_scene(t_scene *scene);
-void	init_world(t_world *world);
-void	parse_rt_file(int argc, char **argv, t_world *world, t_scene *scene);
+void	init_window(t_window *window);
+void	parse_rt_file(int argc, char **argv, t_scene *scene);
 
 #endif

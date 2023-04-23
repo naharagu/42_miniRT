@@ -9,7 +9,7 @@
 #define	WIDTH 400
 #define ESC 65307
 
-typedef struct s_world
+typedef struct s_window
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -18,7 +18,7 @@ typedef struct s_world
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}			t_world;
+}			t_window;
 
 
 #endif

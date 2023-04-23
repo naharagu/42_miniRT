@@ -18,6 +18,6 @@ typedef struct s_ray
 }			t_ray;
 
 t_color	shading(t_scene *scene, t_vec3 ray);
-void	raytrace(t_world *world, t_scene *scene);
+void	raytrace(t_window *window, t_scene *scene);
 
 #endif

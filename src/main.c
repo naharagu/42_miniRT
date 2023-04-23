@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/23 21:58:45 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:10:32 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,33 @@
 #include "libft.h"
 #include <math.h>
 
-int	key_handler(int key, t_world *world)
+int	key_handler(int key, t_window *window)
 {
 	// dprintf(STDERR_FILENO, "key: %d\n", key);//delete later
 	if (key == ESC)
 	{
-		mlx_loop_end(world->mlx);
+		mlx_loop_end(window->mlx);
 		exit(0);
 	}
 	return (0);
 }
 
-void	loop_window(t_world *world)
+void	loop_window(t_window *window)
 {
-	mlx_put_image_to_window(world->mlx, world->mlx_win, world->img, 0, 0);
-	mlx_key_hook(world->mlx_win, key_handler, world);
-	mlx_loop(world->mlx);
+	mlx_put_image_to_window(window->mlx, window->mlx_win, window->img, 0, 0);
+	mlx_key_hook(window->mlx_win, key_handler, window);
+	mlx_loop(window->mlx);
 }
 
 int	main(int argc, char **argv)
 {
-	t_world	world;
+	t_window	window;
 	t_scene scene;
 
-	parse_rt_file(argc, argv, &world, &scene);
-	raytrace(&world, &scene);
-	loop_window(&world);
+	init_window(&window);
+	parse_rt_file(argc, argv, &scene);
+	raytrace(&window, &scene);
+	loop_window(&window);
 	return (0);
 }
 

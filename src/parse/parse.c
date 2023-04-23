@@ -6,15 +6,13 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/23 22:05:28 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:26:16 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "main.h"
 #include "exit.h"
 #include "libft.h"
-#include <fcntl.h>
 #include "test.h"
 
 static void	validate_file_name(char *argv)
@@ -40,11 +38,11 @@ void	free_split(char **split)
 
 // void	parse_ambient(char **str_array, t_scene *scene)
 // {
-// 	if (str_array[1] == NULL)
-// 		put_error_and_exit("Invalid content in rt file");
+// 	if (scene->ambient_ratio != -1)
+// 		put_error_and_exit("There are multiple ambient light");
 // 	scene->ambient_ratio = ft_atof(str_array[1]);
 // 	if (scene->ambient_ratio < 0 || scene->ambient_ratio > 1)
-// 		put_error_and_exit("Invalid content in rt file");
+// 		put_error_and_exit("Invalid ambient ratio");
 // 	scene->ambient_color = parse_color(str_array[2]);
 // }
 
@@ -63,7 +61,7 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 	free_split(str_array);
 }
 
-void	validate_and_init_scene(char *argv, t_scene *scene)
+void	convert_argv_to_scene(char *argv, t_scene *scene)
 {
 	int		fd;
 	char	*line;
@@ -91,7 +89,7 @@ void	parse_rt_file(int argc, char **argv, t_scene *scene)
 	if (argc != 2)
 		put_error_and_exit("Usage: ./miniRT [.rt file]");
 	validate_file_name(argv[1]);
-	validate_and_init_scene(argv[1], scene);
 	init_scene(scene);
-	print_t_scene(scene);
+	convert_argv_to_scene(argv[1], scene);
+	print_t_scene(scene); //delete later (for test)
 }

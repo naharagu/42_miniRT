@@ -20,5 +20,4 @@ typedef struct s_window
 	int		endian;
 }			t_window;
 
-
 #endif

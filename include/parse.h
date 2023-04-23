@@ -4,6 +4,7 @@
 #include "main.h"
 #include "shape.h"
 #include "color.h"
+#include <fcntl.h>
 typedef struct s_camera
 {
 	t_vec3	origin;

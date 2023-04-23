@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 08:49:21 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:10:27 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_vec3	get_ray(t_scene *scene, double x, double y)
 
 static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 {
-	double	sphere_r = 0.7;
+	double	sphere_r = 0.5;
 	double	a;
 	double	b;
 	double	c;

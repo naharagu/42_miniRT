@@ -27,8 +27,8 @@ typedef struct s_hit
 
 typedef struct s_scene
 {
-	t_color		ambient_color;
 	double		ambient_ratio;
+	t_color		ambient_color;
 	t_camera	camera;
 	t_light		light;
 	t_shape 	*shapes;

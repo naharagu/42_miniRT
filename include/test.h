@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 #include "color.h"
+#include "parse.h"
 
 void	print_color(t_color color);
+void	print_t_scene(t_scene *scene);
 
 #endif

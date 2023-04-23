@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 19:28:05 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/23 21:58:45 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	key_handler(int key, t_world *world)
 {
-	dprintf(STDERR_FILENO, "key: %d\n", key);//delete later
+	// dprintf(STDERR_FILENO, "key: %d\n", key);//delete later
 	if (key == ESC)
 	{
 		mlx_loop_end(world->mlx);

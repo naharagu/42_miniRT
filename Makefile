@@ -9,12 +9,13 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)parse/parse.c \
 				$(SRCS_DIR)parse/init.c \
 				$(SRCS_DIR)color/color.c \
-				$(SRCS_DIR)vector/vector_calc_addsub.c \
-				$(SRCS_DIR)vector/vector_calc_product.c \
 				$(SRCS_DIR)raytrace/raytrace.c \
 				$(SRCS_DIR)raytrace/shading.c \
 				$(SRCS_DIR)shape/shape.c \
-				$(SRCS_DIR)test/test.c
+				$(SRCS_DIR)test/test.c \
+				$(SRCS_DIR)utils/utils.c \
+				$(SRCS_DIR)vector/vector_calc_addsub.c \
+				$(SRCS_DIR)vector/vector_calc_product.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

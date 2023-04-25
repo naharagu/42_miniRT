@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2023/03/04 21:35:34 by naharagu         ###   ########.fr       */
+/*   Created: 2023/04/25 17:50:50 by naharagu          #+#    #+#             */
+/*   Updated: 2023/04/25 18:02:16 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+bool	is_in_range_double(double num, double min, double max)
 {
-	size_t	i;
+	if (min <= num && num <= max)
+		return (true);
+	return (false);
+}
 
-	if (!s1 || !set)
-		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		++s1;
-	i = ft_strlen(s1);
-	while (i && ft_strchr(set, s1[i]))
-		--i;
-	return (ft_substr(s1, 0, i + 1));
+bool	is_in_range_int(int num, int min, int max)
+{
+	if (min <= num && num <= max)
+		return (true);
+	return (false);
 }

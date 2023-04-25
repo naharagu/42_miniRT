@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS   = -Wall -Wextra -Werror
 
 SRCS    = 	ft_atoi.c \
+			ft_atol.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_isalnum.c \
@@ -20,6 +21,7 @@ SRCS    = 	ft_atoi.c \
 			ft_strlcpy.c \
 			ft_strlen.c \
 			ft_strncmp.c \
+			ft_strcmp.c \
 			ft_strnstr.c \
 			ft_strrchr.c \
 			ft_tolower.c \
@@ -35,37 +37,26 @@ SRCS    = 	ft_atoi.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
-			get_next_line.c
-
-SRCS_BNS =	ft_lstnew.c \
+			ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
 			ft_lstadd_back.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+			get_next_line.c
 
 NAME		= libft.a
 
 OBJS		= ${SRCS:%.c=%.o}
-
-OBJS_BNS	= $(SRCS_BNS:%.c=%.o)
-
-ifdef WITH_BONUS
-	OBJS += $(OBJS_BNS)
-endif
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
 clean:
-	rm -f $(OBJS) $(OBJS_BNS)
+	rm -f $(OBJS)
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
-bonus:
-	make WITH_BONUS=1
 .PHONY: all clean fclean re bonus

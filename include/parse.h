@@ -23,12 +23,12 @@ typedef struct s_light
 	t_vec3	direction;
 }			t_light;
 
-typedef struct s_hit
+typedef struct s_intersect
 {
 	t_vec3	point;
 	t_vec3	normal;
 	t_vec3	color;
-}			t_hit;
+}			t_intersect;
 
 struct s_scene
 {
@@ -37,7 +37,7 @@ struct s_scene
 	t_camera	camera;
 	t_light		light;
 	t_shape 	*shapes;
-	t_hit		hit;
+	t_intersect	intersect;
 };
 
 //parse.c

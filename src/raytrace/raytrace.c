@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:08:35 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:25:09 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vec3	get_ray(t_scene *scene, double x, double y)
 	return (vec3_normalize(vec3_subtraction(screen, scene->camera.origin)));
 }
 
-static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
+static bool calculate_intersect_point(t_scene *scene, t_vec3 *ray)
 {
 	double	sphere_r = 0.5;
 	double	a;
@@ -47,11 +47,11 @@ static bool calculate_hit_point(t_scene *scene, t_vec3 *ray)
 		if (t2 < t)
 			t = t2;
 	}
-	scene->hit.point = vec3_addition(scene->camera.origin, vec3_multiply_scalar(*ray, t));
-	scene->hit.normal = vec3_normalize(vec3_subtraction(scene->hit.point,
+	scene->intersect.point = vec3_addition(scene->camera.origin, vec3_multiply_scalar(*ray, t));
+	scene->intersect.normal = vec3_normalize(vec3_subtraction(scene->intersect.point,
 				scene->shapes->center));
 	scene->light.direction = vec3_normalize(vec3_subtraction(scene->light.origin,
-				scene->hit.point));
+				scene->intersect.point));
 	return (true);
 }
 
@@ -86,7 +86,7 @@ void	raytrace(t_window *window, t_scene *scene)
 		while (y < HEIGHT)
 		{
 			ray = get_ray(scene, x, y);
-			if (calculate_hit_point(scene, &ray) == false)
+			if (calculate_intersect_point(scene, &ray) == false)
 			{
 				color = ((t_color){0, 0, 0});
 			}

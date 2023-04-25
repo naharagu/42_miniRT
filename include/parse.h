@@ -36,8 +36,18 @@ typedef struct s_scene
 	t_hit		hit;
 }			t_scene;
 
+//parse.c
 void	init_scene(t_scene *scene);
 void	init_window(t_window *window);
 void	parse_rt_file(int argc, char **argv, t_scene *scene);
+void	validate_file_name(char *argv);
+
+//parse_ACL.c
+void	parse_ambient(char **str_array, t_scene *scene);
+
+//parse_utils.c
+void	free_split(char **split);
+size_t	count_array(char **str_array);
+t_color	parse_color(char *str);
 
 #endif

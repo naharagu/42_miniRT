@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 18:12:44 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:50:48 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	init_scene(t_scene *scene)
 {
 	scene->ambient_ratio = -1;
 	scene->ambient_color = (t_color){-1, -1, -1};
-	scene->camera.origin = (t_vec3){0, 0, -5};
+	scene->camera.origin = (t_vec3){-1, -1, -1};
+	scene->camera.direction = (t_vec3){-1, -1, -1};
+	scene->camera.fov = -1;
 
 	scene->light.origin = (t_vec3){-5, 5, -5};
 	scene->shapes = ft_calloc(1, sizeof(t_shape));

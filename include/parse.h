@@ -44,10 +44,11 @@ void	validate_file_name(char *argv);
 
 //parse_ACL.c
 void	parse_ambient(char **str_array, t_scene *scene);
+void	parse_camera(char **str_array, t_scene *scene);
 
 //parse_utils.c
 void	free_split(char **split);
 size_t	count_array(char **str_array);
-t_color	parse_color(char *str);
+t_vec3	parse_vec3(char *str);
 
 #endif

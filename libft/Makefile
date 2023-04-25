@@ -3,6 +3,7 @@ CFLAGS   = -Wall -Wextra -Werror
 
 SRCS    = 	ft_atoi.c \
 			ft_atol.c \
+			ft_atod.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_isalnum.c \

@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 04:57:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 18:00:40 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:26:44 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 
 int					ft_atoi(const char *s);
 long				ft_atol(const char *s);
+double				ft_atod(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_isalnum(int c);

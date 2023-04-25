@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 20:06:49 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:09:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_camera(char **str_array, t_scene *scene)
 	if (count_array(str_array) != 4)
 		put_error_and_exit("Invalid camera format");
 	scene->camera.origin = parse_vec3(str_array[1]);
-	scene->camera.direction = parse_vec3(str_array[2]);
+	scene->camera.dir = parse_vec3(str_array[2]);
 	scene->camera.fov = ft_atod(str_array[3]);
 	if (is_in_range_double(scene->camera.fov, 0.0, 180.0) == false)
 		put_error_and_exit("Invalid camera fov");

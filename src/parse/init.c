@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:05:10 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:09:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_scene(t_scene *scene)
 	scene->ambient_ratio = -1;
 	scene->ambient_color = (t_color){-1, -1, -1};
 	scene->camera.origin = (t_vec3){-1, -1, -1};
-	scene->camera.direction = (t_vec3){-1, -1, -1};
+	scene->camera.dir = (t_vec3){-1, -1, -1};
 	scene->camera.fov = -1;
 	scene->light.origin = (t_vec3){-5, 5, -5};
 	scene->light.intensity = -1;

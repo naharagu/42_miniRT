@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:25:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:09:15 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double	calculate_diffuse_reflection(t_scene *scene)
 	double	cosine_theta;
 	double	r_diffuse;
 
-	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.direction);
+	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.dir);
 	if (cosine_theta < 0.0)
 		return (0.0);
 	r_diffuse = K_DIFFUSE * scene->light.intensity * cosine_theta;
@@ -35,12 +35,12 @@ double	calculate_specular_reflection(t_scene *scene, t_vec3 ray)
 	double	vr;
 	double	r_specular;
 
-	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.direction);
+	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.dir);
 	if (cosine_theta < 0.0)
 		return (0.0);
 	v = vec3_multiply_scalar(ray, -1);
 	r = vec3_multiply_scalar(scene->intersect.normal, 2 * cosine_theta);
-	r = vec3_subtraction(r, scene->light.direction);
+	r = vec3_subtraction(r, scene->light.dir);
 	vr = vec3_dot_product(v, r);
 	if (vr < 0)
 		return (0.0);

@@ -6,58 +6,26 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:25:09 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:08:58 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
-#include <stdbool.h>
 
 static t_vec3	get_ray(t_scene *scene, double x, double y)
 {
 	t_vec3	screen;
 
 	screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
-					(double)2 * y / (double)HEIGHT - 1.0, 0};
+				(double)2 * y / (double)HEIGHT - 1.0, 0};
 	return (vec3_normalize(vec3_subtraction(screen, scene->camera.origin)));
-}
-
-static bool calculate_intersect_point(t_scene *scene, t_vec3 *ray)
-{
-	double	sphere_r = 0.5;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
-	double	t;
-	double	t2;
-
-	a = vec3_magnitude(*ray) * vec3_magnitude(*ray);
-	b = 2.0 * vec3_dot_product(scene->camera.origin, *ray);
-	c = vec3_magnitude(scene->camera.origin) * vec3_magnitude(scene->camera.origin) - sphere_r * sphere_r;
-	discriminant = b * b - 4.0 * a * c;
-	if (discriminant < 0.0)
-		return (false);
-	t = (-b + sqrt(discriminant)) / (2.0 * a);
-	if (discriminant > 0.0)
-	{
-		t2 = (-b - sqrt(discriminant)) / (2.0 * a);
-		if (t2 < t)
-			t = t2;
-	}
-	scene->intersect.point = vec3_addition(scene->camera.origin, vec3_multiply_scalar(*ray, t));
-	scene->intersect.normal = vec3_normalize(vec3_subtraction(scene->intersect.point,
-				scene->shapes->center));
-	scene->light.direction = vec3_normalize(vec3_subtraction(scene->light.origin,
-				scene->intersect.point));
-	return (true);
 }
 
 void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 {
-	char 	*addr;
+	char	*addr;
 	char	*dst;
 	int		len;
 	int		bpp;
@@ -68,9 +36,6 @@ void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 	dst = addr + (y * len + x * (bpp / 8));
 	*(unsigned int *)dst = color;
 }
-
-// dstに代入されるアドレスは、画像データの先頭アドレスから、y座標のラインのバイト数とx座標に対応するバイト数を加算したアドレス
-// このアドレスに対して、カラー値を書き込むことで、指定された座標にカラーのピクセルを描画
 
 void	raytrace(t_window *window, t_scene *scene)
 {
@@ -87,13 +52,9 @@ void	raytrace(t_window *window, t_scene *scene)
 		{
 			ray = get_ray(scene, x, y);
 			if (calculate_intersect_point(scene, &ray) == false)
-			{
 				color = ((t_color){0, 0, 0});
-			}
 			else
-			{
 				color = shading(scene, ray);
-			}
 			put_pixel_to_addr(window, x, HEIGHT - y - 1, \
 					get_color_in_int(color));
 			y++;

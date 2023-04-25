@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 21:01:59 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:56:23 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	parse_sphere(char **str_array, t_scene *scene)
 {
-	t_shape *shape;
+	t_shape	*shape;
 
 	if (count_array(str_array) != 4)
 		put_error_and_exit("Invalid sphere format");

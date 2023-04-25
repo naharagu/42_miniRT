@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 19:28:17 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:03:47 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	atod_helper(const char *str, double *res)
 		str++;
 		while (ft_isdigit(*str))
 		{
-			*res += (double)(*str++ - '0') * i;
+			*res += (double)(*str++ - '0') *i;
 			i *= 0.1;
 			str++;
 		}

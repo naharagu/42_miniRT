@@ -15,8 +15,9 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	origin;
-	t_vec3	direction;
 	double	intensity;
+	t_color	color;
+	t_vec3	direction;
 }			t_light;
 
 typedef struct s_hit
@@ -45,6 +46,7 @@ void	validate_file_name(char *argv);
 //parse_ACL.c
 void	parse_ambient(char **str_array, t_scene *scene);
 void	parse_camera(char **str_array, t_scene *scene);
+void	parse_light(char **str_array, t_scene *scene);
 
 //parse_utils.c
 void	free_split(char **split);

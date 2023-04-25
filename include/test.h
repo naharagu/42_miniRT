@@ -7,5 +7,6 @@
 
 void	print_color(t_color color);
 void	print_t_scene(t_scene *scene);
+void	print_t_shape(t_shape *shape);
 
 #endif

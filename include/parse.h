@@ -5,6 +5,9 @@
 #include "shape.h"
 #include "color.h"
 #include <fcntl.h>
+
+typedef struct s_shape t_shape;
+typedef struct s_scene t_scene;
 typedef struct s_camera
 {
 	t_vec3	origin;
@@ -27,7 +30,7 @@ typedef struct s_hit
 	t_vec3	color;
 }			t_hit;
 
-typedef struct s_scene
+struct s_scene
 {
 	double		ambient_ratio;
 	t_color		ambient_color;
@@ -35,7 +38,7 @@ typedef struct s_scene
 	t_light		light;
 	t_shape 	*shapes;
 	t_hit		hit;
-}			t_scene;
+};
 
 //parse.c
 void	init_scene(t_scene *scene);
@@ -52,5 +55,8 @@ void	parse_light(char **str_array, t_scene *scene);
 void	free_split(char **split);
 size_t	count_array(char **str_array);
 t_vec3	parse_vec3(char *str);
+
+//parse_shape.c
+void	parse_sphere(char **str_array, t_scene *scene);
 
 #endif

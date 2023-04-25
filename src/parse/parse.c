@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 19:59:18 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:57:29 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_camera(str_array, scene);
 	else if (ft_strcmp(str_array[0], "L") == 0)
 		parse_light(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "sp") == 0)
-	// 	parse_sphere(str_array, scene);
+	else if (ft_strcmp(str_array[0], "sp") == 0)
+		parse_sphere(str_array, scene);
 	// else if (ft_strcmp(str_array[0], "pl") == 0)
 	// 	parse_plane(str_array, scene);
 	// else if (ft_strcmp(str_array[0], "sq") == 0)

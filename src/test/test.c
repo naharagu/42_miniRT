@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:00:18 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 20:07:02 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:57:11 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ void	print_t_scene(t_scene *scene)
 	printf("light.color: ");
 	print_color(scene->light.color);
 
+}
+
+void	print_t_shape(t_shape *shape)
+{
+	printf("type: %d\n", shape->type);
+	printf("center: ");
+	print_vec3(shape->center);
+	printf("radius: %f\n", shape->radius);
+	printf("color: ");
+	print_color(shape->color);
 }

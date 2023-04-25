@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/23 22:09:46 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:08:35 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ void	raytrace(t_window *window, t_scene *scene)
 			ray = get_ray(scene, x, y);
 			if (calculate_hit_point(scene, &ray) == false)
 			{
-				color = ((t_color){100, 149, 237});
-				// color = ((t_color){0, 50, 100});
+				color = ((t_color){0, 0, 0});
 			}
 			else
 			{

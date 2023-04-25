@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 23:18:13 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:10:19 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	calculate_diffuse_reflection(t_scene *scene)
 	cosine_theta = vec3_dot_product(scene->hit.normal, scene->light.direction);
 	if (cosine_theta < 0.0)
 		return (0.0);
-	r_diffuse = K_DIFFUSE * LIGHT_INTENSITY * cosine_theta;
+	r_diffuse = K_DIFFUSE * scene->light.intensity * cosine_theta;
 	return (r_diffuse);
 }
 
@@ -44,7 +44,7 @@ double	calculate_specular_reflection(t_scene *scene, t_vec3 ray)
 	vr = vec3_dot_product(v, r);
 	if (vr < 0)
 		return (0.0);
-	r_specular = K_SPECULAR * LIGHT_INTENSITY * pow(vr, ALPHA);
+	r_specular = K_SPECULAR * scene->light.intensity * pow(vr, ALPHA);
 	return (r_specular);
 }
 

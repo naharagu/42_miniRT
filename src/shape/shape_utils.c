@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 20:07:43 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:15:40 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_shape	*shape_lst_add(t_scene *scene)
 	else
 	{
 		tmp = shape_lst_last(scene->shapes);
-		// print_t_shape(tmp);
 		tmp->next = (t_shape *)ft_calloc(1, sizeof(t_shape));
 		if (tmp->next == NULL)
 			put_error_and_exit("Failed to malloc");

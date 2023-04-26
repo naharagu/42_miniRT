@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:56:46 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:09:33 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	parse_rt_file(int argc, char **argv, t_scene *scene)
 	init_scene(scene);
 	convert_argv_to_scene(argv[1], scene);
 	print_t_scene(scene); //for test. delete later
-	print_shape_lst(scene->shapes); //for test. delete later
+	// print_shape_lst(scene->shapes); //for test. delete later
 }

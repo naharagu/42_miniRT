@@ -45,5 +45,7 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scen
 		}
 		current_shape = current_shape->next;
 	}
+	if (nearest_shape == NULL)
+		return (false);
 	return (intersect_helper(nearest_shape, ray, intersect, scene));
 }

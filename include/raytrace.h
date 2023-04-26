@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:09:13 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:31:27 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define K_SPECULAR 0.3
 # define ALPHA 2
 
+typedef struct s_scene	t_scene;
 typedef struct s_ray
 {
 	t_vec3	origin;
@@ -39,8 +40,8 @@ typedef struct s_discriminant
 	double	t2;
 }			t_discriminant;
 
-t_color		shading(t_scene *scene, t_vec3 ray);
+t_color		shading(t_scene *scene, t_ray ray);
 void		raytrace(t_window *window, t_scene *scene);
-bool		calculate_intersect_point(t_scene *scene, t_vec3 *ray);
+bool		calculate_intersect_point(t_scene *scene, t_ray *ray);
 
 #endif

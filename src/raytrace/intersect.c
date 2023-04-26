@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 14:37:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:30:41 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <math.h>
 #include "test.h"
 
-static bool	intersect_helper(t_shape *shape, t_vec3 *ray, t_scene *scene)
+static bool	intersect_helper(t_shape *shape, t_ray *ray, t_scene *scene)
 {
 	if (shape->type == SPHERE)
 		return (intersect_sphere(shape, ray, scene));
@@ -24,7 +24,7 @@ static bool	intersect_helper(t_shape *shape, t_vec3 *ray, t_scene *scene)
 	return (false);
 }
 
-bool	calculate_intersect_point(t_scene *scene, t_vec3 *ray)
+bool	calculate_intersect_point(t_scene *scene, t_ray *ray)
 {
 	// get nearest intersect point
 	// if (intersect_sphere(scene->shapes, ray, scene))

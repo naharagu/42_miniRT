@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/08 10:23:09 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:46:18 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,16 @@ t_vec3	vec3_subtraction(t_vec3 a, t_vec3 b)
 {
 	return (vec3_create(a.x - b.x, a.y - b.y, a.z - b.z));
 }
+
+t_vec3	vec3_normalize(t_vec3 a)
+{
+	double	mag;
+
+	mag = vec3_magnitude(a);
+	if (mag == 0)
+		return (vec3_create(0, 0, 0));
+	return (vec3_create(a.x / mag, a.y / mag, a.z / mag));
+}
+
+//0除算のエラー処理は不要?
+//正規化

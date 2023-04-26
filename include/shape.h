@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:04:53 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:31:48 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include "color.h"
 # include "parse.h"
 # include "vector.h"
+# include "raytrace.h"
 # include <stdbool.h>
 
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;
+typedef struct s_ray	t_ray;
 
 enum					e_shape_type
 {
@@ -43,7 +45,7 @@ t_shape					*shape_lst_last(t_shape *shapes);
 t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
-bool					intersect_sphere(t_shape *shape, t_vec3 *ray,
+bool					intersect_sphere(t_shape *shape, t_ray *ray,
 							t_scene *scene);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 14:33:42 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:07:43 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ t_shape	*shape_lst_add(t_scene *scene)
 		if (tmp->next == NULL)
 			put_error_and_exit("Failed to malloc");
 		tmp->next->next = NULL;
-		return (tmp);
+		return (tmp->next);
 	}
 }

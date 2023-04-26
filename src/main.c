@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 08:38:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:02:52 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parse.h"
 #include "raytrace.h"
 #include <stdlib.h>
+#include "test.h"
 
 int	key_handler(int key, t_window *window)
 {

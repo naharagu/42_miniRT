@@ -17,11 +17,6 @@
 
 static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scene *scene)
 {
-	// printf("shape address: %p\n", shape);
-	// printf("ray address: %p\n", ray);
-	// printf("intersect address: %p\n", intersect);
-	// printf("scene address: %p\n", scene);
-
 	if (shape->type == SPHERE)
 		return (intersect_sphere(shape, ray, intersect, scene));
 	// else if (shape->type == PLANE)
@@ -40,7 +35,6 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scen
 	nearest_intersect.distance = INFINITY;
 	while (current_shape)
 	{
-		// printf("\ncuurent shape address: %p\n", current_shape);
 		if (intersect_helper(current_shape, ray, intersect, scene))
 		{
 			if (intersect->distance < nearest_intersect.distance)

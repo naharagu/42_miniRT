@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:16:26 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:32:21 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scen
 	t_vec3			so;
 	t_discriminant	d;
 
+	printf("intersect_sphere\n");
 	so = vec3_subtraction(ray->origin, shape->center);
 	d.a = vec3_dot_product(ray->dir, ray->dir);
 	d.b = 2.0 * vec3_dot_product(so, ray->dir);

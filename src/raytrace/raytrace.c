@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:06:35 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:55:28 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	raytrace(t_window *window, t_scene *scene)
 	int			x;
 	int			y;
 	t_ray		ray;
-	t_intersect	intersect;
+	// t_intersect	intersect;
 	t_color		color;
 
 	ray.origin = scene->camera.origin;
@@ -53,10 +53,10 @@ void	raytrace(t_window *window, t_scene *scene)
 		while (y < HEIGHT)
 		{
 			ray.dir = get_ray_direction(x, y, ray);
-			if (calculate_intersect_point(&ray, &intersect, scene) == false)
+			// if (calculate_intersect_point(&ray, &intersect, scene) == false)
 				color = ((t_color){0, 0, 0});
-			else
-				color = shading(ray, intersect, scene);
+			// else
+				// color = shading(ray, intersect, scene);
 			put_pixel_to_addr(window, x, HEIGHT - y - 1, \
 					get_color_in_int(color));
 			y++;

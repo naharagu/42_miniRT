@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:00:18 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:39:11 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:49:24 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,13 @@ void	print_t_shape(t_shape *shape)
 		printf("Error: Invalid shape type\n");
 	}
 }
+
+void	print_shape_lst(t_shape *shape)
+{
+	while (shape)
+	{
+		print_t_shape(shape);
+		shape = shape->next;
+	}
+}
+

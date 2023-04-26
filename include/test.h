@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:54 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:04:55 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:49:34 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 void	print_color(t_color color);
 void	print_t_scene(t_scene *scene);
 void	print_t_shape(t_shape *shape);
+void	print_shape_lst(t_shape *shape);
 
 #endif

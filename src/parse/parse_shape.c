@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:20:09 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:51:24 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	parse_sphere(char **str_array, t_scene *scene)
 	shape->center = parse_vec3(str_array[1]);
 	shape->radius = ft_atod(str_array[2]) / 2;
 	shape->color = parse_vec3(str_array[3]);
-	print_t_shape(shape);
 }
 
 void	parse_plane(char **str_array, t_scene *scene)
@@ -42,5 +41,4 @@ void	parse_plane(char **str_array, t_scene *scene)
 	shape->center = parse_vec3(str_array[1]);
 	shape->normal = parse_vec3(str_array[2]);
 	shape->color = parse_vec3(str_array[3]);
-	print_t_shape(shape);
 }

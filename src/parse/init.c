@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:09:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:15:55 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_scene(t_scene *scene)
 	scene->camera.fov = -1;
 	scene->light.origin = (t_vec3){-5, 5, -5};
 	scene->light.intensity = -1;
+	scene->shapes = NULL;
 }
 
 void	init_window(t_window *window)

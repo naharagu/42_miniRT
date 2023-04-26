@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 19:53:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:13:19 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 void	validate_file_name(char *argv)
 {
 	if (ft_strlen(argv) < 4)
+		put_rtfile_error_and_exit("Invalid file name");
+	if (ft_strrchr(argv, '.') == NULL)
 		put_rtfile_error_and_exit("Invalid file name");
 	if (ft_strncmp(ft_strrchr(argv, '.'), ".rt", 3) != 0)
 		put_rtfile_error_and_exit("Invalid file name");

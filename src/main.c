@@ -6,20 +6,18 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/23 22:10:32 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 08:38:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "raytrace.h"
 #include "parse.h"
-#include "color.h"
-#include "libft.h"
-#include <math.h>
+#include "raytrace.h"
+#include <stdlib.h>
 
 int	key_handler(int key, t_window *window)
 {
-	// dprintf(STDERR_FILENO, "key: %d\n", key);//delete later
+	// dprintf(STDERR_FILENO, "key: %d\n", key);
 	if (key == ESC)
 	{
 		mlx_loop_end(window->mlx);
@@ -38,7 +36,7 @@ void	loop_window(t_window *window)
 int	main(int argc, char **argv)
 {
 	t_window	window;
-	t_scene scene;
+	t_scene		scene;
 
 	init_window(&window);
 	parse_rt_file(argc, argv, &scene);

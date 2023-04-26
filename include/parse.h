@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:09:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 08:39:59 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_intersect
 	t_vec3				point;
 	t_vec3				normal;
 	t_vec3				color;
+	double				distance;
 }						t_intersect;
 
 struct					s_scene

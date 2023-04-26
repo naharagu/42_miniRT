@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:42 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:04:43 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:46:59 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include "vector.h"
+# include <stdio.h> //delete later
 
 # define HEIGHT 400
 # define WIDTH 400

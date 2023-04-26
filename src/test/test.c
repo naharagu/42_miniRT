@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:00:18 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:23:37 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:39:11 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ void	print_t_shape(t_shape *shape)
 	num_shape++;
 	if (shape->type == SPHERE)
 	{
-		printf("No.: %d\n", num_shape);
+		printf("No.%d ", num_shape);
 		printf("SPHERE\n");
-		printf("num_shape: %d\n", num_shape);
 		printf("center: ");
 		print_vec3(shape->center);
 		printf("radius: %f\n", shape->radius);
@@ -63,7 +62,7 @@ void	print_t_shape(t_shape *shape)
 	}
 	else if (shape->type == PLANE)
 	{
-		printf("No.: %d\n", num_shape);
+		printf("No.%d ", num_shape);
 		printf("PLANE\n");
 		printf("center: ");
 		print_vec3(shape->center);
@@ -74,7 +73,7 @@ void	print_t_shape(t_shape *shape)
 	}
 	else
 	{
-		printf("No.: %d\n", num_shape);
+		printf("No.%d\n", num_shape);
 		printf("Error: Invalid shape type\n");
 	}
 }

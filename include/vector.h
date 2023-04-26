@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:59 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:47:19 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:49:20 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ t_vec3					vec3_multiply_scalar(t_vec3 a, double b);
 double					vec3_dot_product(t_vec3 a, t_vec3 b);
 t_vec3					vec3_cross_product(t_vec3 a, t_vec3 b);
 double					vec3_magnitude(t_vec3 a);
-double					vec3_magnitude_squared(t_vec3 a);
 
 #endif

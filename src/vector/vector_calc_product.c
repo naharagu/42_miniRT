@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:46:42 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:48:23 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,3 @@ double	vec3_magnitude(t_vec3 a)
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 //ノルム
-
-double	vec3_magnitude_squared(t_vec3 a)
-{
-	return (a.x * a.x + a.y * a.y + a.z * a.z);
-}

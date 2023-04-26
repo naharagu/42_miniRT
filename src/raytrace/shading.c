@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:30:21 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:11:12 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 #include "vector.h"
 #include <math.h>
 
-double	calculate_diffuse_reflection(t_scene *scene)
+double	calculate_diffuse_reflection(t_intersect intersect, t_light light)
 {
 	double	cosine_theta;
 	double	r_diffuse;
 
-	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.dir);
+	cosine_theta = vec3_dot_product(intersect.normal, light.dir);
 	if (cosine_theta < 0.0)
 		return (0.0);
-	r_diffuse = K_DIFFUSE * scene->light.intensity * cosine_theta;
+	r_diffuse = K_DIFFUSE * light.intensity * cosine_theta;
 	return (r_diffuse);
 }
 
-double	calculate_specular_reflection(t_scene *scene, t_ray ray)
+double	calculate_specular_reflection(t_ray ray, t_intersect intersect, t_light light)
 {
 	double	cosine_theta;
 	t_vec3	v;
@@ -35,20 +35,20 @@ double	calculate_specular_reflection(t_scene *scene, t_ray ray)
 	double	vr;
 	double	r_specular;
 
-	cosine_theta = vec3_dot_product(scene->intersect.normal, scene->light.dir);
+	cosine_theta = vec3_dot_product(intersect.normal, light.dir);
 	if (cosine_theta < 0.0)
 		return (0.0);
 	v = vec3_multiply_scalar(ray.dir, -1);
-	r = vec3_multiply_scalar(scene->intersect.normal, 2 * cosine_theta);
-	r = vec3_subtraction(r, scene->light.dir);
+	r = vec3_multiply_scalar(intersect.normal, 2 * cosine_theta);
+	r = vec3_subtraction(r, light.dir);
 	vr = vec3_dot_product(v, r);
 	if (vr < 0)
 		return (0.0);
-	r_specular = K_SPECULAR * scene->light.intensity * pow(vr, ALPHA);
+	r_specular = K_SPECULAR * light.intensity * pow(vr, ALPHA);
 	return (r_specular);
 }
 
-t_color	shading(t_scene *scene, t_ray ray)
+t_color	shading(t_ray ray, t_intersect intersect, t_scene *scene)
 {
 	double	r_ambient;
 	double	r_diffuse;
@@ -56,8 +56,8 @@ t_color	shading(t_scene *scene, t_ray ray)
 	double	r_total;
 
 	r_ambient = scene->ambient_ratio;
-	r_diffuse = calculate_diffuse_reflection(scene);
-	r_specular = calculate_specular_reflection(scene, ray);
+	r_diffuse = calculate_diffuse_reflection(intersect, scene->light);
+	r_specular = calculate_specular_reflection(ray, intersect, scene->light);
 	r_total = r_ambient + r_diffuse + r_specular;
 	return (vec3_multiply_scalar(scene->ambient_color, r_total));
 }

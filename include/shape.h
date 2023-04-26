@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:18:59 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:14:56 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;
 typedef struct s_ray	t_ray;
+typedef struct s_intersect	t_intersect;
 
 enum					e_shape_type
 {
@@ -47,6 +48,6 @@ t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
 bool					intersect_sphere(t_shape *shape, t_ray *ray,
-							t_scene *scene);
+								t_intersect *intersect, t_scene *scene);
 
 #endif

@@ -6,15 +6,15 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:31:27 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:18:55 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACE_H
 # define RAYTRACE_H
 
-# include "color.h"
 # include "main.h"
+# include "color.h"
 # include "parse.h"
 # include "vector.h"
 # include <stdbool.h>
@@ -30,6 +30,13 @@ typedef struct s_ray
 	t_vec3	dir;
 }			t_ray;
 
+typedef struct s_intersect
+{
+	t_vec3				point;
+	t_vec3				normal;
+	t_vec3				color;
+	double				distance;
+}						t_intersect;
 typedef struct s_discriminant
 {
 	double	a;
@@ -40,8 +47,8 @@ typedef struct s_discriminant
 	double	t2;
 }			t_discriminant;
 
-t_color		shading(t_scene *scene, t_ray ray);
+t_color		shading(t_ray ray, t_intersect intersect, t_scene *scene);
 void		raytrace(t_window *window, t_scene *scene);
-bool		calculate_intersect_point(t_scene *scene, t_ray *ray);
+bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene);
 
 #endif

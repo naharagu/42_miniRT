@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:19:15 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:04:34 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@ typedef struct s_light
 	t_color				color;
 	t_vec3				dir;
 }						t_light;
-
-typedef struct s_intersect
-{
-	t_vec3				point;
-	t_vec3				normal;
-	t_vec3				color;
-	double				distance;
-}						t_intersect;
-
 struct					s_scene
 {
 	double				ambient_ratio;
@@ -50,7 +41,6 @@ struct					s_scene
 	t_camera			camera;
 	t_light				light;
 	t_shape				*shapes;
-	t_intersect			intersect;
 };
 
 //parse.c

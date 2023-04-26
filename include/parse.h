@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 08:39:59 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:19:15 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_vec3					parse_vec3(char *str);
 
 //parse_shape.c
 void					parse_sphere(char **str_array, t_scene *scene);
+void					parse_plane(char **str_array, t_scene *scene);
 
 #endif

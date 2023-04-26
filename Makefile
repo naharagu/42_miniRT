@@ -72,7 +72,7 @@ nof: CFLAGS :=	-MMD -MP
 nof: all
 
 run r: all
-	./$(NAME) rtfile/02_simple_sphere.rt
+	./$(NAME) sample.rt
 
 -include $(DEPS)
 

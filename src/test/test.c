@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:00:18 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 14:10:17 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:23:37 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,31 @@ void	print_t_shape(t_shape *shape)
 {
 	put_titile_in_green("t_shape");
 	num_shape++;
-	printf("num_shape: %d\n", num_shape);
-	printf("type: %d\n", shape->type);
-	printf("center: ");
-	print_vec3(shape->center);
-	printf("radius: %f\n", shape->radius);
-	printf("color: ");
-	print_color(shape->color);
+	if (shape->type == SPHERE)
+	{
+		printf("No.: %d\n", num_shape);
+		printf("SPHERE\n");
+		printf("num_shape: %d\n", num_shape);
+		printf("center: ");
+		print_vec3(shape->center);
+		printf("radius: %f\n", shape->radius);
+		printf("color: ");
+		print_color(shape->color);
+	}
+	else if (shape->type == PLANE)
+	{
+		printf("No.: %d\n", num_shape);
+		printf("PLANE\n");
+		printf("center: ");
+		print_vec3(shape->center);
+		printf("normal: ");
+		print_vec3(shape->normal);
+		printf("color: ");
+		print_color(shape->color);
+	}
+	else
+	{
+		printf("No.: %d\n", num_shape);
+		printf("Error: Invalid shape type\n");
+	}
 }

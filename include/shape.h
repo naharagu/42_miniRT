@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:31:48 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:18:59 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ struct					s_shape
 	t_shape				*next;
 	t_vec3				center;
 	t_vec3				orientation;
+	t_vec3				normal;
 	double				radius;
 	t_color				color;
 };

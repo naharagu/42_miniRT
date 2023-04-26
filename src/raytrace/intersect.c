@@ -6,13 +6,14 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 13:49:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:37:12 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
+#include "test.h"
 
 static bool	intersect_helper(t_shape *shape, t_vec3 *ray, t_scene *scene)
 {

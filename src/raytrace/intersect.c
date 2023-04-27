@@ -39,13 +39,14 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scen
 		{
 			if (intersect->distance < nearest_intersect.distance)
 			{
-				nearest_intersect = *intersect;
 				nearest_shape = current_shape;
+				nearest_intersect = *intersect;
 			}
 		}
 		current_shape = current_shape->next;
 	}
 	if (nearest_shape == NULL)
 		return (false);
-	return (intersect_helper(nearest_shape, ray, intersect, scene));
+	*intersect = nearest_intersect;
+	return (true);
 }

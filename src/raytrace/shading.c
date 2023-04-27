@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:11:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:52:26 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,3 @@ t_color	shading(t_ray ray, t_intersect intersect, t_scene *scene)
 	r_total = r_ambient + r_diffuse + r_specular;
 	return (vec3_multiply_scalar(scene->ambient_color, r_total));
 }
-
-// shading
-// 1.環境光の環境反射(Ambient)
-// 2.直接光の拡散反射(Diffuse)
-// 3.直接光の鏡面反射(Specular)

@@ -48,14 +48,14 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 all: $(NAME)
 
 clean:
-#	make -C $(MLX_DIR) clean
-#	make -C $(LIB_DIR) clean
+	make -C $(MLX_DIR) clean
+	make -C $(LIB_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-#	rm -f $(MLX_DIR)/libmlx.a
-#	rm -f $(LIB_DIR)/libft.a
+	rm -f $(MLX_DIR)/libmlx.a
+	rm -f $(LIB_DIR)/libft.a
 
 re: fclean all
 

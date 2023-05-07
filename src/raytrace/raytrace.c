@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:57:50 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/07 09:39:19 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@ static t_vec3	get_ray_direction(double x, double y, t_ray ray)
 {
 	t_vec3	screen;
 
-	screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
-				(double)2 * y / (double)HEIGHT - 1.0, 0};
+	// // 元々記載の式
+	// screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
+	// 			(double)2 * y / (double)HEIGHT - 1.0, 0};
+	// 東京電機大資料の式
+	screen = (t_vec3){(double)2 * x / ((double)WIDTH - 1.0) - 1.0, \
+			-(double)2 * y / ((double)HEIGHT - 1.0) + 1.0, \
+			0};
+	// デバッグ用
+	if ((int)x % 50 == 0 && (int)y % 50 == 0)
+		printf("x %lf y %lf xs %lf ys %lf zs %lf\n", x, y, screen.x, screen.y, screen.z);
 	return (vec3_normalize(vec3_subtraction(screen, ray.origin)));
 }
 

@@ -17,6 +17,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)raytrace/intersect.c \
 				$(SRCS_DIR)shape/shape_utils.c \
 				$(SRCS_DIR)shape/sphere.c \
+				$(SRCS_DIR)shape/plane.c \
 				$(SRCS_DIR)test/test.c \
 				$(SRCS_DIR)utils/utils.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
@@ -48,14 +49,14 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 all: $(NAME)
 
 clean:
-#	make -C $(MLX_DIR) clean
-#	make -C $(LIB_DIR) clean
+	make -C $(MLX_DIR) clean
+	make -C $(LIB_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-#	rm -f $(MLX_DIR)/libmlx.a
-#	rm -f $(LIB_DIR)/libft.a
+	rm -f $(MLX_DIR)/libmlx.a
+	rm -f $(LIB_DIR)/libft.a
 
 re: fclean all
 

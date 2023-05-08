@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:57:50 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:33:52 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,17 @@ static t_vec3	get_ray_direction(double x, double y, t_ray ray)
 {
 	t_vec3	screen;
 
-	screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
-				(double)2 * y / (double)HEIGHT - 1.0, 0};
+	// 20230508 MTGによって、下の式に変更
+	// // 元々記載の式
+	// screen = (t_vec3){(double)2 * x / (double)WIDTH - 1.0, \
+	// 			(double)2 * y / (double)HEIGHT - 1.0, 0};
+	// 東京電機大資料の式
+	screen = (t_vec3){(double)2 * x / ((double)WIDTH - 1.0) - 1.0, \
+			-(double)2 * y / ((double)HEIGHT - 1.0) + 1.0, \
+			0};
+	// デバッグ用
+	if (((int)x % 50 == 0 || x == (double)WIDTH - 1.0) && ((int)y % 50 == 0 || y == (double)HEIGHT - 1.0))
+		printf("x %lf y %lf xs %lf ys %lf zs %lf\n", x, y, screen.x, screen.y, screen.z);
 	return (vec3_normalize(vec3_subtraction(screen, ray.origin)));
 }
 
@@ -55,9 +64,14 @@ void	raytrace(t_window *window, t_scene *scene)
 			ray.dir = get_ray_direction(x, y, ray);
 			if (calculate_intersect_point(&ray, &intersect, scene) == false)
 				color = ((t_color){0, 0, 0});
-			else
+			else {
 				color = shading(ray, intersect, scene);
-			put_pixel_to_addr(window, x, HEIGHT - y - 1, \
+				// printf("x %d y %d cr %lf cg %lf cb %lf\n", x, y, color.x, color.y, color.z);
+			}
+			// 20230508 MTGによって、下の式に変更
+			// put_pixel_to_addr(window, x, HEIGHT - y - 1, \
+			// 		get_color_in_int(color));
+			put_pixel_to_addr(window, x, y, \
 					get_color_in_int(color));
 			y++;
 		}

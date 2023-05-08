@@ -19,8 +19,8 @@ static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect,
 {
 	if (shape->type == SPHERE)
 		return (intersect_sphere(shape, ray, intersect, scene));
-	// else if (shape->type == PLANE)
-		// return (intersect_plane(shape, ray, scene));
+	else if (shape->type == PLANE)
+		return (intersect_plane(shape, ray, intersect, scene));
 	return (false);
 }
 

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/07 19:52:52 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/16 08:34:49 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ struct					s_shape
 	t_vec3				orientation;
 	t_vec3				normal;
 	double				radius;
+	double				height;
 	t_color				color;
 };
 
@@ -52,6 +53,10 @@ bool					intersect_sphere(t_shape *shape, t_ray *ray,
 
 // plane.c
 bool					intersect_plane(t_shape *shape, t_ray *ray,
+								t_intersect *intersect, t_scene *scene);
+
+// cylinder.c
+bool					intersect_cylinder(t_shape *shape, t_ray *ray,
 								t_intersect *intersect, t_scene *scene);
 
 #endif

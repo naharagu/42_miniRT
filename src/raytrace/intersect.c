@@ -21,6 +21,8 @@ static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect,
 		return (intersect_sphere(shape, ray, intersect, scene));
 	else if (shape->type == PLANE)
 		return (intersect_plane(shape, ray, intersect, scene));
+	else if (shape->type == CYLINDER)
+		return (intersect_cylinder(shape, ray, intersect, scene));
 	return (false);
 }
 

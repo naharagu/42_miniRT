@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/08 07:17:55 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/15 21:08:05 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scene
 	if (d.t < 0)
 		return (false);
 	intersect->point = vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-	intersect->normal = vec3_normalize(vec3_subtraction(intersect->point,
-				scene->shapes->center));
+	intersect->normal = shape->normal;
 	scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin,
 				intersect->point));
 	intersect->distance = d.t;

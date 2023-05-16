@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/15 21:30:06 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/17 07:00:56 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_intersect
 	t_vec3				color;
 	double				distance;
 }						t_intersect;
+
 typedef struct s_discriminant
 {
 	double	a;

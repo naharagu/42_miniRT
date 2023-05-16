@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/16 19:29:38 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/17 07:52:42 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ static void	precalc_cylinder(t_shape *shape, t_ray *ray, t_discriminant *d)
 	}
 }
 
-static bool	within_cylinder(t_shape *shape, t_intersect *intersect, \
-										t_scene *scene, t_discriminant *d)
+static bool	within_cylinder(t_shape *shape, t_intersect *intersect, t_discriminant *d)
 {
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
 				vec3_dot_product(shape->center, shape->normal)) / \
@@ -52,16 +51,15 @@ static bool	within_cylinder(t_shape *shape, t_intersect *intersect, \
 	{
 		intersect->normal = vec3_normalize(vec3_subtraction(intersect->point, \
 			vec3_addition(shape->center, vec3_multiply_scalar(shape->normal, d->t2))));
-		scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, \
-				intersect->point));
 		intersect->distance = d->t;
+		intersect->color = shape->color;
 		return (true);
 	}
 	return (false);
 }
 
 
-bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scene *scene)
+bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
 	t_discriminant	d;
 	
@@ -72,11 +70,11 @@ bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect, t_sc
 
 	d.t = (d.b - d.discriminant) / d.a;
 	intersect->point = vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-	if (within_cylinder(shape, intersect, scene, &d) == false)
+	if (within_cylinder(shape, intersect, &d) == false)
 	{
 		d.t = (d.b + d.discriminant) / d.a;
 		intersect->point = vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-		return (within_cylinder(shape, intersect, scene, &d));
+		return (within_cylinder(shape, intersect, &d));
 	}
 	return (true);
 }

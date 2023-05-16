@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/16 08:36:11 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/17 07:34:23 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	raytrace(t_window *window, t_scene *scene)
 				color = ((t_color){0, 0, 0});
 			else {
 				color = shading(ray, intersect, scene);
+				// color = intersect.color;
 				// printf("x %d y %d cr %lf cg %lf cb %lf\n", x, y, color.x, color.y, color.z);
 			}
 			put_pixel_to_addr(window, x, y, get_color_in_int(color));

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/16 08:34:49 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/17 07:50:24 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
 bool					intersect_sphere(t_shape *shape, t_ray *ray,
-								t_intersect *intersect, t_scene *scene);
+								t_intersect *intersect);
 
 // plane.c
 bool					intersect_plane(t_shape *shape, t_ray *ray,
-								t_intersect *intersect, t_scene *scene);
+								t_intersect *intersect);
 
 // cylinder.c
 bool					intersect_cylinder(t_shape *shape, t_ray *ray,
-								t_intersect *intersect, t_scene *scene);
+								t_intersect *intersect);
 
 #endif

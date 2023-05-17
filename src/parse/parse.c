@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 20:09:33 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:34:22 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_sphere(str_array, scene);
 	else if (ft_strcmp(str_array[0], "pl") == 0)
 		parse_plane(str_array, scene);
+	else if (ft_strcmp(str_array[0], "cy") == 0)
+		parse_cylinder(str_array, scene);
 	// else if (ft_strcmp(str_array[0], "sq") == 0)
 	// 	parse_square(str_array, scene);
 	// else if (ft_strcmp(str_array[0], "cy") == 0)
@@ -75,5 +77,5 @@ void	parse_rt_file(int argc, char **argv, t_scene *scene)
 	init_scene(scene);
 	convert_argv_to_scene(argv[1], scene);
 	print_t_scene(scene); //for test. delete later
-	// print_shape_lst(scene->shapes); //for test. delete later
+	print_shape_lst(scene->shapes); //for test. delete later
 }

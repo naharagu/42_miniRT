@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/07 19:37:58 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/17 07:52:26 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "vector.h"
 #include <math.h>
 
-bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scene *scene)
+bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
 	t_vec3			so;
 	t_discriminant	d;
@@ -36,11 +36,8 @@ bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect, t_scen
 			d.t = d.t2;
 	}
 	intersect->point = vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-	intersect->normal = vec3_normalize(vec3_subtraction(intersect->point,
-				scene->shapes->center));
-	scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin,
-				intersect->point));
+	intersect->normal = vec3_normalize(vec3_subtraction(intersect->point, shape->center));
 	intersect->distance = d.t;
-	// printf("distance: %f\n", d.t);
+	intersect->color = shape->color;
 	return (true);
 }

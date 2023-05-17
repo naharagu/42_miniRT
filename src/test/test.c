@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:00:18 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/27 18:58:33 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:38:29 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_t_shape(t_shape *shape)
 		printf("SPHERE\n");
 		printf("center: ");
 		print_vec3(shape->center);
-		printf("radius: %f\n", shape->radius);
+		printf("radius: %lf\n", shape->radius);
 		printf("color: ");
 		print_color(shape->color);
 	}
@@ -68,6 +68,19 @@ void	print_t_shape(t_shape *shape)
 		print_vec3(shape->center);
 		printf("normal: ");
 		print_vec3(shape->normal);
+		printf("color: ");
+		print_color(shape->color);
+	}
+	else if (shape->type == CYLINDER)
+	{
+		printf("No.%d ", num_shape);
+		printf("CYLINDER\n");
+		printf("center: ");
+		print_vec3(shape->center);
+		printf("normal: ");
+		print_vec3(shape->normal);
+		printf("radius: %lf\n", shape->radius);
+		printf("height: %lf\n", shape->height);
 		printf("color: ");
 		print_color(shape->color);
 	}

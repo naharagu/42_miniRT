@@ -1,0 +1,17 @@
+#object files
+obj
+*.o
+*.d
+
+#executable
+minilibx
+miniRT
+a.out
+
+#others
+*.pdf
+dekidaigaku
+code
+.vscode
+.devcontainer
+.DS_Store

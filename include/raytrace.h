@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/17 07:00:56 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/18 06:22:05 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define K_DIFFUSE 0.69
 # define K_SPECULAR 0.3
 # define ALPHA 2
+# define EPSILON 0.001953125
 
 typedef struct s_scene	t_scene;
 typedef struct s_ray

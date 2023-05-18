@@ -50,6 +50,6 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scen
 	if (nearest_shape == NULL)
 		return (false);
 	*intersect = nearest_intersect;
-	scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
+	// scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
 	return (true);
 }

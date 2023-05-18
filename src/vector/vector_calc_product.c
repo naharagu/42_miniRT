@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_calc_product.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:48:23 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/18 06:28:13 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

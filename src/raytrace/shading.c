@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/17 07:31:20 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/18 06:32:28 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,20 @@ t_color	shading(t_ray ray, t_intersect intersect, t_scene *scene)
 	return (vec3_multiply_scalar(scene->ambient_color, r_total));
 	// return (vec3_multiply_scalar(intersect.color, r_total));
 }
+
+// t_color	shadow_shading(t_ray ray, t_intersect intersect, t_scene *scene)
+// {
+// 	double	r_ambient;
+// 	// double	r_diffuse;
+// 	// double	r_specular;
+// 	double	r_total;
+
+// 	r_ambient = scene->ambient_ratio;
+// 	// r_diffuse = calculate_diffuse_reflection(intersect, scene->light);
+// 	// r_specular = calculate_specular_reflection(ray, intersect, scene->light);
+// 	// r_total = r_ambient + r_diffuse + r_specular;
+// 	r_total = r_ambient;
+// 	// printf("%f\n", r_total);
+// 	return (vec3_multiply_scalar(scene->ambient_color, r_total));
+// 	// return (vec3_multiply_scalar(intersect.color, r_total));
+// }

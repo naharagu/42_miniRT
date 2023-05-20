@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 20:02:52 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/20 14:40:48 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,30 @@
 #include <stdlib.h>
 #include "test.h"
 
-int	key_handler(int key, t_window *window)
+static int	exit_window(const char *msg)
 {
-	// dprintf(STDERR_FILENO, "key: %d\n", key);
-	if (key == ESC)
+	printf("%s\n", msg);
+	exit(1);
+}
+
+static int	key_handler(int keycode, t_window *window)
+{
+	if (keycode == ESC)
 	{
 		mlx_loop_end(window->mlx);
-		exit(0);
+		exit_window("ESC");
 	}
 	return (0);
 }
 
-void	loop_window(t_window *window)
+static int	loop_window(t_window *window)
 {
 	mlx_put_image_to_window(window->mlx, window->mlx_win, window->img, 0, 0);
-	mlx_key_hook(window->mlx_win, key_handler, window);
+	mlx_hook(window->mlx_win, 2, 1L << 0, key_handler, window);
+	mlx_hook(window->mlx_win, 12, 1L << 15, loop_window, window);
+	mlx_hook(window->mlx_win, 17, 0L, exit_window, "Window closed");
 	mlx_loop(window->mlx);
+	return (0);
 }
 
 int	main(int argc, char **argv)

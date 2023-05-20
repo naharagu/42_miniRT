@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/17 07:50:24 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/20 09:27:46 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ enum					e_shape_type
 struct					s_shape
 {
 	enum e_shape_type	type;
+	ssize_t				index;
 	t_shape				*next;
 	t_vec3				center;
 	t_vec3				orientation;

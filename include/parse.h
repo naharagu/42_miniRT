@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/10 21:31:03 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:58:01 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;
+typedef struct s_window	t_window;
 typedef struct s_camera
 {
 	t_vec3				origin;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 19:20:39by naharagu         ###   ########.fr       */
+/*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
+/*   Updated: 2023/05/20 10:51:13 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,24 @@ static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	return (false);
 }
 
-bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene)
+bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
+									t_scene *scene, ssize_t intersect_index)
 {
 	t_shape		*current_shape;
-	t_shape 	*nearest_shape;
 	t_intersect	nearest_intersect;
 
 	current_shape = scene->shapes;
-	nearest_shape = NULL;
 	nearest_intersect.distance = INFINITY;
 	while (current_shape)
 	{
-		if (intersect_helper(current_shape, ray, intersect))
-		{
-			if (intersect->distance < nearest_intersect.distance)
-			{
-				nearest_shape = current_shape;
-				nearest_intersect = *intersect;
-			}
-		}
+		if (current_shape->index != intersect_index && \
+			intersect_helper(current_shape, ray, intersect) && \
+			intersect->distance < nearest_intersect.distance)
+			nearest_intersect = *intersect;
 		current_shape = current_shape->next;
 	}
-	if (nearest_shape == NULL)
+	if (nearest_intersect.distance == INFINITY)
 		return (false);
 	*intersect = nearest_intersect;
-	// scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
 	return (true);
 }

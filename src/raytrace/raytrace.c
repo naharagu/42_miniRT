@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/18 20:19:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 19:40:43 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 #include "raytrace.h"
 #include <math.h>
 
-static t_vec3	get_ray_direction(double x, double y, t_ray ray)
+static void	get_screen(t_window *window)
 {
-	t_vec3	screen;
+	double	denominator;
 
-	screen = (t_vec3){(double)2 * x / ((double)WIDTH - 1.0) - 1.0, \
-			-(double)2 * y / ((double)HEIGHT - 1.0) + 1.0, \
-			0};
-	// // デバッグ用
-	// if (((int)x % 50 == 0 || x == (double)WIDTH - 1.0) && ((int)y % 50 == 0 || y == (double)HEIGHT - 1.0))
-	// 	printf("x %lf y %lf xs %lf ys %lf zs %lf\n", x, y, screen.x, screen.y, screen.z);
-	return (vec3_normalize(vec3_subtraction(screen, ray.origin)));
+	denominator = sqrt(pow(window->scene->camera.dir.x, 2) + \
+					pow(window->scene->camera.dir.z, 2));
+	window->screen.e_sx.x = window->scene->camera.dir.z / denominator;
+	window->screen.e_sx.y = 0;
+	window->screen.e_sx.z = window->scene->camera.dir.x / denominator;
+	window->screen.e_sx = vec3_normalize(window->screen.e_sx);
+	window->screen.e_sy = vec3_normalize(vec3_cross_product(window->scene->camera.dir, window->screen.e_sx));
+	window->screen.center = vec3_addition(window->scene->camera.origin, \
+		vec3_multiply_scalar(window->scene->camera.dir, \
+		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
 }
 
 void	put_pixel_to_addr(t_window *window, int x, int y, int color)
@@ -41,43 +44,63 @@ void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	raytrace(t_window *window, t_scene *scene)
+static bool	shadow_intersect(t_intersect *intersect, t_scene *scene)
+{
+	t_ray		shadow_ray;
+	t_intersect	shadow_intersect;
+
+	shadow_ray.origin = intersect->point;
+	shadow_ray.dir = scene->light.dir;
+	return (calculate_intersect_point(&shadow_ray, &shadow_intersect, \
+	scene, intersect->index) == true && \
+	EPSILON < shadow_intersect.distance && \
+	shadow_intersect.distance < \
+	vec3_magnitude(vec3_subtraction(scene->light.origin, intersect->point)));
+}
+
+static t_color	calculate_color(t_ray *ray, \
+									t_intersect *intersect, t_scene *scene)
+{
+	if (calculate_intersect_point(ray, intersect, scene, -1) == false)
+		return ((t_color){0, 0, 0});
+	else
+	{
+		scene->light.dir = \
+		vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
+		if (shadow_intersect(intersect, scene))
+			return (vec3_multiply_scalar(scene->ambient_color, \
+					scene->ambient_ratio));
+		else
+			return (shading(*ray, *intersect, scene));
+	}
+}
+
+void	raytrace(t_window *window)
 {
 	int			x;
 	int			y;
 	t_ray		ray;
 	t_intersect	intersect;
-	t_color		color;
-	// t_ray		shadow_ray;
-	// t_intersect shadow_intersect;
 
-	ray.origin = scene->camera.origin;
+	ray.origin = window->scene->camera.origin;
+	get_screen(window);
 	x = 0;
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			ray.dir = get_ray_direction(x, y, ray);
-			if (calculate_intersect_point(&ray, &intersect, scene) == false)
-				color = ((t_color){0, 0, 0});
-			else
-			{
-				scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, intersect.point));
-				color = shading(ray, intersect, scene);
-				// // 影の処理
-				// shadow_ray.origin = intersect.point;
-				// shadow_ray.dir = scene->light.dir;
-				// if (calculate_intersect_point(&shadow_ray, &shadow_intersect, scene) == false)
-				// 	color = shading(ray, intersect, scene);
-				// else if (0.001953125 < shadow_intersect.distance || shadow_intersect.distance < vec3_magnitude(vec3_subtraction(scene->light.origin, intersect.point)))
-				// 	color = vec3_multiply_scalar(scene->ambient_color, scene->ambient_ratio);
-				// else
-				// 	color = shading(ray, intersect, scene);
-			}
-			put_pixel_to_addr(window, x, y, get_color_in_int(color));
+			ray.dir = vec3_normalize(vec3_addition(window->screen.center, \
+				vec3_addition(vec3_multiply_scalar(window->screen.e_sx, \
+				(x - ((double)WIDTH / 2))), vec3_multiply_scalar(window->screen.e_sy, \
+				(((double)HEIGHT / 2) - y)))));
+			put_pixel_to_addr(window, x, y, \
+				get_color_in_int(calculate_color(&ray, &intersect, window->scene)));
 			y++;
 		}
 		x++;
 	}
+	printf("dir %f, %f, %f\n", window->scene->camera.dir.x, window->scene->camera.dir.y, window->scene->camera.dir.z);
+	printf("org %f, %f, %f\n", window->scene->camera.origin.x, window->scene->camera.origin.y, window->scene->camera.origin.z);
+	printf("ray_org %f, %f, %f\n", ray.origin.x, ray.origin.y, ray.origin.z);
 }

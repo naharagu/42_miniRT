@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 20:15:40 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/20 09:23:28 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_shape	*shape_lst_add(t_scene *scene)
 		scene->shapes = (t_shape *)ft_calloc(1, sizeof(t_shape));
 		if (scene->shapes == NULL)
 			put_error_and_exit("Failed to malloc");
+		scene->shapes->index = 0;
 		scene->shapes->next = NULL;
 		return (scene->shapes);
 	}
@@ -43,6 +44,7 @@ t_shape	*shape_lst_add(t_scene *scene)
 		tmp->next = (t_shape *)ft_calloc(1, sizeof(t_shape));
 		if (tmp->next == NULL)
 			put_error_and_exit("Failed to malloc");
+		tmp->next->index = tmp->index + 1;
 		tmp->next->next = NULL;
 		return (tmp->next);
 	}

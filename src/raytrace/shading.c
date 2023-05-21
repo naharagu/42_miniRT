@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/20 10:50:32 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 17:48:47 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ t_color	shading(t_ray ray, t_intersect intersect, t_scene *scene)
 	r_diffuse = calculate_diffuse_reflection(intersect, scene->light);
 	r_specular = calculate_specular_reflection(ray, intersect, scene->light);
 	r_total = r_ambient + r_diffuse + r_specular;
-	return (vec3_multiply_scalar(scene->ambient_color, r_total));
+	return (vec3_multiply_scalar(intersect.color, r_total));
 }

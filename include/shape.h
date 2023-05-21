@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/20 09:27:46 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:56:43 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "parse.h"
 # include "vector.h"
 # include "raytrace.h"
+# include <unistd.h>
 # include <stdbool.h>
 
 typedef struct s_shape	t_shape;

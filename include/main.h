@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:42 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 18:09:38 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/21 15:22:10 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,32 @@
 
 # include "mlx.h"
 # include "vector.h"
+# include "raytrace.h"
 # include <stdio.h> //delete later
 
 # define HEIGHT 400
 # define WIDTH 400
 # define ESC 65307
 
-typedef struct s_window
+typedef struct s_screen
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_window;
+	t_vec3	center;
+	t_vec3	e_sx;
+	t_vec3	e_sy;
+}	t_screen;
+
+typedef struct s_scene	t_scene;
+struct s_window
+{
+	void		*mlx;
+	void		*mlx_win;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_screen	screen;
+	t_scene		*scene;
+};
 
 #endif

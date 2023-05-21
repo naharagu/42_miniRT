@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/18 06:28:13 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:38:31 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	vec3_dot_product(t_vec3 a, t_vec3 b)
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 {
-	return (vec3_create(a.y * b.z - a.z - b.y, a.z * b.x - a.x - b.z, a.x * b.y
+	return (vec3_create(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y
 			- a.y * b.x));
 }
 //外積

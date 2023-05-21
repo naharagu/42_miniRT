@@ -6,39 +6,13 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/21 15:32:49 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 19:40:43 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
-
-// static t_vec3	get_sx_basis(t_scene *scene)
-// {
-// 	t_vec3	e_sx;
-// 	double	denominator;
-
-// 	denominator = sqrt(pow(scene->camera.dir.x, 2) + \
-// 					pow(scene->camera.dir.z, 2));
-// 	e_sx.x = scene->camera.dir.z / denominator;
-// 	e_sx.y = 0;
-// 	e_sx.z = scene->camera.dir.x / denominator;
-// 	return (vec3_normalize(e_sx));
-// }
-
-// static t_vec3	get_screen_direction(double x, double y, t_ray *ray, t_scene *scene)
-// {
-// 	t_vec3	screen;
-// 	// t_vec3	e_sx;
-// 	// t_vec3	e_sy;
-
-// 	// e_sx = get_sx_basis(scene);
-// 	// e_sy = vec3_normalize(vec3_cross_product(scene->camera.dir, e_sx));
-// 	screen = vec3_addition(vec3_multiply_scalar(e_sx, (x - ((double)WIDTH / 2))), \
-// 				vec3_multiply_scalar(e_sy, (((double)HEIGHT / 2) - y)));
-// 	return (vec3_normalize(vec3_addition(ray->screen_center, screen)));
-// }
 
 static void	get_screen(t_window *window)
 {
@@ -101,7 +75,6 @@ static t_color	calculate_color(t_ray *ray, \
 	}
 }
 
-// void	raytrace(t_window *window, t_scene *scene)
 void	raytrace(t_window *window)
 {
 	int			x;
@@ -111,16 +84,12 @@ void	raytrace(t_window *window)
 
 	ray.origin = window->scene->camera.origin;
 	get_screen(window);
-	// ray.screen_center = vec3_addition(window->scene->camera.origin, \
-	// 		vec3_multiply_scalar(window->scene->camera.dir, \
-	// 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
 	x = 0;
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			// ray.dir = get_screen_direction(x, y, &ray, window->scene);
 			ray.dir = vec3_normalize(vec3_addition(window->screen.center, \
 				vec3_addition(vec3_multiply_scalar(window->screen.e_sx, \
 				(x - ((double)WIDTH / 2))), vec3_multiply_scalar(window->screen.e_sy, \
@@ -131,4 +100,7 @@ void	raytrace(t_window *window)
 		}
 		x++;
 	}
+	printf("dir %f, %f, %f\n", window->scene->camera.dir.x, window->scene->camera.dir.y, window->scene->camera.dir.z);
+	printf("org %f, %f, %f\n", window->scene->camera.origin.x, window->scene->camera.origin.y, window->scene->camera.origin.z);
+	printf("ray_org %f, %f, %f\n", ray.origin.x, ray.origin.y, ray.origin.z);
 }

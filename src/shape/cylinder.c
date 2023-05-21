@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/20 10:54:11 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 17:17:01 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static bool	within_cylinder(t_shape *shape, \
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
 				vec3_dot_product(shape->center, shape->normal)) / \
 				vec3_dot_product(shape->normal, shape->normal);
+	// d->t2 = ((d->t * d->Dsv) - d->Dps) / d->Dss;
 	if (0 <= d->t2 && d->t2 <= shape->height)
 	{
 		intersect->normal = \
@@ -74,12 +75,12 @@ bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	d.t = (d.b - d.discriminant) / d.a;
 	intersect->point = \
 		vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-	if (within_cylinder(shape, intersect, &d) == false)
+	if (d.t < 0.0 || within_cylinder(shape, intersect, &d) == false)
 	{
 		d.t = (d.b + d.discriminant) / d.a;
 		intersect->point = \
 			vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-		return (within_cylinder(shape, intersect, &d));
+		return (0.0 <= d.t && within_cylinder(shape, intersect, &d));
 	}
 	return (true);
 }

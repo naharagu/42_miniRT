@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/17 07:34:23 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/18 20:19:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	raytrace(t_window *window, t_scene *scene)
 	t_ray		ray;
 	t_intersect	intersect;
 	t_color		color;
+	// t_ray		shadow_ray;
+	// t_intersect shadow_intersect;
 
 	ray.origin = scene->camera.origin;
 	x = 0;
@@ -59,10 +61,19 @@ void	raytrace(t_window *window, t_scene *scene)
 			ray.dir = get_ray_direction(x, y, ray);
 			if (calculate_intersect_point(&ray, &intersect, scene) == false)
 				color = ((t_color){0, 0, 0});
-			else {
+			else
+			{
+				scene->light.dir = vec3_normalize(vec3_subtraction(scene->light.origin, intersect.point));
 				color = shading(ray, intersect, scene);
-				// color = intersect.color;
-				// printf("x %d y %d cr %lf cg %lf cb %lf\n", x, y, color.x, color.y, color.z);
+				// // 影の処理
+				// shadow_ray.origin = intersect.point;
+				// shadow_ray.dir = scene->light.dir;
+				// if (calculate_intersect_point(&shadow_ray, &shadow_intersect, scene) == false)
+				// 	color = shading(ray, intersect, scene);
+				// else if (0.001953125 < shadow_intersect.distance || shadow_intersect.distance < vec3_magnitude(vec3_subtraction(scene->light.origin, intersect.point)))
+				// 	color = vec3_multiply_scalar(scene->ambient_color, scene->ambient_ratio);
+				// else
+				// 	color = shading(ray, intersect, scene);
 			}
 			put_pixel_to_addr(window, x, y, get_color_in_int(color));
 			y++;

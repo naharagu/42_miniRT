@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/18 06:22:05 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:59:24 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "color.h"
 # include "parse.h"
 # include "vector.h"
+# include <unistd.h>
 # include <stdbool.h>
 
 # define K_DIFFUSE 0.69
@@ -25,10 +26,12 @@
 # define EPSILON 0.001953125
 
 typedef struct s_scene	t_scene;
+typedef struct s_window	t_window;
 typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	dir;
+	t_vec3	screen_center;
 }			t_ray;
 
 typedef struct s_intersect
@@ -36,6 +39,7 @@ typedef struct s_intersect
 	t_vec3				point;
 	t_vec3				normal;
 	t_vec3				color;
+	ssize_t				index;
 	double				distance;
 }						t_intersect;
 
@@ -56,7 +60,9 @@ typedef struct s_discriminant
 }			t_discriminant;
 
 t_color		shading(t_ray ray, t_intersect intersect, t_scene *scene);
-void		raytrace(t_window *window, t_scene *scene);
-bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene);
+void		raytrace(t_window *window);
+// void		raytrace(t_window *window, t_scene *scene);
+// bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene);
+bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene, ssize_t intersect_index);
 
 #endif

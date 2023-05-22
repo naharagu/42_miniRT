@@ -6,29 +6,13 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/22 07:12:53 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:34:01 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
-
-// static void	get_screen(t_window *window)
-// {
-// 	double	denominator;
-
-// 	denominator = sqrt(pow(window->scene->camera.dir.x, 2) + \
-// 					pow(window->scene->camera.dir.z, 2));
-// 	window->screen.e_sx.x = window->scene->camera.dir.z / denominator;
-// 	window->screen.e_sx.y = 0;
-// 	window->screen.e_sx.z = window->scene->camera.dir.x / denominator;
-// 	window->screen.e_sx = vec3_normalize(window->screen.e_sx);
-// 	window->screen.e_sy = vec3_normalize(vec3_cross_product(window->scene->camera.dir, window->screen.e_sx));
-// 	window->screen.center = vec3_addition(window->scene->camera.origin, \
-// 		vec3_multiply_scalar(window->scene->camera.dir, \
-// 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
-// }
 
 static void	get_screen(t_window *window)
 {
@@ -80,7 +64,7 @@ static t_color	calculate_color(t_ray *ray, \
 		scene->light.dir = \
 		vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
 		if (shadow_intersect(intersect, scene))
-			return (vec3_multiply_scalar(scene->ambient_color, \
+			return (vec3_multiply_scalar(intersect->color, \
 					scene->ambient_ratio));
 		else
 			return (shading(*ray, *intersect, scene));

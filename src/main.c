@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/21 19:19:17 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:36:26 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static int	key_handler(int keycode, t_window *window)
 	// 左回転
 	else if (keycode == 'j')
 		window->scene->camera.dir = vec3_normalize(vec3_subtraction(window->scene->camera.dir, vec3_multiply_scalar(window->screen.e_sx, 0.05)));
+	else
+		return (0);
 	printf("dir %f, %f, %f\n", window->scene->camera.dir.x, window->scene->camera.dir.y, window->scene->camera.dir.z);
 	printf("org %f, %f, %f\n", window->scene->camera.origin.x, window->scene->camera.origin.y, window->scene->camera.origin.z);
 	raytrace(window);

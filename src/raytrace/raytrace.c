@@ -6,25 +6,12 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/22 15:34:01 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/28 22:32:38 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
-#include <math.h>
-
-static void	get_screen(t_window *window)
-{
-	t_vec3	vup;
-
-	vup = vec3_normalize(vec3_subtraction((t_vec3){0, 100000, 0}, window->scene->camera.origin));
-	window->screen.e_sx = vec3_normalize(vec3_cross_product(vup, window->scene->camera.dir));
-	window->screen.e_sy = vec3_normalize(vec3_cross_product(window->scene->camera.dir, window->screen.e_sx));
-	window->screen.center = vec3_addition(window->scene->camera.origin, \
-		vec3_multiply_scalar(window->scene->camera.dir, \
-		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
-}
 
 void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 {
@@ -79,7 +66,6 @@ void	raytrace(t_window *window)
 	t_intersect	intersect;
 
 	ray.origin = window->scene->camera.origin;
-	get_screen(window);
 	x = 0;
 	while (x < WIDTH)
 	{

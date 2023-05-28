@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:29:23 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/19 23:31:01 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:31:50 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ void	put_rtfile_error_and_exit(char *message)
 	ft_putstr_fd(message, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	exit(EXIT_FAILURE);
+}
+
+int	exit_window(const char *msg)
+{
+	printf("%s\n", msg);
+	exit(1);
+	return (1);
 }

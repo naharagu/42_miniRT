@@ -6,15 +6,37 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/25 22:03:47 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:05:49 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "errno.h"
+#include "stdbool.h"
 #include "float.h"
+#include "stdio.h"
 
-void	atod_helper(const char *str, double *res)
+static bool	is_double(const char *str)
+{
+	size_t	i;
+	int		dot;
+
+	i = 0;
+	dot = 0;
+	while (str[i] && str[i] != '\n')
+	{
+		if (str[i] == '.')
+			dot++;
+		if (dot > 1)
+			return (false);
+		if (ft_isdigit(str[i]) == false && str[i] != '.')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static void	atod_helper(const char *str, double *res)
 {
 	double	i;
 
@@ -54,6 +76,11 @@ double	ft_atod(const char *str)
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			sign = -1.0;
+	if (is_double(str) == false)
+	{
+		errno = EINVAL;
+		return (0.0);
+	}
 	atod_helper(str, &res);
 	return (sign * res);
 }

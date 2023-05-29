@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 09:56:28 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:06:04 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 	char	**str_array;
 
 	str_array = ft_split(line, ' ');
+	errno = 0;
 	if (str_array == NULL)
 		put_error_and_exit("Failed to split line");
 	if (ft_strcmp(str_array[0], "A") == 0)
@@ -37,6 +38,8 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_cylinder(str_array, scene);
 	else
 		put_error_and_exit("Invalid content in rt file");
+	if (errno != 0)
+		put_error_and_exit("Failed to convert string to double");
 	free_split(str_array);
 }
 

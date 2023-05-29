@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/10 21:34:22 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 09:56:28 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,8 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_plane(str_array, scene);
 	else if (ft_strcmp(str_array[0], "cy") == 0)
 		parse_cylinder(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "sq") == 0)
-	// 	parse_square(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "cy") == 0)
-	// 	parse_cylinder(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "co") == 0)
-	// 	parse_cone(str_array, scene);
-	// else
-	// 	put_error_and_exit("Invalid content in rt file");
+	else
+		put_error_and_exit("Invalid content in rt file");
 	free_split(str_array);
 }
 

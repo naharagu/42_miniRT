@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:37:26 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 23:15:32 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	parse_plane(char **str_array, t_scene *scene)
 	shape->type = PLANE;
 	shape->center = parse_vec3(str_array[1]);
 	shape->normal = parse_vec3(str_array[2]);
+	check_normalized(shape->normal);
 	shape->color = parse_color(str_array[3]);
 }
 
@@ -52,6 +53,7 @@ void	parse_cylinder(char **str_array, t_scene *scene)
 	shape->type = CYLINDER;
 	shape->center = parse_vec3(str_array[1]);
 	shape->normal = parse_vec3(str_array[2]);
+	check_normalized(shape->normal);
 	shape->radius = ft_atod(str_array[3]) / 2;
 	shape->height = ft_atod(str_array[4]);
 	shape->color = parse_color(str_array[5]);

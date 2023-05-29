@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 22:27:48 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:45:44 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "utils.h"
 
-void	convert_line_to_scene(char *line, t_scene *scene)
+static void	convert_line_to_scene(char *line, t_scene *scene)
 {
 	char	**str_array;
 
@@ -42,7 +42,7 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 	free_split(str_array);
 }
 
-void	convert_argv_to_scene(char *argv, t_scene *scene)
+static void	convert_argv_to_scene(char *argv, t_scene *scene)
 {
 	int		fd;
 	char	*line;

@@ -11,6 +11,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)parse/parse_ACL.c \
 				$(SRCS_DIR)parse/parse_shape.c \
 				$(SRCS_DIR)parse/parse_utils.c \
+				$(SRCS_DIR)parse/parse_vec3.c \
 				$(SRCS_DIR)parse/init.c \
 				$(SRCS_DIR)color/color.c \
 				$(SRCS_DIR)raytrace/raytrace.c \

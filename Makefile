@@ -1,10 +1,11 @@
 NAME		:=	miniRT
 
-CC			:=	gcc
+CC			:=	cc
 CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
 
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
+				$(SRCS_DIR)key_handler.c \
 				$(SRCS_DIR)exit.c \
 				$(SRCS_DIR)parse/parse.c \
 				$(SRCS_DIR)parse/parse_ACL.c \

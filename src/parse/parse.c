@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:37:18 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:27:48 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ void	convert_argv_to_scene(char *argv, t_scene *scene)
 		put_error_and_exit("Failed to close file");
 }
 
+static void	check_acl(t_scene	*scene)
+{
+	if (scene->ambient_ratio == -1)
+		put_error_and_exit("There is no ambient light");
+	if (scene->camera.fov == -1)
+		put_error_and_exit("There is no camera");
+	if (scene->light.intensity == -1)
+		put_error_and_exit("There is no light");
+}
+
 void	parse_rt_file(int argc, char **argv, t_scene *scene)
 {
 	if (argc != 2)
@@ -72,4 +82,5 @@ void	parse_rt_file(int argc, char **argv, t_scene *scene)
 	validate_file_name(argv[1]);
 	init_scene(scene);
 	convert_argv_to_scene(argv[1], scene);
+	check_acl(scene);
 }

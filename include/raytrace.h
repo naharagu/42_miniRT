@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:31:24 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:21:43 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,17 @@ typedef struct s_discriminant
 	double	discriminant;
 	double	t;
 	double	t2;
-	double	Dvv;
-	double	Dsv;
-	double	Dpv;
-	double	Dss;
-	double	Dps;
-	double	Dpp;
+	double	vv;
+	double	sv;
+	double	pv;
+	double	ss;
+	double	ps;
+	double	pp;
 }			t_discriminant;
 
 t_color		shading(t_ray ray, t_intersect intersect, t_scene *scene);
 void		raytrace(t_window *window);
-bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene, ssize_t intersect_index);
+bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
+			t_scene *scene, ssize_t intersect_index);
 
 #endif

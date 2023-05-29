@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/21 17:17:01 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:24:45 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static bool	within_cylinder(t_shape *shape, \
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
 				vec3_dot_product(shape->center, shape->normal)) / \
 				vec3_dot_product(shape->normal, shape->normal);
-	// d->t2 = ((d->t * d->Dsv) - d->Dps) / d->Dss;
 	if (0 <= d->t2 && d->t2 <= shape->height)
 	{
 		intersect->normal = \

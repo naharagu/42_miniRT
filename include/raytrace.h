@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/21 14:59:24 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:31:24 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_intersect
 
 typedef struct s_discriminant
 {
+	t_vec3	so;
 	double	a;
 	double	b;
 	double	c;
@@ -61,8 +62,6 @@ typedef struct s_discriminant
 
 t_color		shading(t_ray ray, t_intersect intersect, t_scene *scene);
 void		raytrace(t_window *window);
-// void		raytrace(t_window *window, t_scene *scene);
-// bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene);
 bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, t_scene *scene, ssize_t intersect_index);
 
 #endif

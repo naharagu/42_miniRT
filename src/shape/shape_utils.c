@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/20 09:23:28 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:34 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "parse.h"
 #include "exit.h"
 #include "libft.h"
-#include "test.h"
 
 t_shape	*shape_lst_last(t_shape *shapes)
 {

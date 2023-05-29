@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:22:27 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:13 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "raytrace.h"
 #include <stdlib.h>
 #include <math.h>
-#include "test.h"
 
 static void	init_screen(t_window *window)
 {

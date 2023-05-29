@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:27:13 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:18 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "exit.h"
 #include "libft.h"
 #include "utils.h"
-#include "test.h"
 
 void	convert_line_to_scene(char *line, t_scene *scene)
 {

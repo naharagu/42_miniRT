@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:27:24 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:26 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft.h"
 #include "utils.h"
 #include "shape.h"
-#include "test.h"
 
 void	parse_sphere(char **str_array, t_scene *scene)
 {

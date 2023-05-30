@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/20 10:51:13 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:30 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raytrace.h"
 #include <math.h>
-#include "test.h"
 
 static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {

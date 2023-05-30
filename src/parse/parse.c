@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/28 21:51:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:45:44 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "exit.h"
 #include "libft.h"
 #include "utils.h"
-#include "test.h"
 
-void	convert_line_to_scene(char *line, t_scene *scene)
+static void	convert_line_to_scene(char *line, t_scene *scene)
 {
 	char	**str_array;
 
 	str_array = ft_split(line, ' ');
+	errno = 0;
 	if (str_array == NULL)
 		put_error_and_exit("Failed to split line");
 	if (ft_strcmp(str_array[0], "A") == 0)
@@ -35,18 +35,14 @@ void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_plane(str_array, scene);
 	else if (ft_strcmp(str_array[0], "cy") == 0)
 		parse_cylinder(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "sq") == 0)
-	// 	parse_square(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "cy") == 0)
-	// 	parse_cylinder(str_array, scene);
-	// else if (ft_strcmp(str_array[0], "co") == 0)
-	// 	parse_cone(str_array, scene);
-	// else
-	// 	put_error_and_exit("Invalid content in rt file");
+	else
+		put_error_and_exit("Invalid content in rt file");
+	if (errno != 0)
+		put_error_and_exit("Failed to convert string to double");
 	free_split(str_array);
 }
 
-void	convert_argv_to_scene(char *argv, t_scene *scene)
+static void	convert_argv_to_scene(char *argv, t_scene *scene)
 {
 	int		fd;
 	char	*line;
@@ -69,6 +65,16 @@ void	convert_argv_to_scene(char *argv, t_scene *scene)
 		put_error_and_exit("Failed to close file");
 }
 
+static void	check_acl(t_scene	*scene)
+{
+	if (scene->ambient_ratio == -1)
+		put_error_and_exit("There is no ambient light");
+	if (scene->camera.fov == -1)
+		put_error_and_exit("There is no camera");
+	if (scene->light.intensity == -1)
+		put_error_and_exit("There is no light");
+}
+
 void	parse_rt_file(int argc, char **argv, t_scene *scene)
 {
 	if (argc != 2)
@@ -76,6 +82,5 @@ void	parse_rt_file(int argc, char **argv, t_scene *scene)
 	validate_file_name(argv[1]);
 	init_scene(scene);
 	convert_argv_to_scene(argv[1], scene);
-	print_t_scene(scene); //for test. delete later
-	print_shape_lst(scene->shapes); //for test. delete later
+	check_acl(scene);
 }

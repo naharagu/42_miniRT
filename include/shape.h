@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/21 14:56:43 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:38:21 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-typedef struct s_shape	t_shape;
-typedef struct s_scene	t_scene;
-typedef struct s_ray	t_ray;
+typedef struct s_shape		t_shape;
+typedef struct s_scene		t_scene;
+typedef struct s_ray		t_ray;
 typedef struct s_intersect	t_intersect;
 
 enum					e_shape_type
@@ -50,15 +50,15 @@ t_shape					*shape_lst_last(t_shape *shapes);
 t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
-bool					intersect_sphere(t_shape *shape, t_ray *ray,
+bool					intersect_sphere(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // plane.c
-bool					intersect_plane(t_shape *shape, t_ray *ray,
+bool					intersect_plane(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // cylinder.c
-bool					intersect_cylinder(t_shape *shape, t_ray *ray,
+bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 #endif

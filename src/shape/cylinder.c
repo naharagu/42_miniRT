@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/21 17:17:01 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:21:18 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ static void	precalc_cylinder(t_shape *shape, t_ray *ray, t_discriminant *d)
 			vec3_multiply_scalar(shape->normal, shape->height));
 	p2 = vec3_subtraction(p2, ray->origin);
 	s = vec3_subtraction(p2, p);
-	d->Dvv = vec3_dot_product(ray->dir, ray->dir);
-	d->Dsv = vec3_dot_product(s, ray->dir);
-	d->Dpv = vec3_dot_product(p, ray->dir);
-	d->Dss = vec3_dot_product(s, s);
-	d->Dps = vec3_dot_product(p, s);
-	d->Dpp = vec3_dot_product(p, p);
-	if (d->Dss != 0)
+	d->vv = vec3_dot_product(ray->dir, ray->dir);
+	d->sv = vec3_dot_product(s, ray->dir);
+	d->pv = vec3_dot_product(p, ray->dir);
+	d->ss = vec3_dot_product(s, s);
+	d->ps = vec3_dot_product(p, s);
+	d->pp = vec3_dot_product(p, p);
+	if (d->ss != 0)
 	{
-		d->a = d->Dvv - d->Dsv * d->Dsv / d->Dss;
-		d->b = d->Dpv - d->Dps * d->Dsv / d->Dss;
-		d->c = d->Dpp - d->Dps * d->Dps / d->Dss - \
+		d->a = d->vv - d->sv * d->sv / d->ss;
+		d->b = d->pv - d->ps * d->sv / d->ss;
+		d->c = d->pp - d->ps * d->ps / d->ss - \
 							(shape->radius * shape->radius);
 		d->discriminant = d->b * d->b - d->a * d->c;
 	}
@@ -49,7 +49,6 @@ static bool	within_cylinder(t_shape *shape, \
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
 				vec3_dot_product(shape->center, shape->normal)) / \
 				vec3_dot_product(shape->normal, shape->normal);
-	// d->t2 = ((d->t * d->Dsv) - d->Dps) / d->Dss;
 	if (0 <= d->t2 && d->t2 <= shape->height)
 	{
 		intersect->normal = \
@@ -69,7 +68,7 @@ bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	t_discriminant	d;
 
 	precalc_cylinder(shape, ray, &d);
-	if (d.Dss == 0 || d.a == 0 || d.discriminant < 0)
+	if (d.ss == 0 || d.a == 0 || d.discriminant < 0)
 		return (false);
 	d.discriminant = sqrt(d.discriminant);
 	d.t = (d.b - d.discriminant) / d.a;

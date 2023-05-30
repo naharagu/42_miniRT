@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/28 22:32:38 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:36:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,14 @@ void	raytrace(t_window *window)
 		{
 			ray.dir = vec3_normalize(vec3_addition(window->screen.center, \
 				vec3_addition(vec3_multiply_scalar(window->screen.e_sx, \
-				(x - ((double)WIDTH / 2))), vec3_multiply_scalar(window->screen.e_sy, \
+				(x - ((double)WIDTH / 2))), \
+				vec3_multiply_scalar(window->screen.e_sy, \
 				(((double)HEIGHT / 2) - y)))));
 			put_pixel_to_addr(window, x, y, \
-				get_color_in_int(calculate_color(&ray, &intersect, window->scene)));
+				get_color_in_int(calculate_color(&ray, &intersect, \
+				window->scene)));
 			y++;
 		}
 		x++;
 	}
-	printf("dir %f, %f, %f\n", window->scene->camera.dir.x, window->scene->camera.dir.y, window->scene->camera.dir.z);
-	printf("org %f, %f, %f\n", window->scene->camera.origin.x, window->scene->camera.origin.y, window->scene->camera.origin.z);
-	printf("ray_org %f, %f, %f\n", ray.origin.x, ray.origin.y, ray.origin.z);
 }

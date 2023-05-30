@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/22 07:13:00 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:52:15 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "main.h"
 # include "shape.h"
 # include <fcntl.h>
+# include <errno.h>
 
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;
@@ -58,6 +59,8 @@ void					parse_light(char **str_array, t_scene *scene);
 //parse_utils.c
 void					free_split(char **split);
 size_t					count_array(char **str_array);
+void					check_normalized(t_vec3 vec);
+t_color					parse_color(char *str);
 t_vec3					parse_vec3(char *str);
 
 //parse_shape.c

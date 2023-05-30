@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 22:25:27 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/30 23:02:46 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 	t_window	window;
 	t_scene		scene;
 
-	init_window(&window);
 	parse_rt_file(argc, argv, &scene);
+	init_window(&window);
 	window.scene = &scene;
 	init_screen(&window);
 	raytrace(&window);
@@ -56,8 +56,8 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// __attribute__((destructor))
-// static void	destructor(void)
-// {
-// 	system("leaks -q miniRT");
-// }
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q miniRT");
+}

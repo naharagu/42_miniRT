@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 23:17:43 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/30 22:44:12 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ size_t	count_array(char **str_array)
 void	check_normalized(t_vec3 vec)
 {
 	t_vec3	unit;
+	double	norm;
 
 	unit = vec3_normalize(vec);
-	if (vec3_magnitude(vec) != 1.0)
+	norm = vec3_magnitude(vec);
+	if (norm < 1.0 - EPSILON || 1.0 + EPSILON < norm)
 	{
 		printf("for the vector: %f,%f,%f\n", vec.x, vec.y, vec.z);
 		printf("the unit vector is: %f,%f,%f\n", unit.x, unit.y, unit.z);

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:42 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/28 22:31:26 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/30 23:00:22 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ typedef struct s_window	t_window;
 
 int	key_handler(int keycode, t_window *window);
 int	exit_window(const char *msg);
+// int	exit_window(t_window *window);
 
 #endif

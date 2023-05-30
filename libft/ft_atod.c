@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 12:05:49 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/30 22:36:06 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	atod_helper(const char *str, double *res)
 		str++;
 		while (ft_isdigit(*str))
 		{
-			*res += (double)(*str++ - '0') *i;
+			*res += (double)(*str - '0') *i;
 			i *= 0.1;
 			str++;
 		}
@@ -93,4 +93,6 @@ double	ft_atod(const char *str)
 // 	printf("%f\n", a);
 // 	double b = ft_atod("-123.456");
 // 	printf("%f\n", b);
+// 	double c = ft_atod("0.271607");
+// 	printf("%f\n", c);
 // }

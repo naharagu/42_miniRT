@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:29:23 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/30 23:02:55 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/31 07:37:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	put_rtfile_error_and_exit(char *message)
 int	exit_window(const char *msg)
 {
 	printf("%s\n", msg);
-	sleep(1);
 	exit(1);
 	return (1);
 }

@@ -53,7 +53,7 @@ all: $(NAME)
 clean:
 	make -C $(MLX_DIR) clean
 	make -C $(LIB_DIR) clean
-	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)

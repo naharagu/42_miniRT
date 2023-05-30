@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_calc_addsub.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/26 15:46:18 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/05/31 07:49:12 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,3 @@ t_vec3	vec3_normalize(t_vec3 a)
 		return (vec3_create(0, 0, 0));
 	return (vec3_create(a.x / mag, a.y / mag, a.z / mag));
 }
-
-//0除算のエラー処理は不要?
-//正規化

@@ -11,6 +11,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)parse/parse_ACL.c \
 				$(SRCS_DIR)parse/parse_shape.c \
 				$(SRCS_DIR)parse/parse_utils.c \
+				$(SRCS_DIR)parse/parse_vec3.c \
 				$(SRCS_DIR)parse/init.c \
 				$(SRCS_DIR)color/color.c \
 				$(SRCS_DIR)raytrace/raytrace.c \
@@ -20,7 +21,6 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)shape/sphere.c \
 				$(SRCS_DIR)shape/plane.c \
 				$(SRCS_DIR)shape/cylinder.c \
-				$(SRCS_DIR)test/test.c \
 				$(SRCS_DIR)utils/utils.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c

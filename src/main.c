@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/28 22:35:13 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:25:27 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "raytrace.h"
 #include <stdlib.h>
 #include <math.h>
-#include "test.h"
 
 static void	init_screen(t_window *window)
 {
@@ -57,8 +56,8 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-__attribute__((destructor))
-static void destructor(void)
-{
-    system("leaks -q miniRT");
-}
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q miniRT");
+// }

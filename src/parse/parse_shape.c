@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/10 21:32:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/05/29 23:15:32 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft.h"
 #include "utils.h"
 #include "shape.h"
-#include "test.h"
 
 void	parse_sphere(char **str_array, t_scene *scene)
 {
@@ -27,8 +26,7 @@ void	parse_sphere(char **str_array, t_scene *scene)
 	shape->type = SPHERE;
 	shape->center = parse_vec3(str_array[1]);
 	shape->radius = ft_atod(str_array[2]) / 2;
-	shape->color = parse_vec3(str_array[3]);
-	// print_t_shape(shape);
+	shape->color = parse_color(str_array[3]);
 }
 
 void	parse_plane(char **str_array, t_scene *scene)
@@ -41,7 +39,8 @@ void	parse_plane(char **str_array, t_scene *scene)
 	shape->type = PLANE;
 	shape->center = parse_vec3(str_array[1]);
 	shape->normal = parse_vec3(str_array[2]);
-	shape->color = parse_vec3(str_array[3]);
+	check_normalized(shape->normal);
+	shape->color = parse_color(str_array[3]);
 }
 
 void	parse_cylinder(char **str_array, t_scene *scene)
@@ -54,7 +53,8 @@ void	parse_cylinder(char **str_array, t_scene *scene)
 	shape->type = CYLINDER;
 	shape->center = parse_vec3(str_array[1]);
 	shape->normal = parse_vec3(str_array[2]);
+	check_normalized(shape->normal);
 	shape->radius = ft_atod(str_array[3]) / 2;
 	shape->height = ft_atod(str_array[4]);
-	shape->color = parse_vec3(str_array[5]);
+	shape->color = parse_color(str_array[5]);
 }

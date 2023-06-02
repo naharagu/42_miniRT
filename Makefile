@@ -5,7 +5,6 @@ CFLAGS 		:=	-Wall -Werror -Wextra -MMD -MP
 
 SRCS_DIR	:=	./src/
 SRCS		:= 	$(SRCS_DIR)main.c \
-				$(SRCS_DIR)key_handler.c \
 				$(SRCS_DIR)exit.c \
 				$(SRCS_DIR)parse/parse.c \
 				$(SRCS_DIR)parse/parse_ACL.c \
@@ -24,7 +23,9 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)shape/cone.c \
 				$(SRCS_DIR)utils/utils.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
-				$(SRCS_DIR)vector/vector_calc_product.c
+				$(SRCS_DIR)vector/vector_calc_product.c \
+				$(SRCS_DIR)key/key_handler.c \
+				$(SRCS_DIR)key/key_utils.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

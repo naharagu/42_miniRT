@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handler.c                                      :+:      :+:    :+:   */
+/*   key_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/28 22:21:39 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/30 23:03:03 by saikeda          ###   ########.fr       */
+/*   Created: 2023/06/02 23:29:34 by saikeda           #+#    #+#             */
+/*   Updated: 2023/06/02 23:36:04 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "parse.h"
-#include "raytrace.h"
-#include <stdlib.h>
-#include <math.h>
+#include "key_handler.h"
 
-static void	handle_zoom(int keycode, t_window *window)
+void	handle_zoom(int keycode, t_window *window)
 {
 	if (keycode == '1' && window->scene->camera.fov <= 179)
 		window->scene->camera.fov += 1;
@@ -27,33 +23,48 @@ static void	handle_zoom(int keycode, t_window *window)
 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
 }
 
-static void	handle_move(int keycode, t_window *window)
+void	handle_move_cross(int keycode, t_window *window)
 {
+	t_vec3	vec3;
+
 	if (keycode == 'w')
-		window->scene->camera.origin = \
+		vec3 = \
 		vec3_addition(window->scene->camera.origin, window->scene->camera.dir);
 	else if (keycode == 's')
-		window->scene->camera.origin = \
+		vec3 = \
 		vec3_subtraction(window->scene->camera.origin, \
 		window->scene->camera.dir);
 	else if (keycode == 'd')
-		window->scene->camera.origin = \
+		vec3 = \
 		vec3_addition(window->scene->camera.origin, window->screen.e_sx);
-	else if (keycode == 'a')
-		window->scene->camera.origin = \
+	else
+		vec3 = \
 		vec3_subtraction(window->scene->camera.origin, window->screen.e_sx);
-	else if (keycode == '9')
-		window->scene->camera.origin = \
-		vec3_addition(window->scene->camera.origin, window->screen.e_sy);
-	else if (keycode == '0')
-		window->scene->camera.origin = \
-		vec3_subtraction(window->scene->camera.origin, window->screen.e_sy);
+	if (check_range_vec3(vec3) == true)
+		window->scene->camera.origin = vec3;
 	window->screen.center = vec3_addition(window->scene->camera.origin, \
 		vec3_multiply_scalar(window->scene->camera.dir, \
 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
 }
 
-static void	handle_vertical(int keycode, t_window *window)
+void	handle_move_updown(int keycode, t_window *window)
+{
+	t_vec3	vec3;
+
+	if (keycode == '9')
+		vec3 = \
+		vec3_addition(window->scene->camera.origin, window->screen.e_sy);
+	else
+		vec3 = \
+		vec3_subtraction(window->scene->camera.origin, window->screen.e_sy);
+	if (check_range_vec3(vec3) == true)
+		window->scene->camera.origin = vec3;
+	window->screen.center = vec3_addition(window->scene->camera.origin, \
+		vec3_multiply_scalar(window->scene->camera.dir, \
+		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
+}
+
+void	handle_rotate_vertical(int keycode, t_window *window)
 {
 	if (keycode == 'i')
 		window->scene->camera.dir = \
@@ -71,7 +82,7 @@ static void	handle_vertical(int keycode, t_window *window)
 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
 }
 
-static void	handle_horizontal(int keycode, t_window *window)
+void	handle_rotate_horizontal(int keycode, t_window *window)
 {
 	if (keycode == 'l')
 		window->scene->camera.dir = \
@@ -87,24 +98,4 @@ static void	handle_horizontal(int keycode, t_window *window)
 	window->screen.center = vec3_addition(window->scene->camera.origin, \
 		vec3_multiply_scalar(window->scene->camera.dir, \
 		((double)WIDTH / 2 / tan(window->scene->camera.fov / 2 / 180 * M_PI))));
-}
-
-int	key_handler(int keycode, t_window *window)
-{
-	if (keycode == ESC)
-		exit_window("ESC");
-	else if (keycode == '1' || keycode == '2')
-		handle_zoom(keycode, window);
-	else if (keycode == 'w' || keycode == 's' || keycode == 'd' || \
-			keycode == 'a' || keycode == '9' || keycode == '0')
-		handle_move(keycode, window);
-	else if (keycode == 'i' || keycode == 'k')
-		handle_vertical(keycode, window);
-	else if (keycode == 'l' || keycode == 'j')
-		handle_horizontal(keycode, window);
-	else
-		return (0);
-	raytrace(window);
-	mlx_put_image_to_window(window->mlx, window->mlx_win, window->img, 0, 0);
-	return (0);
 }

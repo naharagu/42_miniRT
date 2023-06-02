@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_vec3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 22:44:52 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:20:12 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ t_color	parse_color(char *str)
 	return (color);
 }
 
+bool	check_range_vec3(t_vec3 vec3)
+{
+	if (vec3.x < -LIMIT_RANGE || LIMIT_RANGE < vec3.x)
+		return (false);
+	if (vec3.y < -LIMIT_RANGE || LIMIT_RANGE < vec3.y)
+		return (false);
+	if (vec3.z < -LIMIT_RANGE || LIMIT_RANGE < vec3.z)
+		return (false);
+	return (true);
+}
+
 t_vec3	parse_vec3(char *str)
 {
 	t_vec3	vec3;
@@ -49,6 +60,8 @@ t_vec3	parse_vec3(char *str)
 	vec3.x = ft_atod(str_array[0]);
 	vec3.y = ft_atod(str_array[1]);
 	vec3.z = ft_atod(str_array[2]);
+	if (check_range_vec3(vec3) == false)
+		put_error_and_exit("Invalid vector range");
 	free_split(str_array);
 	return (vec3);
 }

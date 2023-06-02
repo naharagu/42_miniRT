@@ -21,6 +21,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)shape/sphere.c \
 				$(SRCS_DIR)shape/plane.c \
 				$(SRCS_DIR)shape/cylinder.c \
+				$(SRCS_DIR)shape/cone.c \
 				$(SRCS_DIR)utils/utils.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c

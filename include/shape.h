@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:38:21 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/02 07:28:51 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ enum					e_shape_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE,
 };
 
 struct					s_shape
@@ -59,6 +60,10 @@ bool					intersect_plane(t_shape *shape, t_ray *ray, \
 
 // cylinder.c
 bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
+								t_intersect *intersect);
+
+// cone.c
+bool					intersect_cone(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/29 13:37:30 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/02 07:27:09 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
 		return (intersect_plane(shape, ray, intersect));
 	else if (shape->type == CYLINDER)
 		return (intersect_cylinder(shape, ray, intersect));
+	else if (shape->type == CONE)
+		return (intersect_cone(shape, ray, intersect));
 	return (false);
 }
 

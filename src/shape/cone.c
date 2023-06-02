@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 07:28:08 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/02 09:02:36 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/02 22:26:53 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static bool	within_cone(t_shape *shape, \
 							t_intersect *intersect, t_discriminant *d)
 {
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
-				vec3_dot_product(shape->center, shape->normal)) / \
-				vec3_dot_product(shape->normal, shape->normal);
+				vec3_dot_product(shape->center, shape->normal));
 	if (0 <= d->t2 && d->t2 <= shape->height)
 	{
 		intersect->normal = \

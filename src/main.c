@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 22:58:42 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/02 23:46:56 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_screen(t_window *window)
 	t_vec3	vup;
 	double	e_sx_norm;
 
-	vup = vec3_normalize(vec3_subtraction((t_vec3){0, 100000, 0}, \
+	vup = vec3_normalize(vec3_subtraction((t_vec3){0, LIMIT_TOP, 0}, \
 						window->scene->camera.origin));
 	window->screen.e_sx = \
 		vec3_normalize(vec3_cross_product(vup, window->scene->camera.dir));

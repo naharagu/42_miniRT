@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 23:24:46 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/02 23:46:30 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include "shape.h"
 # include <fcntl.h>
 # include <errno.h>
-
-# define LIMIT_RANGE 30
 
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;

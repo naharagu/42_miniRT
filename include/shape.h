@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 07:28:51 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 00:41:10 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ struct					s_shape
 	t_vec3				normal;
 	double				radius;
 	double				height;
-	t_color				color;
+	t_vec3				color;
 };
 
 // shape_utils.c

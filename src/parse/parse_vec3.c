@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 23:20:12 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 00:46:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "libft.h"
 #include "utils.h"
 
-t_color	parse_color(char *str)
+t_vec3	parse_color(char *str)
 {
-	t_color	color;
+	t_vec3	color;
 	char	**str_array;
 
 	str_array = ft_split(str, ',');

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 07:26:07 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 01:15:17 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	check_acl(t_scene	*scene)
 		put_error_and_exit("There is no ambient light");
 	if (scene->camera.fov == -1)
 		put_error_and_exit("There is no camera");
-	if (scene->light.intensity == -1)
+	if (scene->lights_num == 0)
 		put_error_and_exit("There is no light");
 }
 

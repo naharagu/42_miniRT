@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 23:46:30 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 00:46:11 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;
 typedef struct s_window	t_window;
+typedef struct s_light	t_light;
 typedef struct s_camera
 {
 	t_vec3				origin;
@@ -33,15 +34,17 @@ typedef struct s_light
 {
 	t_vec3				origin;
 	double				intensity;
-	t_color				color;
+	t_vec3				color;
 	t_vec3				dir;
+	t_light				*next;
 }						t_light;
 struct					s_scene
 {
 	double				ambient_ratio;
-	t_color				ambient_color;
+	t_vec3				ambient_color;
 	t_camera			camera;
-	t_light				light;
+	t_light				*lights;
+	size_t				lights_num;
 	t_shape				*shapes;
 };
 
@@ -62,7 +65,7 @@ size_t					count_array(char **str_array);
 void					check_normalized(t_vec3 vec);
 
 // parse_vec3.c
-t_color					parse_color(char *str);
+t_vec3					parse_color(char *str);
 bool					check_range_vec3(t_vec3 vec3);
 t_vec3					parse_vec3(char *str);
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:11 by naharagu          #+#    #+#             */
-/*   Updated: 2023/04/27 19:13:31 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/04 00:38:52 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-void	set_color(double r, double g, double b, t_color *color)
+void	set_color(double r, double g, double b, t_vec3 *color)
 {
 	color->x = r;
 	color->y = g;
@@ -20,7 +20,7 @@ void	set_color(double r, double g, double b, t_color *color)
 	return ;
 }
 
-int	get_color_in_int(t_color color)
+int	get_color_in_int(t_vec3 color)
 {
 	int	r;
 	int	g;

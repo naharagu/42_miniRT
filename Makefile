@@ -85,6 +85,8 @@ nof: all
 run r: all
 	./$(NAME) sample.rt
 
+bonus: $(NAME)
+
 -include $(DEPS)
 
-.PHONY: all clean fclean re sanitize norm no run r
+.PHONY: all clean fclean re sanitize norm no run r bonus

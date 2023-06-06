@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/02 13:20:25 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 21:44:36 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static bool	within_cylinder(t_shape *shape, \
 			vec3_addition(shape->center, \
 			vec3_multiply_scalar(shape->normal, d->t2))));
 		intersect->distance = d->t;
-		intersect->color = shape->color;
+		// intersect->color = shape->color;
+		intersect->color = shape->colors->color;
 		intersect->index = shape->index;
 		return (true);
 	}

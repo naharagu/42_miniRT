@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 00:46:11 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/06 06:36:46 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,15 @@ size_t					count_array(char **str_array);
 void					check_normalized(t_vec3 vec);
 
 // parse_vec3.c
-t_vec3					parse_color(char *str);
 bool					check_range_vec3(t_vec3 vec3);
 t_vec3					parse_vec3(char *str);
+
+// parse_color.c
+size_t					parse_colors(t_shape *shape, char **str_array, size_t index);
+t_vec3					parse_color(char *str);
+
+// parse_bump.c
+size_t					parse_bump(t_shape *shape, char **str_array, size_t index);
 
 //parse_shape.c
 void					parse_sphere(char **str_array, t_scene *scene);

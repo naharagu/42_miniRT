@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/02 07:27:09 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/06 19:27:06 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
+	intersect->bump = false;
 	if (shape->type == SPHERE)
 		return (intersect_sphere(shape, ray, intersect));
 	else if (shape->type == PLANE)

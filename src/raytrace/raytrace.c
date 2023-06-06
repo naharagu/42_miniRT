@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 01:16:30 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/06 19:22:34 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_vec3	calculate_color(t_ray *ray, \
 			vec3_multiply_scalar(intersect->color, scene->ambient_ratio));
 		else
 			color = vec3_addition(color, \
-								shading(*ray, *intersect, scene, light));
+								shading(*ray, *intersect, scene));
 		light = light->next;
 	}
 	color = vec3_multiply_scalar(color, 1.0 / scene->lights_num);

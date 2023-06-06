@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/02 23:46:56 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:12:11 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int argc, char **argv)
 	init_window(&window);
 	window.scene = &scene;
 	init_screen(&window);
+	shapes_unit(&window);
+	bump_map(&window);
 	raytrace(&window);
 	loop_window(&window);
 	return (0);

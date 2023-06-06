@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 01:17:10 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/06 19:23:50 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ typedef struct s_intersect
 	t_vec3				color;
 	ssize_t				index;
 	double				distance;
+	t_vec3				pro_x;
+	t_vec3				pro_y;
+	double				pi_x;
+	double				pi_y;
+	size_t				color_idx_x;
+	size_t				color_idx_y;
+	bool				bump;
+	t_vec3				b_normal;
+	size_t				bump_idx_x;
+	size_t				bump_idx_y;
 }						t_intersect;
 
 typedef struct s_discriminant
@@ -62,8 +72,9 @@ typedef struct s_discriminant
 }			t_discriminant;
 
 t_vec3		shading(t_ray ray, t_intersect intersect, \
-			t_scene *scene, t_light *light);
+			t_scene *scene);
 void		raytrace(t_window *window);
+void		bump_map(t_window *window);
 bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
 			t_scene *scene, ssize_t intersect_index);
 

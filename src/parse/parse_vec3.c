@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 00:46:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:16:18 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 #include "exit.h"
 #include "libft.h"
 #include "utils.h"
-
-t_vec3	parse_color(char *str)
-{
-	t_vec3	color;
-	char	**str_array;
-
-	str_array = ft_split(str, ',');
-	if (str_array == NULL)
-		put_error_and_exit("Failed to split color");
-	if (count_array(str_array) != 3)
-		put_error_and_exit("Invalid color format");
-	color.x = ft_atod(str_array[0]);
-	color.y = ft_atod(str_array[1]);
-	color.z = ft_atod(str_array[2]);
-	if (is_in_range_int(color.x, 0, 255) == false
-		|| is_in_range_int(color.y, 0, 255) == false
-		|| is_in_range_int(color.z, 0, 255) == false)
-		put_error_and_exit("Invalid color format");
-	free_split(str_array);
-	return (color);
-}
 
 bool	check_range_vec3(t_vec3 vec3)
 {

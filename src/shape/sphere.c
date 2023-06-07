@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/06 22:27:21 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/07 21:44:50 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect)
 			vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
 		intersect->normal = \
 			vec3_normalize(vec3_subtraction(intersect->point, shape->center));
+		intersect->b_normal = intersect->normal;
 		intersect->distance = d.t;
 		calc_intersect_sphere(shape, intersect);
 		intersect->index = shape->index;

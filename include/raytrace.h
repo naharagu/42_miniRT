@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/06 19:23:50 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/07 21:55:48 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define K_DIFFUSE 0.69
 # define K_SPECULAR 0.3
-# define ALPHA 2
+# define ALPHA 10
 # define EPSILON 0.001953125
 
 typedef struct s_scene	t_scene;
@@ -40,6 +40,7 @@ typedef struct s_intersect
 	t_vec3				point;
 	t_vec3				normal;
 	t_vec3				color;
+	t_vec3				calc_color;
 	ssize_t				index;
 	double				distance;
 	t_vec3				pro_x;
@@ -72,7 +73,7 @@ typedef struct s_discriminant
 }			t_discriminant;
 
 t_vec3		shading(t_ray ray, t_intersect intersect, \
-			t_scene *scene);
+			t_scene *scene, t_light *light);
 void		raytrace(t_window *window);
 void		bump_map(t_window *window);
 bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, \

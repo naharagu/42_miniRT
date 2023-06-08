@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/20 10:55:00 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/07 21:45:28 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	intersect->point = \
 		vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
 	intersect->normal = shape->normal;
+	intersect->b_normal = intersect->normal;
 	intersect->distance = d.t;
-	intersect->color = shape->color;
+	// intersect->color = shape->color;
+	intersect->color = shape->colors->color;
 	intersect->index = shape->index;
 	return (true);
 }

@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   bump_map.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 10:14:11 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 00:38:52 by saikeda          ###   ########.fr       */
+/*   Created: 2023/06/06 22:14:18 by saikeda           #+#    #+#             */
+/*   Updated: 2023/06/06 22:19:20 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.h"
+#ifndef BUMP_MAP_H
+# define BUMP_MAP_H
 
-void	set_color(double r, double g, double b, t_vec3 *color)
+# include "shape.h"
+# include "exit.h"
+# include <stdlib.h>
+# include <math.h>
+
+typedef struct s_shape		t_shape;
+typedef struct s_window		t_window;
+
+typedef struct	s_bump_map
 {
-	color->x = r;
-	color->y = g;
-	color->z = b;
-	return ;
-}
+	t_vec3				b_normal;
+	struct s_bump_map	*next;
+} t_bump_map;
 
-int	get_color_in_int(t_vec3 color)
-{
-	int	r;
-	int	g;
-	int	b;
+void	add_bump_map(t_shape *shape, t_vec3 b_normal);
+void	bump_map(t_window *window);
 
-	r = (int)(color.x);
-	g = (int)(color.y);
-	b = (int)(color.z);
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return ((r << 16) + (g << 8) + b);
-}
+void	bump_sphere(t_shape *shape);
+
+#endif

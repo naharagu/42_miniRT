@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:38:21 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:18:42 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "parse.h"
 # include "vector.h"
 # include "raytrace.h"
+# include "bump_map.h"
 # include <unistd.h>
 # include <stdbool.h>
 
@@ -24,13 +25,22 @@ typedef struct s_shape		t_shape;
 typedef struct s_scene		t_scene;
 typedef struct s_ray		t_ray;
 typedef struct s_intersect	t_intersect;
+typedef struct s_window		t_window;
+typedef struct s_bump_map	t_bump_map;
 
 enum					e_shape_type
 {
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE,
 };
+
+typedef struct	s_color
+{
+	t_vec3				color;
+	struct s_color		*next;
+} t_color;
 
 struct					s_shape
 {
@@ -42,7 +52,15 @@ struct					s_shape
 	t_vec3				normal;
 	double				radius;
 	double				height;
-	t_color				color;
+	t_color				*colors;
+	size_t				colors_cnt;
+	size_t				color_div;
+	bool				bump_flag;
+	size_t				bump_div;
+	t_bump_map			*bump_map;
+	t_vec3				unit_x;
+	t_vec3				unit_y;
+	t_vec3				unit_z;
 };
 
 // shape_utils.c
@@ -60,5 +78,12 @@ bool					intersect_plane(t_shape *shape, t_ray *ray, \
 // cylinder.c
 bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
+
+// cone.c
+bool					intersect_cone(t_shape *shape, t_ray *ray, \
+								t_intersect *intersect);
+
+// shapes_unit.c
+void					shapes_unit(t_window *window);
 
 #endif

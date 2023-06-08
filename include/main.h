@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:42 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/30 23:00:22 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:14:37 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define HEIGHT 400
 # define WIDTH 400
 # define ESC 65307
+# define LIMIT_RANGE 1000
+# define LIMIT_TOP 100000
 
 typedef struct s_screen
 {

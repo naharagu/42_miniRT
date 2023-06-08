@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/30 23:03:44 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/04 21:59:30 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,50 @@ void	parse_camera(char **str_array, t_scene *scene)
 		put_error_and_exit("Invalid camera fov");
 }
 
+static t_light	*light_lst_last(t_light *lights)
+{
+	if (lights == NULL)
+		return (NULL);
+	while (lights->next)
+		lights = lights->next;
+	return (lights);
+}
+
+static t_light	*light_lst_add(t_scene *scene)
+{
+	t_light	*tmp;
+
+	if (scene->lights == NULL)
+	{
+		scene->lights = malloc(sizeof(t_light));
+		if (scene->lights == NULL)
+			put_error_and_exit("Failed to malloc");
+		scene->lights_num++;
+		scene->lights->next = NULL;
+		return (scene->lights);
+	}
+	else
+	{
+		tmp = light_lst_last(scene->lights);
+		tmp->next = malloc(sizeof(t_light));
+		if (tmp->next == NULL)
+			put_error_and_exit("Failed to malloc");
+		scene->lights_num++;
+		tmp->next->next = NULL;
+		return (tmp->next);
+	}
+}
+
 void	parse_light(char **str_array, t_scene *scene)
 {
-	if (scene->light.intensity != -1)
-		put_error_and_exit("There are multiple lights");
+	t_light	*light;
+
 	if (count_array(str_array) != 4)
 		put_error_and_exit("Invalid light format");
-	scene->light.origin = parse_vec3(str_array[1]);
-	scene->light.intensity = ft_atod(str_array[2]);
-	scene->light.color = parse_color(str_array[3]);
-	if (is_in_range_double(scene->light.intensity, 0.0, 1.0) == false)
+	light = light_lst_add(scene);
+	light->origin = parse_vec3(str_array[1]);
+	light->intensity = ft_atod(str_array[2]);
+	light->color = parse_color(str_array[3]);
+	if (is_in_range_double(light->intensity, 0.0, 1.0) == false)
 		put_error_and_exit("Invalid light intensity");
 }

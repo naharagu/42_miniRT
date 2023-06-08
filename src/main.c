@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:07 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/31 07:49:44 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:34:40 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@
 static void	init_screen(t_window *window)
 {
 	t_vec3	vup;
+	double	e_sx_norm;
 
-	vup = vec3_normalize(vec3_subtraction((t_vec3){0, 100000, 0}, \
+	vup = vec3_normalize(vec3_subtraction((t_vec3){0, LIMIT_TOP, 0}, \
 						window->scene->camera.origin));
 	window->screen.e_sx = \
 		vec3_normalize(vec3_cross_product(vup, window->scene->camera.dir));
+	e_sx_norm = vec3_dot_product(window->screen.e_sx, window->screen.e_sx);
+	if (e_sx_norm < 1.0 - EPSILON || 1.0 + EPSILON < e_sx_norm)
+	{
+		window->screen.e_sx.x = 1;
+		window->screen.e_sx.y = 0;
+		window->screen.e_sx.z = 0;
+	}
 	window->screen.e_sy = \
 		vec3_normalize(vec3_cross_product(window->scene->camera.dir, \
 											window->screen.e_sx));
@@ -51,6 +59,8 @@ int	main(int argc, char **argv)
 	init_window(&window);
 	window.scene = &scene;
 	init_screen(&window);
+	shapes_unit(&window);
+	bump_map(&window);
 	raytrace(&window);
 	loop_window(&window);
 	return (0);

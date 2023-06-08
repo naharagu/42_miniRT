@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
+/*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/07 21:45:48 by saikeda          ###   ########.fr       */
+/*   Created: 2023/06/02 07:28:08 by saikeda           #+#    #+#             */
+/*   Updated: 2023/06/07 21:46:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "vector.h"
 #include <math.h>
 
-static void	precalc_cylinder(t_shape *shape, t_ray *ray, t_discriminant *d)
+static void	precalc_cone(t_shape *shape, t_ray *ray, t_discriminant *d)
 {
 	t_vec3	p;
 	t_vec3	s;
@@ -31,15 +31,17 @@ static void	precalc_cylinder(t_shape *shape, t_ray *ray, t_discriminant *d)
 	d->pp = vec3_dot_product(p, p);
 	if (d->ss != 0)
 	{
-		d->a = d->vv - (pow(d->sv, 2) / d->ss);
-		d->b = d->pv - (d->ps * d->sv / d->ss);
+		d->a = d->vv - (pow(d->sv, 2) / d->ss) - \
+		(pow(d->sv, 2) / pow(d->ss, 2) * pow(shape->radius / shape->height, 2));
+		d->b = d->pv - (d->ps * d->sv / d->ss) - \
+		(d->ps * d->sv / pow(d->ss, 2) * pow(shape->radius / shape->height, 2));
 		d->c = d->pp - (pow(d->ps, 2) / d->ss) - \
-							(shape->radius * shape->radius);
+		(pow(d->ps, 2) / pow(d->ss, 2) * pow(shape->radius / shape->height, 2));
 		d->discriminant = d->b * d->b - d->a * d->c;
 	}
 }
 
-static bool	within_cylinder(t_shape *shape, \
+static bool	within_cone(t_shape *shape, \
 							t_intersect *intersect, t_discriminant *d)
 {
 	d->t2 = (vec3_dot_product(intersect->point, shape->normal) - \
@@ -60,23 +62,23 @@ static bool	within_cylinder(t_shape *shape, \
 	return (false);
 }
 
-bool	intersect_cylinder(t_shape *shape, t_ray *ray, t_intersect *intersect)
+bool	intersect_cone(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
 	t_discriminant	d;
 
-	precalc_cylinder(shape, ray, &d);
+	precalc_cone(shape, ray, &d);
 	if (d.ss == 0 || d.a == 0 || d.discriminant < 0)
 		return (false);
 	d.discriminant = sqrt(d.discriminant);
 	d.t = (d.b - d.discriminant) / d.a;
 	intersect->point = \
 		vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-	if (d.t < 0.0 || within_cylinder(shape, intersect, &d) == false)
+	if (d.t < 0.0 || within_cone(shape, intersect, &d) == false)
 	{
 		d.t = (d.b + d.discriminant) / d.a;
 		intersect->point = \
 			vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
-		return (0.0 <= d.t && within_cylinder(shape, intersect, &d));
+		return (0.0 <= d.t && within_cone(shape, intersect, &d));
 	}
 	return (true);
 }

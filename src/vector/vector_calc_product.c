@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/21 14:38:31 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:59:05 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,14 @@ double	vec3_magnitude(t_vec3 a)
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 //ノルム
+
+t_vec3	vec3_hadamard_product(t_vec3 a, t_vec3 b)
+{
+	t_vec3	c;
+
+	c.x = a.x * b.x;
+	c.y = a.y * b.y;
+	c.z = a.z * b.z;
+	return (c);
+}
+// アダマール積

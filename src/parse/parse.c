@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 01:15:17 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:01:47 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	convert_line_to_scene(char *line, t_scene *scene)
 {
 	char	**str_array;
 
-	str_array = ft_split(line, ' ');
 	errno = 0;
+	str_array = ft_split(line, ' ');
 	if (str_array == NULL)
 		put_error_and_exit("Failed to split line");
 	if (ft_strcmp(str_array[0], "A") == 0)
@@ -60,7 +60,11 @@ static void	convert_argv_to_scene(char *argv, t_scene *scene)
 		else if (*line == '\n')
 			;
 		else
+		{
+			if (line[ft_strlen(line) - 1] == '\n')
+				line[ft_strlen(line) - 1] = '\0';
 			convert_line_to_scene(line, scene);
+		}
 		free(line);
 	}
 	if (close(fd) == -1)

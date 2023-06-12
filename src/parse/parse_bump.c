@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 06:29:27 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/06 08:34:13 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/12 19:55:51 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static size_t	parse_bump_div(t_shape *shape, char **str_array, size_t index)
 		put_error_and_exit("Invalid bump_div format");
 	num = ft_atoi(str_array[index]);
 	if (num <= 0)
-		put_error_and_exit("Invalid bump_div format");
-	if (num % 2 != 0)
 		put_error_and_exit("Invalid bump_div format");
 	shape->bump_div = (size_t)num;
 	return (++index);
@@ -45,6 +43,5 @@ size_t	parse_bump(t_shape *shape, char **str_array, size_t index)
 		shape->bump_flag = true;
 		return (parse_bump_div(shape, str_array, ++index));
 	}
-	put_error_and_exit("Invalid bump format");
 	return (index);
 }

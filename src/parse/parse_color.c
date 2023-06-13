@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/06 22:21:58 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:16:00 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ static t_color	*make_color(char **str_array, size_t index)
 	color_ptr->color = vec3_create(ft_atod(vec_array[0]), \
 						ft_atod(vec_array[1]), ft_atod(vec_array[2]));
 	free_split(vec_array);
-	if (is_in_range_int(color_ptr->color.x, 0, 255) == false
-		|| is_in_range_int(color_ptr->color.y, 0, 255) == false
-		|| is_in_range_int(color_ptr->color.z, 0, 255) == false)
+	if (is_in_range_color(color_ptr->color) == false)
 	{
 		free(color_ptr);
 		return (NULL);

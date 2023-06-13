@@ -28,6 +28,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c \
 				$(SRCS_DIR)vector/vector_rotate.c \
+				$(SRCS_DIR)vector/convert_rgb.c \
 				$(SRCS_DIR)key/key_handler.c \
 				$(SRCS_DIR)key/key_utils.c \
 				$(SRCS_DIR)bump_map/bump_map.c \

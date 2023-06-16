@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:14:18 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/06 22:19:20 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/16 20:03:27 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ void	add_bump_map(t_shape *shape, t_vec3 b_normal);
 void	bump_map(t_window *window);
 
 void	bump_sphere(t_shape *shape);
+
+void	bump_cylinder(t_shape *shape);
 
 #endif

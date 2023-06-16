@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 07:28:08 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/07 21:46:15 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/15 22:24:42 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ static bool	within_cone(t_shape *shape, \
 			vec3_normalize(vec3_subtraction(intersect->point, \
 			vec3_addition(shape->center, \
 			vec3_multiply_scalar(shape->normal, d->t2))));
-		intersect->b_normal = intersect->normal;
 		intersect->distance = d->t;
-		// intersect->color = shape->color;
-		intersect->color = shape->colors->color;
+		// intersect->b_normal = intersect->normal;
+		// intersect->color = shape->colors->color;
+		calc_intersect_cylinder(shape, intersect, d);
 		intersect->index = shape->index;
 		return (true);
 	}

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 20:03:30 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/15 22:23:00 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	calc_sphere_pi(t_shape *shape, t_intersect *intersect)
 	}
 }
 
-static size_t	calc_sphere_index(double pi, double division)
+size_t	calc_circle_index(double pi, double division)
 {
 	double	tmp;
 	size_t	index;
@@ -60,13 +60,14 @@ static size_t	calc_sphere_index(double pi, double division)
 	return (index);
 }
 
-static void	sphere_color(t_shape *shape, t_intersect *intersect)
+void	checkerboard_color(t_shape *shape, t_intersect *intersect)
 {
 	size_t	index;
 	t_color	*tmp;
 
 	index = intersect->color_idx_x + intersect->color_idx_y;
 	index %= shape->colors_cnt;
+	// printf("%zu\n", index);
 	tmp = shape->colors;
 	while (1)
 	{
@@ -76,6 +77,7 @@ static void	sphere_color(t_shape *shape, t_intersect *intersect)
 		tmp = tmp->next;
 	}
 	intersect->color = tmp->color;
+	// printf("%f, %f, %f\n", intersect->color.x, intersect->color.y, intersect->color.z);
 }
 
 static void	sphere_b_normal(t_shape *shape, t_intersect *intersect)
@@ -104,17 +106,17 @@ static void	calc_intersect_sphere(t_shape *shape, t_intersect *intersect)
 	intersect->b_normal = intersect->normal;
 	calc_sphere_pi(shape, intersect);
 	intersect->color_idx_x = \
-		calc_sphere_index(intersect->pi_x, (double)shape->color_div);
+		calc_circle_index(intersect->pi_x, (double)shape->color_div);
 	intersect->color_idx_y = \
-		calc_sphere_index(intersect->pi_y, (double)shape->color_div);
-	sphere_color(shape, intersect);
+		calc_circle_index(intersect->pi_y, (double)shape->color_div);
+	checkerboard_color(shape, intersect);
 	intersect->bump = shape->bump_flag;
 	if (intersect->bump == true)
 	{
 		intersect->bump_idx_x = \
-			calc_sphere_index(intersect->pi_x, (double)shape->bump_div);
+			calc_circle_index(intersect->pi_x, (double)shape->bump_div);
 		intersect->bump_idx_y = \
-			calc_sphere_index(intersect->pi_y, (double)shape->bump_div);
+			calc_circle_index(intersect->pi_y, (double)shape->bump_div);
 		sphere_b_normal(shape, intersect);
 	}
 }

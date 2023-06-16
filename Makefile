@@ -32,7 +32,8 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)key/key_handler.c \
 				$(SRCS_DIR)key/key_utils.c \
 				$(SRCS_DIR)bump_map/bump_map.c \
-				$(SRCS_DIR)bump_map/bump_sphere.c
+				$(SRCS_DIR)bump_map/bump_sphere.c \
+				$(SRCS_DIR)bump_map/bump_cylinder.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 07:20:42 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/06 22:15:22 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/16 20:16:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	bump_map(t_window *window)
 	{
 		if (tmp->bump_flag == true && tmp->type == SPHERE)
 			bump_sphere(tmp);
+		else if (tmp->bump_flag == true && tmp->type == CYLINDER)
+			bump_cylinder(tmp);
+		else if (tmp->bump_flag == true && tmp->type == CONE)
+			bump_cylinder(tmp);
 		tmp = tmp->next;
 	}
 }

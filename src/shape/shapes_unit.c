@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:01:06 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/06 22:26:40 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 10:29:53 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	cylinder_unit(t_window *window, t_shape *shape)
 	norm = vec3_dot_product(shape->unit_x, shape->unit_x);
 	if (norm < 1.0 - EPSILON || 1.0 + EPSILON < norm)
 	{
-		shape->unit_z.x = 1;
-		shape->unit_z.y = 0;
-		shape->unit_z.z = 0;
+		shape->unit_x.x = 1;
+		shape->unit_x.y = 0;
+		shape->unit_x.z = 0;
 	}
 	shape->unit_y = \
 		vec3_normalize(vec3_cross_product(shape->unit_x, shape->unit_z));
@@ -69,7 +69,8 @@ void	shapes_unit(t_window *window)
 			sphere_unit(window, tmp);
 		else if (tmp->type == PLANE)
 			plane_unit(window, tmp);
-		else if (tmp->type == CYLINDER || tmp->type == CONE)
+		else if (tmp->type == CYLINDER || \
+				tmp->type == CONE || tmp->type == CIRCLE)
 			cylinder_unit(window, tmp);
 		tmp = tmp->next;
 	}

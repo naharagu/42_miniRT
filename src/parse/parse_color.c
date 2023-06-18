@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 20:16:00 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:28:27 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_color	*make_color(char **str_array, size_t index)
 	return (color_ptr);
 }
 
-static void	color_lst_add(t_shape *shape, t_color *color_ptr)
+void	color_lst_add(t_shape *shape, t_color *color_ptr)
 {
 	t_color	*tmp;
 

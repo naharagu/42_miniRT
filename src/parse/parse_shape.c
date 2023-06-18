@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 19:53:39 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:36:02 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	parse_plane(char **str_array, t_scene *scene)
 	t_shape	*shape;
 	size_t	index;
 
-	if (count_array(str_array) != 4)
+	if (count_array(str_array) < 4)
 		put_error_and_exit("Invalid plane format");
 	shape = shape_lst_add(scene);
 	shape->type = PLANE;
@@ -56,7 +56,7 @@ void	parse_cylinder(char **str_array, t_scene *scene)
 	t_shape	*shape;
 	size_t	index;
 
-	if (count_array(str_array) != 6)
+	if (count_array(str_array) < 6)
 		put_error_and_exit("Invalid cylinder format");
 	shape = shape_lst_add(scene);
 	shape->type = CYLINDER;
@@ -66,8 +66,11 @@ void	parse_cylinder(char **str_array, t_scene *scene)
 	shape->radius = ft_atod(str_array[3]) / 2;
 	shape->height = ft_atod(str_array[4]);
 	index = parse_colors(shape, str_array, 5);
+	index = parse_bump(shape, str_array, index);
 	if (str_array[index] != NULL)
 		put_error_and_exit("Invalid cylinder format");
+	parse_bottom_circle(scene, shape);
+	parse_top_circle(scene, shape);
 }
 
 void	parse_cone(char **str_array, t_scene *scene)
@@ -75,7 +78,7 @@ void	parse_cone(char **str_array, t_scene *scene)
 	t_shape	*shape;
 	size_t	index;
 
-	if (count_array(str_array) != 6)
+	if (count_array(str_array) < 6)
 		put_error_and_exit("Invalid cone format");
 	shape = shape_lst_add(scene);
 	shape->type = CONE;
@@ -88,4 +91,5 @@ void	parse_cone(char **str_array, t_scene *scene)
 	index = parse_bump(shape, str_array, index);
 	if (str_array[index] != NULL)
 		put_error_and_exit("Invalid cone format");
+	parse_top_circle(scene, shape);
 }

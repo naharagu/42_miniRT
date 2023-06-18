@@ -9,6 +9,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)parse/parse.c \
 				$(SRCS_DIR)parse/parse_ACL.c \
 				$(SRCS_DIR)parse/parse_shape.c \
+				$(SRCS_DIR)parse/parse_circle.c \
 				$(SRCS_DIR)parse/parse_utils.c \
 				$(SRCS_DIR)parse/parse_vec3.c \
 				$(SRCS_DIR)parse/parse_color.c \
@@ -24,6 +25,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)shape/plane.c \
 				$(SRCS_DIR)shape/cylinder.c \
 				$(SRCS_DIR)shape/cone.c \
+				$(SRCS_DIR)shape/circle.c \
 				$(SRCS_DIR)utils/utils.c \
 				$(SRCS_DIR)vector/vector_calc_addsub.c \
 				$(SRCS_DIR)vector/vector_calc_product.c \
@@ -32,7 +34,8 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)key/key_handler.c \
 				$(SRCS_DIR)key/key_utils.c \
 				$(SRCS_DIR)bump_map/bump_map.c \
-				$(SRCS_DIR)bump_map/bump_sphere.c
+				$(SRCS_DIR)bump_map/bump_sphere.c \
+				$(SRCS_DIR)bump_map/bump_cylinder.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

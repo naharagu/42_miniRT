@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 19:51:38 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:35:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ void					parse_sphere(char **str_array, t_scene *scene);
 void					parse_plane(char **str_array, t_scene *scene);
 void					parse_cylinder(char **str_array, t_scene *scene);
 void					parse_cone(char **str_array, t_scene *scene);
+
+// parse_circle.c
+void					parse_bottom_circle(t_scene *scene, t_shape *shape);
+void					parse_top_circle(t_scene *scene, t_shape *shape);
 
 #endif

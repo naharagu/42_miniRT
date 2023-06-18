@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 19:52:16 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:52:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-typedef struct s_shape		t_shape;
-typedef struct s_scene		t_scene;
-typedef struct s_ray		t_ray;
-typedef struct s_intersect	t_intersect;
-typedef struct s_window		t_window;
-typedef struct s_bump_map	t_bump_map;
+typedef struct s_shape			t_shape;
+typedef struct s_scene			t_scene;
+typedef struct s_ray			t_ray;
+typedef struct s_intersect		t_intersect;
+typedef struct s_window			t_window;
+typedef struct s_bump_map		t_bump_map;
+typedef struct s_discriminant	t_discriminant;
 
 enum					e_shape_type
 {
@@ -34,6 +35,7 @@ enum					e_shape_type
 	PLANE,
 	CYLINDER,
 	CONE,
+	CIRCLE,
 };
 
 typedef struct	s_color
@@ -68,6 +70,8 @@ t_shape					*shape_lst_last(t_shape *shapes);
 t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
+void					checkerboard_color(t_shape *shape, t_intersect *intersect);
+size_t					calc_circle_index(double pi, double division);
 bool					intersect_sphere(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
@@ -76,12 +80,16 @@ bool					intersect_plane(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // cylinder.c
+void					calc_intersect_cylinder(t_shape *shape, t_intersect *intersect, t_discriminant *d);
 bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // cone.c
 bool					intersect_cone(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
+
+// circle.c
+bool					intersect_circle(t_shape *shape, t_ray *ray, t_intersect *intersect);
 
 // shapes_unit.c
 void					shapes_unit(t_window *window);

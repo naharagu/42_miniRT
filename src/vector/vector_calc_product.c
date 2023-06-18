@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_calc_product.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:28 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/31 07:49:29 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/13 13:43:08 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,14 @@ double	vec3_magnitude(t_vec3 a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
+
+t_vec3	vec3_hadamard_product(t_vec3 a, t_vec3 b)
+{
+	t_vec3	c;
+
+	c.x = a.x * b.x;
+	c.y = a.y * b.y;
+	c.z = a.z * b.z;
+	return (c);
+}
+// アダマール積

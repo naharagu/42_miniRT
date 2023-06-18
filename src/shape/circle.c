@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   circle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/18 22:53:38 by naharagu         ###   ########.fr       */
+/*   Created: 2023/06/18 08:39:54 by saikeda           #+#    #+#             */
+/*   Updated: 2023/06/18 10:30:40 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,25 @@
 #include "vector.h"
 #include <math.h>
 
-static size_t	calc_plane_index(double pi, size_t division)
-{
-	size_t	index;
-
-	if (pi < 0)
-		pi = pi * -1 + division;
-	index = (size_t)(pi / division);
-	return (index);
-}
-
-// static void	bump_plane(t_shape *shape, t_intersect *intersect)
-// {
-// }
-
-static void	calc_intersect_plane(t_shape *shape, t_intersect *intersect)
+static void	calc_intersect_circle(t_shape *shape, t_intersect *intersect)
 {
 	t_vec3	p;
 
 	intersect->b_normal = intersect->normal;
 	p = vec3_subtraction(intersect->point, shape->center);
-	intersect->pi_x = vec3_dot_product(p, shape->unit_x);
+	intersect->pi_x = acos(vec3_dot_product(p, \
+				shape->unit_x) / vec3_magnitude(p));
 	if (isnan(intersect->pi_x) || isinf(intersect->pi_x))
 		intersect->pi_x = 0.0;
-	intersect->pi_y = vec3_dot_product(p, shape->unit_z);
-	if (isnan(intersect->pi_y) || isinf(intersect->pi_y))
-		intersect->pi_y = 0.0;
+	if (vec3_dot_product(p, shape->unit_y) > 0)
+			intersect->pi_x = 2 * M_PI - intersect->pi_x;
 	intersect->color_idx_x = \
-		calc_plane_index(intersect->pi_x, shape->color_div);
-	intersect->color_idx_y = \
-		calc_plane_index(intersect->pi_y, shape->color_div);
+		calc_circle_index(intersect->pi_x, (double)shape->color_div);
+	intersect->color_idx_y = 0;
 	checkerboard_color(shape, intersect);
-	if (intersect->bump == true)
-	{
-		intersect->bump_idx_x = \
-			calc_plane_index(intersect->pi_x, shape->bump_div);
-		intersect->bump_idx_y = \
-			calc_plane_index(intersect->pi_y, shape->bump_div);
-		// bump_plane(shape, intersect);
-	}
 }
 
-bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
+bool	intersect_circle(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
 	t_discriminant	d;
 
@@ -71,10 +48,12 @@ bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
 		return (false);
 	intersect->point = \
 		vec3_addition(ray->origin, vec3_multiply_scalar(ray->dir, d.t));
+	if (vec3_magnitude(vec3_subtraction(intersect->point, shape->center)) > \
+						shape->radius)
+		return (false);
 	intersect->normal = shape->normal;
-	intersect->b_normal = intersect->normal;
 	intersect->distance = d.t;
-	calc_intersect_plane(shape, intersect);
+	calc_intersect_circle(shape, intersect);
 	intersect->index = shape->index;
 	return (true);
 }

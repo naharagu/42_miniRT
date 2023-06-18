@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:45 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 13:36:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/18 10:22:53 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,16 @@ void	put_pixel_to_addr(t_window *window, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static bool	shadow_intersect(t_intersect *intersect, t_scene *scene)
-{
-	t_ray		shadow_ray;
-	t_intersect	shadow_intersect;
-
-	shadow_ray.origin = intersect->point;
-	shadow_ray.dir = scene->light.dir;
-	return (calculate_intersect_point(&shadow_ray, &shadow_intersect, \
-	scene, intersect->index) == true && \
-	EPSILON < shadow_intersect.distance && \
-	shadow_intersect.distance < \
-	vec3_magnitude(vec3_subtraction(scene->light.origin, intersect->point)));
-}
-
-static t_color	calculate_color(t_ray *ray, \
+static t_vec3	calculate_color(t_ray *ray, \
 									t_intersect *intersect, t_scene *scene)
 {
-	if (calculate_intersect_point(ray, intersect, scene, -1) == false)
-		return ((t_color){0, 0, 0});
-	else
-	{
-		scene->light.dir = \
-		vec3_normalize(vec3_subtraction(scene->light.origin, intersect->point));
-		if (shadow_intersect(intersect, scene))
-			return (vec3_multiply_scalar(intersect->color, \
-					scene->ambient_ratio));
-		else
-			return (shading(*ray, *intersect, scene));
-	}
+	set_color(0, 0, 0, &intersect->calc_color);
+	if (calculate_intersect_point(ray, intersect, scene, \
+											intersect->index) == false)
+		return (intersect->calc_color);
+	intersect->calc_color = vec3_hadamard_product(intersect->color, \
+		shading(ray, intersect, scene));
+	return (intersect->calc_color);
 }
 
 void	raytrace(t_window *window)
@@ -77,6 +58,7 @@ void	raytrace(t_window *window)
 				(x - ((double)WIDTH / 2))), \
 				vec3_multiply_scalar(window->screen.e_sy, \
 				(((double)HEIGHT / 2) - y)))));
+			intersect.index = -1;
 			put_pixel_to_addr(window, x, y, \
 				get_color_in_int(calculate_color(&ray, &intersect, \
 				window->scene)));

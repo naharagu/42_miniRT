@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:59 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/18 06:28:23 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:24:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,10 @@ t_vec3					vec3_multiply_scalar(t_vec3 a, double b);
 double					vec3_dot_product(t_vec3 a, t_vec3 b);
 t_vec3					vec3_cross_product(t_vec3 a, t_vec3 b);
 double					vec3_magnitude(t_vec3 a);
+t_vec3					vec3_hadamard_product(t_vec3 a, t_vec3 b);
+
+t_vec3					vec3_rotate(t_vec3 o, t_vec3 n, double pi);
+
+t_vec3					convert_rgb(t_vec3 color);
 
 #endif

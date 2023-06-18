@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/05/29 22:45:44 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:01:47 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	convert_line_to_scene(char *line, t_scene *scene)
 {
 	char	**str_array;
 
-	str_array = ft_split(line, ' ');
 	errno = 0;
+	str_array = ft_split(line, ' ');
 	if (str_array == NULL)
 		put_error_and_exit("Failed to split line");
 	if (ft_strcmp(str_array[0], "A") == 0)
@@ -35,6 +35,8 @@ static void	convert_line_to_scene(char *line, t_scene *scene)
 		parse_plane(str_array, scene);
 	else if (ft_strcmp(str_array[0], "cy") == 0)
 		parse_cylinder(str_array, scene);
+	else if (ft_strcmp(str_array[0], "co") == 0)
+		parse_cone(str_array, scene);
 	else
 		put_error_and_exit("Invalid content in rt file");
 	if (errno != 0)
@@ -58,7 +60,11 @@ static void	convert_argv_to_scene(char *argv, t_scene *scene)
 		else if (*line == '\n')
 			;
 		else
+		{
+			if (line[ft_strlen(line) - 1] == '\n')
+				line[ft_strlen(line) - 1] = '\0';
 			convert_line_to_scene(line, scene);
+		}
 		free(line);
 	}
 	if (close(fd) == -1)
@@ -71,7 +77,7 @@ static void	check_acl(t_scene	*scene)
 		put_error_and_exit("There is no ambient light");
 	if (scene->camera.fov == -1)
 		put_error_and_exit("There is no camera");
-	if (scene->light.intensity == -1)
+	if (scene->lights_num == 0)
 		put_error_and_exit("There is no light");
 }
 

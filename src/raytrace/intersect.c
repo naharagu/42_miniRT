@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
-/*   Updated: 2023/05/29 13:37:30 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/18 09:59:08 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,21 @@
 
 static bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
+	bool	ret;
+
 	if (shape->type == SPHERE)
-		return (intersect_sphere(shape, ray, intersect));
+		ret = intersect_sphere(shape, ray, intersect);
 	else if (shape->type == PLANE)
-		return (intersect_plane(shape, ray, intersect));
+		ret = intersect_plane(shape, ray, intersect);
 	else if (shape->type == CYLINDER)
-		return (intersect_cylinder(shape, ray, intersect));
-	return (false);
+		ret = intersect_cylinder(shape, ray, intersect);
+	else if (shape->type == CONE)
+		ret = intersect_cone(shape, ray, intersect);
+	else if (shape->type == CIRCLE)
+		ret = intersect_circle(shape, ray, intersect);
+	else
+		ret = false;
+	return (ret);
 }
 
 bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, \

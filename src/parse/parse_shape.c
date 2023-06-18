@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/15 22:14:06 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:36:02 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	parse_cylinder(char **str_array, t_scene *scene)
 	index = parse_bump(shape, str_array, index);
 	if (str_array[index] != NULL)
 		put_error_and_exit("Invalid cylinder format");
+	parse_bottom_circle(scene, shape);
+	parse_top_circle(scene, shape);
 }
 
 void	parse_cone(char **str_array, t_scene *scene)
@@ -89,4 +91,5 @@ void	parse_cone(char **str_array, t_scene *scene)
 	index = parse_bump(shape, str_array, index);
 	if (str_array[index] != NULL)
 		put_error_and_exit("Invalid cone format");
+	parse_top_circle(scene, shape);
 }

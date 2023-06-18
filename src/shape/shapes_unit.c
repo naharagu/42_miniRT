@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:01:06 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/15 21:55:00 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 10:29:53 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	shapes_unit(t_window *window)
 			sphere_unit(window, tmp);
 		else if (tmp->type == PLANE)
 			plane_unit(window, tmp);
-		else if (tmp->type == CYLINDER || tmp->type == CONE)
+		else if (tmp->type == CYLINDER || \
+				tmp->type == CONE || tmp->type == CIRCLE)
 			cylinder_unit(window, tmp);
 		tmp = tmp->next;
 	}

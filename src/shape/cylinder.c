@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/16 20:06:46 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 10:29:17 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	precalc_cylinder(t_shape *shape, t_ray *ray, t_discriminant *d)
 	}
 }
 
-static size_t	calc_cylinder_index(double height, double current, double division)
+size_t	calc_cylinder_index(double height, double current, double division)
 {
 	double	tmp;
 	size_t	index;
@@ -55,7 +55,6 @@ static size_t	calc_cylinder_index(double height, double current, double division
 	}
 	return (index);
 }
-
 
 static void	cylinder_b_normal(t_shape *shape, t_intersect *intersect)
 {
@@ -78,11 +77,14 @@ static void	cylinder_b_normal(t_shape *shape, t_intersect *intersect)
 	}
 }
 
-void	calc_intersect_cylinder(t_shape *shape, t_intersect *intersect, t_discriminant *d)
+void	calc_intersect_cylinder(t_shape *shape, t_intersect *intersect, \
+													t_discriminant *d)
 {
 	intersect->b_normal = intersect->normal;
 	intersect->pi_x = acos(vec3_dot_product(intersect->normal, \
 			shape->unit_x) / (vec3_magnitude(intersect->normal)));
+	if (isnan(intersect->pi_x) || isinf(intersect->pi_x))
+		intersect->pi_x = 0.0;
 	if (vec3_dot_product(intersect->normal, shape->unit_y) > 0)
 			intersect->pi_x = 2 * M_PI - intersect->pi_x;
 	intersect->color_idx_x = \
@@ -113,8 +115,6 @@ static bool	within_cylinder(t_shape *shape, \
 			vec3_addition(shape->center, \
 			vec3_multiply_scalar(shape->normal, d->t2))));
 		intersect->distance = d->t;
-		// intersect->b_normal = intersect->normal;
-		// intersect->color = shape->colors->color;
 		calc_intersect_cylinder(shape, intersect, d);
 		intersect->index = shape->index;
 		return (true);

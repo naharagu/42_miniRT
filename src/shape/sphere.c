@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/15 22:23:00 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 10:22:36 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	calc_sphere_pi(t_shape *shape, t_intersect *intersect)
 	{
 		intersect->pi_x = acos(vec3_dot_product(intersect->pro_x, \
 			shape->unit_x) / (vec3_magnitude(intersect->pro_x)));
+		if (isnan(intersect->pi_x) || isinf(intersect->pi_x))
+			intersect->pi_x = 0.0;
 		if (vec3_dot_product(intersect->pro_x, shape->unit_z) > 0)
 			intersect->pi_x = 2 * M_PI - intersect->pi_x;
 	}
@@ -40,6 +42,8 @@ static void	calc_sphere_pi(t_shape *shape, t_intersect *intersect)
 		intersect->pi_y = \
 			acos(vec3_dot_product(intersect->pro_y, shape->unit_y) \
 			/ (vec3_magnitude(intersect->pro_y)));
+		if (isnan(intersect->pi_y) || isinf(intersect->pi_y))
+			intersect->pi_y = 0.0;
 	}
 }
 
@@ -67,7 +71,6 @@ void	checkerboard_color(t_shape *shape, t_intersect *intersect)
 
 	index = intersect->color_idx_x + intersect->color_idx_y;
 	index %= shape->colors_cnt;
-	// printf("%zu\n", index);
 	tmp = shape->colors;
 	while (1)
 	{
@@ -77,7 +80,6 @@ void	checkerboard_color(t_shape *shape, t_intersect *intersect)
 		tmp = tmp->next;
 	}
 	intersect->color = tmp->color;
-	// printf("%f, %f, %f\n", intersect->color.x, intersect->color.y, intersect->color.z);
 }
 
 static void	sphere_b_normal(t_shape *shape, t_intersect *intersect)

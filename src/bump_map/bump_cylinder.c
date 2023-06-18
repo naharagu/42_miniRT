@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 19:48:45 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/16 20:16:20 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 10:28:23 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static t_vec3	cylinder_vec3(t_shape *shape, size_t idx_x)
 	t_vec3	ret;
 
 	pi_x = 2 * M_PI * idx_x / (double)shape->bump_div;
-	ret = vec3_rotate(shape->unit_x, vec3_multiply_scalar(shape->unit_y, -1), pi_x);
+	ret = vec3_rotate(shape->unit_x, \
+		vec3_multiply_scalar(shape->unit_y, -1), pi_x);
 	return (ret);
 }
 

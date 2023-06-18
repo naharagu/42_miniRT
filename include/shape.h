@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/15 22:26:38 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 08:52:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ enum					e_shape_type
 	PLANE,
 	CYLINDER,
 	CONE,
+	CIRCLE,
 };
 
 typedef struct	s_color
@@ -86,6 +87,9 @@ bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
 // cone.c
 bool					intersect_cone(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
+
+// circle.c
+bool					intersect_circle(t_shape *shape, t_ray *ray, t_intersect *intersect);
 
 // shapes_unit.c
 void					shapes_unit(t_window *window);

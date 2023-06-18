@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/07 21:45:28 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/18 21:46:21 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,34 @@
 #include "raytrace.h"
 #include "vector.h"
 #include <math.h>
+
+static size_t	calc_plane_index(double pi, double division)
+{
+	size_t	index;
+
+	index = (size_t)(pi / division);
+	return (index);
+}
+
+static void	calc_intersect_plane(t_shape *shape, t_intersect *intersect)
+{
+	t_vec3	p;
+
+	intersect->b_normal = intersect->normal;
+	p = vec3_subtraction(intersect->point, shape->center);
+	intersect->pi_x = vec3_dot_product(p, shape->unit_x);
+	if (isnan(intersect->pi_x) || isinf(intersect->pi_x))
+		intersect->pi_x = 0.0;
+	intersect->pi_y = vec3_dot_product(p, shape->unit_y);
+	if (isnan(intersect->pi_y) || isinf(intersect->pi_y))
+		intersect->pi_y = 0.0;
+	intersect->color_idx_x = \
+		calc_plane_index(intersect->pi_x, (double)shape->color_div);
+	intersect->color_idx_y = \
+		calc_plane_index(intersect->pi_y, (double)shape->color_div);
+	// intersect->color_idx_y = 0;
+	checkerboard_color(shape, intersect);
+}
 
 bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
@@ -33,8 +61,7 @@ bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	intersect->normal = shape->normal;
 	intersect->b_normal = intersect->normal;
 	intersect->distance = d.t;
-	// intersect->color = shape->color;
-	intersect->color = shape->colors->color;
+	calc_intersect_plane(shape, intersect);
 	intersect->index = shape->index;
 	return (true);
 }

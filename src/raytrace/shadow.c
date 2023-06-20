@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 10:51:00 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/20 18:48:39 by saikeda          ###   ########.fr       */
+/*   Created: 2023/06/20 18:45:53 by saikeda           #+#    #+#             */
+/*   Updated: 2023/06/20 18:49:34 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
 #include "raytrace.h"
+#include "parse.h"
+#include "vector.h"
 #include <math.h>
 
-bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect)
-{
-	bool	ret;
+bool	intersect_helper(t_shape *shape, t_ray *ray, t_intersect *intersect);
 
-	if (shape->type == SPHERE)
-		ret = intersect_sphere(shape, ray, intersect);
-	else if (shape->type == PLANE)
-		ret = intersect_plane(shape, ray, intersect);
-	else if (shape->type == CYLINDER)
-		ret = intersect_cylinder(shape, ray, intersect);
-	else if (shape->type == CONE)
-		ret = intersect_cone(shape, ray, intersect);
-	else if (shape->type == CIRCLE)
-		ret = intersect_circle(shape, ray, intersect);
-	else
-		ret = false;
-	return (ret);
-}
-
-bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
+static bool	calculate_shadow_point(t_ray *ray, t_intersect *intersect, \
 									t_scene *scene, ssize_t intersect_index)
 {
 	t_shape		*current_shape;
@@ -43,7 +27,8 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
 	nearest_intersect.distance = INFINITY;
 	while (current_shape)
 	{
-		if (current_shape->index != intersect_index && \
+		if (current_shape->type != CIRCLE && \
+			current_shape->index != intersect_index && \
 			intersect_helper(current_shape, ray, intersect) && \
 			intersect->distance < nearest_intersect.distance)
 			nearest_intersect = *intersect;
@@ -53,4 +38,19 @@ bool	calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
 		return (false);
 	*intersect = nearest_intersect;
 	return (true);
+}
+
+bool	shadow_intersect(t_intersect *intersect, \
+									t_scene *scene, t_light *light)
+{
+	t_ray		shadow_ray;
+	t_intersect	shadow_intersect;
+
+	shadow_ray.origin = intersect->point;
+	shadow_ray.dir = light->dir;
+	return (calculate_shadow_point(&shadow_ray, &shadow_intersect, \
+	scene, intersect->index) == true && \
+	EPSILON < shadow_intersect.distance && \
+	shadow_intersect.distance < \
+	vec3_magnitude(vec3_subtraction(light->origin, intersect->point)));
 }

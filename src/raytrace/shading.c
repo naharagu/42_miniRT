@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:14:21 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/18 10:00:21 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 18:45:48 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 #include "parse.h"
 #include "vector.h"
 #include <math.h>
-
-static bool	shadow_intersect(t_intersect *intersect, \
-									t_scene *scene, t_light *light)
-{
-	t_ray		shadow_ray;
-	t_intersect	shadow_intersect;
-
-	shadow_ray.origin = intersect->point;
-	shadow_ray.dir = light->dir;
-	return (calculate_intersect_point(&shadow_ray, &shadow_intersect, \
-	scene, intersect->index) == true && \
-	EPSILON < shadow_intersect.distance && \
-	shadow_intersect.distance < \
-	vec3_magnitude(vec3_subtraction(light->origin, intersect->point)));
-}
 
 static t_vec3	diffuse_reflection(t_intersect *intersect, t_light *light)
 {

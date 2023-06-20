@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/18 08:35:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 18:50:30 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ bool					check_range_vec3(t_vec3 vec3);
 t_vec3					parse_vec3(char *str);
 
 // parse_color.c
-size_t					parse_colors(t_shape *shape, char **str_array, size_t index);
+size_t					parse_colors(t_shape *shape, \
+									char **str_array, size_t index);
 t_vec3					parse_color(char *str);
 
 // parse_bump.c
-size_t					parse_bump(t_shape *shape, char **str_array, size_t index);
+size_t					parse_bump(t_shape *shape, \
+									char **str_array, size_t index);
 
 //parse_shape.c
 void					parse_sphere(char **str_array, t_scene *scene);

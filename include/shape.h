@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 13:01:01 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 18:51:35 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ enum					e_shape_type
 	CIRCLE,
 };
 
-typedef struct	s_color
+typedef struct s_color
 {
 	t_vec3				color;
 	struct s_color		*next;
-} t_color;
+}	t_color;
 
 struct					s_shape
 {
@@ -71,7 +71,8 @@ t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
 void					calc_sphere_pi(t_shape *shape, t_intersect *intersect);
-void					checkerboard_color(t_shape *shape, t_intersect *intersect);
+void					checkerboard_color(t_shape *shape, \
+								t_intersect *intersect);
 size_t					calc_circle_index(double pi, double division);
 bool					intersect_sphere(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
@@ -81,7 +82,8 @@ bool					intersect_plane(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // cylinder.c
-void					calc_intersect_cylinder(t_shape *shape, t_intersect *intersect, t_discriminant *d);
+void					calc_intersect_cylinder(t_shape *shape, \
+								t_intersect *intersect, t_discriminant *d);
 bool					intersect_cylinder(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
@@ -90,7 +92,8 @@ bool					intersect_cone(t_shape *shape, t_ray *ray, \
 								t_intersect *intersect);
 
 // circle.c
-bool					intersect_circle(t_shape *shape, t_ray *ray, t_intersect *intersect);
+bool					intersect_circle(t_shape *shape, t_ray *ray, \
+								t_intersect *intersect);
 
 // shapes_unit.c
 void					shapes_unit(t_window *window);

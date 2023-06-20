@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 20:05:37 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 18:51:50 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void		raytrace(t_window *window);
 void		bump_map(t_window *window);
 bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
 			t_scene *scene, ssize_t intersect_index);
+bool		shadow_intersect(t_intersect *intersect, \
+									t_scene *scene, t_light *light);
 
 t_vec3		convert_rgb(t_vec3 color);
-
 
 #endif

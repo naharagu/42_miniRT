@@ -19,6 +19,7 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)raytrace/raytrace.c \
 				$(SRCS_DIR)raytrace/shading.c \
 				$(SRCS_DIR)raytrace/intersect.c \
+				$(SRCS_DIR)raytrace/shadow.c \
 				$(SRCS_DIR)shape/shape_utils.c \
 				$(SRCS_DIR)shape/shapes_unit.c \
 				$(SRCS_DIR)shape/sphere.c \

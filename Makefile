@@ -22,8 +22,10 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)shape/shape_utils.c \
 				$(SRCS_DIR)shape/shapes_unit.c \
 				$(SRCS_DIR)shape/sphere.c \
+				$(SRCS_DIR)shape/sphere_utils.c \
 				$(SRCS_DIR)shape/plane.c \
 				$(SRCS_DIR)shape/cylinder.c \
+				$(SRCS_DIR)shape/cylinder_utils.c \
 				$(SRCS_DIR)shape/cone.c \
 				$(SRCS_DIR)shape/circle.c \
 				$(SRCS_DIR)utils/utils.c \
@@ -35,7 +37,8 @@ SRCS		:= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)key/key_utils.c \
 				$(SRCS_DIR)bump_map/bump_map.c \
 				$(SRCS_DIR)bump_map/bump_sphere.c \
-				$(SRCS_DIR)bump_map/bump_cylinder.c
+				$(SRCS_DIR)bump_map/bump_cylinder.c \
+				$(SRCS_DIR)bump_map/bump_plane.c
 MLX_DIR		:= 	./minilibx
 LIB_DIR		:= 	./libft
 INCLUDES	:=	-I ./include -I$(MLX_DIR) -I$(LIB_DIR)

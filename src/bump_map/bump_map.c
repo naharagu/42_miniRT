@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 07:20:42 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/16 20:16:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 08:07:00 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	bump_map(t_window *window)
 			bump_cylinder(tmp);
 		else if (tmp->bump_flag == true && tmp->type == CONE)
 			bump_cylinder(tmp);
+		else if (tmp->bump_flag == true && tmp->type == PLANE)
+			bump_plane(tmp);
 		tmp = tmp->next;
 	}
 }

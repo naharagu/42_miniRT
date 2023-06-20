@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/18 08:52:15 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 13:01:01 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_shape					*shape_lst_last(t_shape *shapes);
 t_shape					*shape_lst_add(t_scene *scene);
 
 // sphere.c
+void					calc_sphere_pi(t_shape *shape, t_intersect *intersect);
 void					checkerboard_color(t_shape *shape, t_intersect *intersect);
 size_t					calc_circle_index(double pi, double division);
 bool					intersect_sphere(t_shape *shape, t_ray *ray, \

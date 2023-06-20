@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/18 22:53:38 by naharagu         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:04:55 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,36 @@ static size_t	calc_plane_index(double pi, size_t division)
 {
 	size_t	index;
 
-	if (pi < 0)
-		pi = pi * -1 + division;
-	index = (size_t)(pi / division);
+	if (pi >= 0)
+		index = (size_t)(pi * division) % division;
+	else
+	{
+		pi = pi * -1;
+		index = ((size_t)(pi * division) + 1) % division;
+	}
 	return (index);
 }
 
-// static void	bump_plane(t_shape *shape, t_intersect *intersect)
-// {
-// }
+static void	plane_b_normal(t_shape *shape, t_intersect *intersect)
+{
+	t_bump_map	*tmp;
+	size_t		i;
+
+	tmp = shape->bump_map;
+	if (tmp == NULL)
+		intersect->b_normal = shape->normal;
+	else
+	{
+		i = 0;
+		while (i < \
+			intersect->bump_idx_x * shape->bump_div + intersect->bump_idx_y)
+		{
+			tmp = tmp->next;
+			i++;
+		}
+		intersect->b_normal = tmp->b_normal;
+	}
+}
 
 static void	calc_intersect_plane(t_shape *shape, t_intersect *intersect)
 {
@@ -47,13 +68,14 @@ static void	calc_intersect_plane(t_shape *shape, t_intersect *intersect)
 	intersect->color_idx_y = \
 		calc_plane_index(intersect->pi_y, shape->color_div);
 	checkerboard_color(shape, intersect);
+	intersect->bump = shape->bump_flag;
 	if (intersect->bump == true)
 	{
 		intersect->bump_idx_x = \
 			calc_plane_index(intersect->pi_x, shape->bump_div);
 		intersect->bump_idx_y = \
 			calc_plane_index(intersect->pi_y, shape->bump_div);
-		// bump_plane(shape, intersect);
+		plane_b_normal(shape, intersect);
 	}
 }
 

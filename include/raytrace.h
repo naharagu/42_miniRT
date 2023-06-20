@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/12 20:05:37 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 10:37:02 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ bool		calculate_intersect_point(t_ray *ray, t_intersect *intersect, \
 			t_scene *scene, ssize_t intersect_index);
 
 t_vec3		convert_rgb(t_vec3 color);
-
 
 #endif

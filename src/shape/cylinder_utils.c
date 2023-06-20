@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/20 12:57:32 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 17:06:02 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	calc_cylinder_index(double height, double current, double division)
 	{
 		tmp += height / division;
 		if (current <= tmp)
-			return (index);
+			break ;
 		index++;
 	}
 	return (index);
@@ -45,7 +45,7 @@ static void	cylinder_b_normal(t_shape *shape, t_intersect *intersect)
 	{
 		i = 0;
 		while (i < \
-			intersect->bump_idx_x * shape->bump_div + intersect->bump_idx_y)
+			intersect->bump_idx_x)
 		{
 			tmp = tmp->next;
 			i++;

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:59:59 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/20 13:03:25 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:45:20 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ size_t	calc_circle_index(double pi, double division)
 	{
 		tmp += 2 * M_PI / division;
 		if (pi <= tmp)
-			return (index);
+			break ;
 		index++;
 	}
 	return (index);

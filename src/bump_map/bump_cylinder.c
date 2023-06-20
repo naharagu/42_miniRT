@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 19:48:45 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/18 10:28:23 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 17:05:50 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,11 @@ static t_vec3	calc_cylinder_b_normal(t_shape *shape, size_t idx_x)
 void	bump_cylinder(t_shape *shape)
 {
 	size_t	idx_x;
-	size_t	idx_y;
 
 	idx_x = 0;
 	while (idx_x < shape->bump_div)
 	{
-		idx_y = 0;
-		while (idx_y < shape->bump_div)
-		{
-			add_bump_map(shape, calc_cylinder_b_normal(shape, idx_x));
-			idx_y++;
-		}
+		add_bump_map(shape, calc_cylinder_b_normal(shape, idx_x));
 		idx_x++;
 	}
 }

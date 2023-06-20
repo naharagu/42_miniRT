@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 18:50:30 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 22:02:37 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "shape.h"
 # include <fcntl.h>
 # include <errno.h>
+# include <stdbool.h>
+
+# define EPSILON 0.001953125
 
 typedef struct s_shape	t_shape;
 typedef struct s_scene	t_scene;

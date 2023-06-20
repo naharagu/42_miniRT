@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 12:59:55 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 23:32:23 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,20 @@ static void	calc_intersect_sphere(t_shape *shape, t_intersect *intersect)
 	}
 }
 
+static void	precalc_sphere(t_shape *shape, t_ray *ray, t_discriminant *d)
+{
+	d->so = vec3_subtraction(ray->origin, shape->center);
+	d->a = vec3_dot_product(ray->dir, ray->dir);
+	d->b = 2.0 * vec3_dot_product(d->so, ray->dir);
+	d->c = vec3_dot_product(d->so, d->so) - shape->radius * shape->radius;
+	d->discriminant = d->b * d->b - 4.0 * d->a * d->c;
+}
+
 bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect)
 {
 	t_discriminant	d;
 
-	d.so = vec3_subtraction(ray->origin, shape->center);
-	d.a = vec3_dot_product(ray->dir, ray->dir);
-	d.b = 2.0 * vec3_dot_product(d.so, ray->dir);
-	d.c = vec3_dot_product(d.so, d.so) - shape->radius * shape->radius;
-	d.discriminant = d.b * d.b - 4.0 * d.a * d.c;
+	precalc_sphere(shape, ray, &d);
 	if (d.discriminant < 0.0)
 		return (false);
 	d.t = (-d.b + sqrt(d.discriminant)) / (2.0 * d.a);
@@ -80,6 +85,7 @@ bool	intersect_sphere(t_shape *shape, t_ray *ray, t_intersect *intersect)
 			vec3_normalize(vec3_subtraction(intersect->point, shape->center));
 		intersect->distance = d.t;
 		calc_intersect_sphere(shape, intersect);
+		intersect->type = shape->type;
 		intersect->index = shape->index;
 		return (true);
 	}

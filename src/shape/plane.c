@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:37:49 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/20 16:43:33 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 22:28:17 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ bool	intersect_plane(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	intersect->b_normal = intersect->normal;
 	intersect->distance = d.t;
 	calc_intersect_plane(shape, intersect);
+	intersect->type = shape->type;
 	intersect->index = shape->index;
 	return (true);
 }

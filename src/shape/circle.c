@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 08:39:54 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/18 10:30:40 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 23:08:31 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	intersect_circle(t_shape *shape, t_ray *ray, t_intersect *intersect)
 	intersect->normal = shape->normal;
 	intersect->distance = d.t;
 	calc_intersect_circle(shape, intersect);
+	intersect->type = shape->type;
 	intersect->index = shape->index;
 	return (true);
 }

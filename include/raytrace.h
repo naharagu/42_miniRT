@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:49 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 18:51:50 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 23:30:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define K_DIFFUSE 0.69
 # define K_SPECULAR 0.3
 # define ALPHA 10
-# define EPSILON 0.001953125
 
-typedef struct s_scene	t_scene;
-typedef struct s_window	t_window;
-typedef struct s_light	t_light;
+typedef struct s_scene		t_scene;
+typedef struct s_window		t_window;
+typedef struct s_light		t_light;
+typedef enum e_shape_type	t_shape_type;
 typedef struct s_ray
 {
 	t_vec3	origin;
@@ -41,6 +41,7 @@ typedef struct s_intersect
 	t_vec3				normal;
 	t_vec3				color;
 	t_vec3				calc_color;
+	t_shape_type		type;
 	ssize_t				index;
 	double				distance;
 	t_vec3				pro_x;

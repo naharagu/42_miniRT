@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:48 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/20 12:57:26 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 22:28:21 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static bool	within_cylinder(t_shape *shape, \
 			vec3_multiply_scalar(shape->normal, d->t2))));
 		intersect->distance = d->t;
 		calc_intersect_cylinder(shape, intersect, d);
+		intersect->type = shape->type;
 		intersect->index = shape->index;
 		return (true);
 	}

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:52 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 18:51:35 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 22:01:40 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "color.h"
 # include "parse.h"
 # include "vector.h"
-# include "raytrace.h"
+// # include "raytrace.h"
 # include "bump_map.h"
 # include <unistd.h>
 # include <stdbool.h>
@@ -29,14 +29,14 @@ typedef struct s_window			t_window;
 typedef struct s_bump_map		t_bump_map;
 typedef struct s_discriminant	t_discriminant;
 
-enum					e_shape_type
+typedef enum e_shape_type
 {
 	SPHERE,
 	PLANE,
 	CYLINDER,
 	CONE,
 	CIRCLE,
-};
+}	t_shape_type;
 
 typedef struct s_color
 {
@@ -46,7 +46,7 @@ typedef struct s_color
 
 struct					s_shape
 {
-	enum e_shape_type	type;
+	t_shape_type		type;
 	ssize_t				index;
 	t_shape				*next;
 	t_vec3				center;

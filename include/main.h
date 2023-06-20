@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:42 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/05 17:14:37 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/20 22:03:33 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "mlx.h"
 # include "vector.h"
-# include "raytrace.h"
-# include <stdio.h> //delete later
+# include <stdio.h>
 
 # define HEIGHT 400
 # define WIDTH 400
@@ -48,6 +47,5 @@ typedef struct s_window	t_window;
 
 int	key_handler(int keycode, t_window *window);
 int	exit_window(const char *msg);
-// int	exit_window(t_window *window);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:34:41 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 01:15:37 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 06:56:47 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_scene(t_scene *scene)
 	scene->lights = NULL;
 	scene->lights_num = 0;
 	scene->shapes = NULL;
+	scene->shapes_num = 0;
 }
 
 void	init_window(t_window *window)

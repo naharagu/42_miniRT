@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 08:22:53 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/18 10:28:32 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 07:07:43 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	parse_bottom_circle(t_scene *scene, t_shape *shape)
 	copy_colors(shape->colors, new);
 	new->colors_cnt = shape->colors_cnt;
 	new->color_div = shape->color_div;
-	new->bump_flag = new->bump_flag;
-	new->bump_div = new->bump_div;
+	new->bump_flag = shape->bump_flag;
+	new->bump_div = shape->bump_div;
+	scene->shapes_num++;
+	if (scene->shapes_num > LIMIT_SHAPES)
+		put_error_and_exit("Invalid shapes num");
 }
 
 void	parse_top_circle(t_scene *scene, t_shape *shape)
@@ -64,6 +67,9 @@ void	parse_top_circle(t_scene *scene, t_shape *shape)
 	copy_colors(shape->colors, new);
 	new->colors_cnt = shape->colors_cnt;
 	new->color_div = shape->color_div;
-	new->bump_flag = new->bump_flag;
-	new->bump_div = new->bump_div;
+	new->bump_flag = shape->bump_flag;
+	new->bump_div = shape->bump_div;
+	scene->shapes_num++;
+	if (scene->shapes_num > LIMIT_SHAPES)
+		put_error_and_exit("Invalid shapes num");
 }

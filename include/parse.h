@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:04:47 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/20 22:02:37 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 06:56:25 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct					s_scene
 	t_light				*lights;
 	size_t				lights_num;
 	t_shape				*shapes;
+	size_t				shapes_num;
 };
 
 //parse.c

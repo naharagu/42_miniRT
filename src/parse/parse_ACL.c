@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/04 21:59:30 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 06:59:52 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,6 @@ void	parse_light(char **str_array, t_scene *scene)
 	light->color = parse_color(str_array[3]);
 	if (is_in_range_double(light->intensity, 0.0, 1.0) == false)
 		put_error_and_exit("Invalid light intensity");
+	if (scene->lights_num > LIMIT_LIGHTS)
+		put_error_and_exit("Invalid light num");
 }

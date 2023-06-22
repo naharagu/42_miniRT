@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 06:29:27 by saikeda           #+#    #+#             */
-/*   Updated: 2023/06/12 19:55:51 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 07:06:15 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static size_t	parse_bump_div(t_shape *shape, char **str_array, size_t index)
 	if (num <= 0)
 		put_error_and_exit("Invalid bump_div format");
 	shape->bump_div = (size_t)num;
+	if (shape->bump_div > LIMIT_DIVISION)
+		put_error_and_exit("Invalid color_div");
 	return (++index);
 }
 

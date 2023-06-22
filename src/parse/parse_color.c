@@ -6,7 +6,7 @@
 /*   By: saikeda <saikeda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 08:47:34 by naharagu          #+#    #+#             */
-/*   Updated: 2023/06/18 08:28:27 by saikeda          ###   ########.fr       */
+/*   Updated: 2023/06/23 07:48:59 by saikeda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	color_lst_add(t_shape *shape, t_color *color_ptr)
 		tmp->next = color_ptr;
 	}
 	shape->colors_cnt++;
+	if (shape->colors_cnt > LIMIT_COLORS)
+		put_error_and_exit("Invalid color_num");
 }
 
 static size_t	parse_color_div(t_shape *shape, char **str_array, size_t index)
@@ -86,6 +88,8 @@ static size_t	parse_color_div(t_shape *shape, char **str_array, size_t index)
 
 	if (str_array[index] == NULL || ft_strcmp(str_array[index], "bump") == 0)
 	{
+		if (shape->colors_cnt > 1)
+			put_error_and_exit("Invalid color_div format");
 		shape->color_div = 1;
 		return (index);
 	}
@@ -116,5 +120,7 @@ size_t	parse_colors(t_shape *shape, char **str_array, size_t index)
 	if (shape->colors == NULL)
 		put_error_and_exit("Invalid color format");
 	index = parse_color_div(shape, str_array, index);
+	if (shape->color_div > LIMIT_DIVISION)
+		put_error_and_exit("Invalid color_div");
 	return (index);
 }
